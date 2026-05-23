@@ -21,6 +21,7 @@
         html{scroll-behavior:smooth;}
         body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));}
         ::-webkit-scrollbar{display:none;}*{scrollbar-width:none;}
+        img{will-change:auto;}
         .status-bar{height:calc(var(--safe-top) + 10px);background:transparent;}
         .topbar{position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
         .topbar-left{display:flex;flex-direction:column;}
@@ -30,11 +31,11 @@
         .icon-btn{width:40px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:15px;cursor:pointer;transition:all 0.2s;position:relative;}
         .icon-btn:active{background:var(--gold);color:#000;transform:scale(0.92);}
         .notif-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--bg);}
-        .page{display:none;animation:fadeUp 0.35s ease;}
+        .page{display:none;animation:fadeUp 0.28s cubic-bezier(0.22,1,0.36,1) both;}
         .page.active{display:block;}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-        @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+        @keyframes fadeUp{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+        @keyframes slideUp{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale3d(1,1,1)}50%{opacity:0.5;transform:scale3d(0.8,0.8,1)}}
         .scroll-area{padding:0 0 20px;}
         .section{padding:22px 20px 0;}
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
@@ -46,6 +47,8 @@
         .search-bar i{color:var(--dim);font-size:15px;flex-shrink:0;}
         .search-bar input{background:none;border:none;color:var(--text);font-family:var(--font);font-size:15px;width:100%;outline:none;}
         .search-bar input::placeholder{color:var(--dim2);}
+        .search-clear{color:var(--dim);font-size:15px;cursor:pointer;flex-shrink:0;padding:4px;display:none;}
+        .search-clear.visible{display:block;}
         .hero-banner{margin:18px 20px 0;background:linear-gradient(135deg,#1A1400 0%,#0D0E18 50%,#001A14 100%);border-radius:var(--radius);padding:22px;border:1px solid rgba(245,197,24,0.15);position:relative;overflow:hidden;cursor:pointer;transition:transform 0.25s;}
         .hero-banner:hover{transform:scale(1.01);}
         .hero-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(245,197,24,0.15) 0%,transparent 70%);pointer-events:none;}
@@ -75,8 +78,8 @@
         /* Venue Cards */
         .venues-scroll{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
         .hscroll{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
-        .venue-card-h{flex-shrink:0;width:220px;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;color:inherit;}
-        .venue-card-h:active{transform:scale(0.96);border-color:var(--gold);}
+        .venue-card-h{flex-shrink:0;width:220px;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),border-color 0.2s;color:inherit;will-change:transform;}
+        .venue-card-h:active{transform:scale3d(0.96,0.96,1);border-color:var(--gold);}
         .venue-card-h img{width:100%;height:130px;object-fit:cover;display:block;}
         .hscroll-card{flex-shrink:0;width:190px;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
         .hscroll-card:active{transform:scale(0.96);border-color:var(--gold);}
@@ -112,13 +115,14 @@
         .reviewer-stars{color:var(--gold);font-size:11px;}
         .review-text{font-size:13px;color:var(--dim);line-height:1.6;}
         /* FAQ */
-        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;}
-        .faq-q{padding:16px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:border-color 0.25s;}
+        .faq-item:has(.faq-q.open){border-color:rgba(245,197,24,0.3);}
+        .faq-q{padding:16px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none;-webkit-user-select:none;}
         .faq-q:active{background:var(--card2);}
-        .faq-q i{color:var(--gold);font-size:13px;transition:transform 0.3s;flex-shrink:0;}
+        .faq-q i{color:var(--gold);font-size:13px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);flex-shrink:0;}
         .faq-q.open i{transform:rotate(180deg);}
-        .faq-a{display:none;padding:0 16px 16px;font-size:13px;color:var(--dim);line-height:1.7;}
-        .faq-a.open{display:block;}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),padding 0.25s;padding:0 16px;font-size:13px;color:var(--dim);line-height:1.7;}
+        .faq-a.open{max-height:300px;padding:0 16px 16px;}
         /* Footer */
         .footer{background:var(--card);border-top:1px solid var(--border);padding:28px 20px calc(100px + var(--safe-bottom));margin-top:10px;}
         .footer-brand{font-family:var(--display);font-size:26px;color:var(--gold);margin-bottom:6px;}
@@ -195,7 +199,7 @@
         /* Sheet */
         .sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(4px);}
         .sheet-overlay.open{display:flex;align-items:flex-end;}
-        .sheet{background:var(--card);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.35s cubic-bezier(0.32,0.72,0,1);}
+        .sheet{background:var(--card);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;}
         .sheet-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:14px auto 22px;}
         .sheet-title{font-size:18px;font-weight:700;padding:0 20px;margin-bottom:20px;}
         .filter-group{padding:0 20px;margin-bottom:22px;}
@@ -287,13 +291,13 @@
         .step-dot{width:8px;height:8px;border-radius:4px;background:var(--dim2);transition:all 0.3s;}
         .step-dot.active{width:24px;background:var(--gold);}
         /* Dock */
-        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:50%;transform:translateX(-50%);width:calc(100% - 32px);max-width:400px;height:68px;background:rgba(15,20,32,0.97);backdrop-filter:blur(28px);border-radius:24px;border:1px solid var(--border);display:flex;align-items:center;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:slideUp 0.5s cubic-bezier(0.34,1.56,0.64,1);}
-        .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;color:var(--dim2);transition:all 0.25s;padding:10px 0;position:relative;}
-        .dock-item i{font-size:20px;transition:all 0.3s;}
-        .dock-item span{font-size:10px;font-weight:700;letter-spacing:0.3px;}
+        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:68px;background:rgba(15,20,32,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;border:1px solid var(--border);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:slideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
+        .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;}
+        .dock-item i{font-size:20px;line-height:1;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),color 0.2s;display:block;}
+        .dock-item span{font-size:10px;font-weight:700;letter-spacing:0.3px;line-height:1;white-space:nowrap;}
         .dock-item.active{color:var(--gold);}
         .dock-item.active i{transform:translateY(-2px);}
-        .dock-badge{position:absolute;top:6px;left:50%;transform:translateX(4px);min-width:16px;height:16px;background:var(--red);border-radius:8px;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;padding:0 4px;border:2px solid var(--bg);}
+        .dock-badge{position:absolute;top:8px;left:50%;transform:translateX(6px);min-width:16px;height:16px;background:var(--red);border-radius:8px;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;padding:0 4px;border:2px solid var(--bg);}
     </style>
 </head>
 <body>
@@ -312,7 +316,7 @@
         </div>
     </div>
     <div class="scroll-area">
-        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="homeSearch" placeholder="Search venues, cities..."></div></div>
+        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="homeSearch" placeholder="Search venues, cities..."><i class="fa-solid fa-xmark search-clear" id="homeSearchClear" onclick="clearSearch('home')"></i></div></div>
 
         <div class="hero-banner" onclick="goPage('explore')">
             <div class="hero-kicker"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 1.4s infinite;"></span> 47 bookings confirmed this week</div>
@@ -433,7 +437,7 @@
                 <span class="footer-link" onclick="goPage('explore')">Browse Venues</span>
                 <span class="footer-link" onclick="goPage('bookings')">My Bookings</span>
                 <span class="footer-link" onclick="goPage('profile')">My Profile</span>
-                <span class="footer-link" onclick="alert('📞 +91 98765 43210\n✉️ help@vivahavenue.in')">Contact Us</span>
+                <span class="footer-link" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help.','_blank')">Contact Us</span>
                 <span class="footer-link">Privacy Policy</span>
                 <span class="footer-link">Terms of Service</span>
             </div>
@@ -451,9 +455,9 @@
 <!-- EXPLORE PAGE -->
 <div class="page" id="page-explore">
     <div class="status-bar"></div>
-    <div class="topbar"><div class="topbar-left"><span class="topbar-greeting">500+ Venues</span><span class="topbar-brand">Explore</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openSheet('filter-sheet')"><i class="fa-solid fa-sliders"></i></div></div></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">500+ Venues</span><span class="topbar-brand">Explore</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openSheet('filter-sheet')"><i class="fa-solid fa-sliders"></i></div></div></div>
     <div class="scroll-area">
-        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="exploreSearch" placeholder="Search venues or cities..." oninput="filterVenues(this.value)"></div></div>
+        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="exploreSearch" placeholder="Search venues or cities..." oninput="filterVenues(this.value);toggleClear('explore',this.value)"><i class="fa-solid fa-xmark search-clear" id="exploreSearchClear" onclick="clearSearch('explore')"></i></div></div>
         <div class="section" style="padding-bottom:16px;"><div class="chip-row" style="padding:0;"><div class="chip active">All</div><div class="chip">Under ₹2L</div><div class="chip">₹2L–₹5L</div><div class="chip">5★ Only</div><div class="chip">Outdoor</div><div class="chip">AC Hall</div></div></div>
         <div class="vgrid" id="vgrid">
             <div class="venue-card-v" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Benz Circle, Vijayawada</div><div class="venue-bottom"><div><div class="venue-price">₹4,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
@@ -468,21 +472,21 @@
 <!-- BOOKINGS PAGE -->
 <div class="page" id="page-bookings">
     <div class="status-bar"></div>
-    <div class="topbar"><div class="topbar-left"><span class="topbar-greeting">My Events</span><span class="topbar-brand">Bookings</span></div></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">My Events</span><span class="topbar-brand">Bookings</span></div></div>
     <div class="scroll-area" style="padding-top:20px;"><div class="booking-list" id="bookings-list"></div></div>
 </div>
 
 <!-- PROFILE PAGE -->
 <div class="page" id="page-profile">
     <div class="status-bar"></div>
-    <div class="topbar"><div class="topbar-left"><span class="topbar-greeting">Account</span><span class="topbar-brand">Profile</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openEditProfile()"><i class="fa-solid fa-pen"></i></div></div></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Account</span><span class="topbar-brand">Profile</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openEditProfile()"><i class="fa-solid fa-pen"></i></div></div></div>
     <div class="scroll-area">
         <div class="profile-header"><div class="avatar" id="profile-avatar">?</div><div class="profile-name" id="profile-name-display">Guest User</div><div class="profile-email" id="profile-email-display">Sign in to continue</div><div class="profile-badges"><div class="badge"><div class="badge-num" id="profile-bookings-count">0</div><div class="badge-lbl">Bookings</div></div><div class="badge"><div class="badge-num" id="profile-saved-count">0</div><div class="badge-lbl">Saved</div></div><div class="badge"><div class="badge-num">4.9★</div><div class="badge-lbl">Rating</div></div></div></div>
         <div class="menu-list">
             <div class="menu-item" onclick="goPage('bookings')"><div class="menu-icon blue"><i class="fa-solid fa-calendar-check"></i></div><div class="menu-text"><div class="menu-label">My Bookings</div><div class="menu-sub" id="profile-bookings-sub">View all your bookings</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
             <div class="menu-item" onclick="openEditProfile()"><div class="menu-icon gold"><i class="fa-solid fa-user-pen"></i></div><div class="menu-text"><div class="menu-label">Edit Profile</div><div class="menu-sub">Update name, phone & details</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
             <div class="menu-item" onclick="openSheet('filter-sheet')"><div class="menu-icon green"><i class="fa-solid fa-sliders"></i></div><div class="menu-text"><div class="menu-label">Preferences</div><div class="menu-sub">Venue type, location & budget</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
-            <div class="menu-item" onclick="alert('📞 +91 98765 43210\n✉️ help@vivahavenue.in\nMon–Sat, 9am–7pm')"><div class="menu-icon gold"><i class="fa-solid fa-headset"></i></div><div class="menu-text"><div class="menu-label">Help & Support</div><div class="menu-sub">Chat with our team</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
+            <div class="menu-item" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help%20with%20my%20booking.','_blank')"><div class="menu-icon gold"><i class="fa-solid fa-headset"></i></div><div class="menu-text"><div class="menu-label">Help & Support</div><div class="menu-sub">Chat on WhatsApp · +91 93906 53955</div></div><i class="fa-brands fa-whatsapp" style="color:var(--green);font-size:18px;"></i></div>
             <div class="menu-item" id="auth-menu-item" onclick="handleAuthMenuClick()"><div class="menu-icon red"><i class="fa-solid fa-right-from-bracket" id="auth-menu-icon"></i></div><div class="menu-text"><div class="menu-label" id="auth-menu-label">Sign In</div><div class="menu-sub" id="auth-menu-sub">Login or create account</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
         </div>
     </div>
@@ -521,7 +525,13 @@
 <!-- BOOKING FLOW SHEET -->
 <div class="sheet-overlay" id="booking-sheet">
     <div class="sheet" id="booking-sheet-inner" style="max-height:95vh;overflow-y:auto;padding-bottom:calc(40px + var(--safe-bottom));">
-        <div style="display:flex;align-items:center;padding:14px 20px 0;position:sticky;top:0;background:var(--card);z-index:10;border-radius:28px 28px 0 0;"><div class="sheet-handle" style="margin:0 auto 0 0;"></div><div class="icon-btn" onclick="closeSheet('booking-sheet')"><i class="fa-solid fa-xmark"></i></div></div>
+        <div style="position:sticky;top:0;background:var(--card);z-index:10;border-radius:28px 28px 0 0;padding:0;">
+            <div style="display:flex;justify-content:center;padding:10px 0 4px;"><div style="width:40px;height:4px;background:var(--dim2);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 16px 12px;">
+                <div style="font-size:16px;font-weight:700;color:var(--text);">Book Venue</div>
+                <button onclick="closeSheet('booking-sheet')" style="display:flex;align-items:center;gap:7px;background:rgba(245,101,101,0.13);border:1.5px solid rgba(245,101,101,0.35);border-radius:50px;padding:8px 16px 8px 12px;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:700;color:var(--red);transition:all 0.2s;"><i class="fa-solid fa-xmark" style="font-size:14px;"></i> Close</button>
+            </div>
+        </div>
         <div style="padding:10px 20px 60px;">
             <div class="step-indicator"><div class="step-dot active" id="sdot0"></div><div class="step-dot" id="sdot1"></div><div class="step-dot" id="sdot2"></div></div>
 
@@ -714,8 +724,11 @@ function showInvoice(i){
 }
 
 function filterVenues(q){q=(q||'').toLowerCase().trim();document.querySelectorAll('#vgrid .venue-card-v').forEach(c=>{c.style.display=(!q||c.innerText.toLowerCase().includes(q))?'':'none';});}
-document.getElementById('homeSearch').addEventListener('input',function(){const q=this.value.trim();if(q.length>1){goPage('explore');setTimeout(()=>{document.getElementById('exploreSearch').value=q;filterVenues(q);},50);}});
-document.getElementById('exploreSearch').addEventListener('input',function(){filterVenues(this.value);});
+function toggleClear(id,val){const el=document.getElementById(id+'SearchClear');if(el)el.classList.toggle('visible',(val||'').length>0);}
+function clearSearch(id){const inp=document.getElementById(id+'Search');const clr=document.getElementById(id+'SearchClear');if(inp){inp.value='';inp.focus();}if(clr)clr.classList.remove('visible');filterVenues('');if(id==='home'){const ei=document.getElementById('exploreSearch');if(ei){ei.value='';toggleClear('explore','');}}}
+document.getElementById('homeSearch').addEventListener('input',function(){const q=this.value.trim();toggleClear('home',this.value);if(q.length>=1){goPage('explore');const es=document.getElementById('exploreSearch');es.value=this.value;toggleClear('explore',this.value);filterVenues(q);}else{const es=document.getElementById('exploreSearch');es.value='';toggleClear('explore','');filterVenues('');}});
+document.getElementById('homeSearch').addEventListener('keydown',function(e){if(e.key==='Enter'){const q=this.value.trim();goPage('explore');document.getElementById('exploreSearch').value=q;toggleClear('explore',q);filterVenues(q);}});
+document.getElementById('exploreSearch').addEventListener('input',function(){filterVenues(this.value);toggleClear('explore',this.value);});
 document.querySelectorAll('#cityChips .chip').forEach(chip=>{chip.addEventListener('click',()=>{document.querySelectorAll('#cityChips .chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');const city=chip.textContent.trim();if(city==='All'){document.querySelectorAll('#vgrid .venue-card-v').forEach(c=>c.style.display='');}else{document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{card.style.display=card.innerText.includes(city)?'':'none';});goPage('explore');}});});
 document.querySelectorAll('#page-explore .chip').forEach(chip=>{chip.addEventListener('click',()=>{document.querySelectorAll('#page-explore .chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');const label=chip.textContent.trim();document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];const v=vk?venues[vk]:null;if(!v){card.style.display='';return;}let show=true;if(label==='Under ₹2L')show=v.priceRaw<200000;else if(label==='₹2L–₹5L')show=v.priceRaw>=200000&&v.priceRaw<=500000;else if(label==='5★ Only')show=parseFloat(v.rating)>=4.8;else if(label==='Outdoor')show=v.tag==='SCENIC'||v.tag==='BEACHFRONT'||v.name.includes('Garden');else if(label==='AC Hall')show=v.priceRaw>=300000||parseInt(v.cap)>=800;card.style.display=show?'':'none';});});});
 document.querySelectorAll('.occ-box').forEach(box=>{box.addEventListener('click',()=>{const was=box.classList.contains('active');document.querySelectorAll('.occ-box').forEach(b=>b.classList.remove('active'));if(!was){box.classList.add('active');goPage('explore');}});});
@@ -725,7 +738,9 @@ function openSheet(id){document.getElementById(id).classList.add('open');}
 function closeSheet(id,e){if(!e){document.getElementById(id).classList.remove('open');return;}if(e.target.id===id)document.getElementById(id).classList.remove('open');}
 ['booking-sheet','venue-sheet','filter-sheet'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 
-function toggleFaq(el){const a=el.nextElementSibling;const open=a.classList.contains('open');document.querySelectorAll('.faq-q').forEach(q=>{q.classList.remove('open');q.nextElementSibling.classList.remove('open');});if(!open){el.classList.add('open');a.classList.add('open');}}
+function toggleFaq(el){const a=el.nextElementSibling;const isOpen=a.classList.contains('open');document.querySelectorAll('.faq-q').forEach(q=>{q.classList.remove('open');q.nextElementSibling.classList.remove('open');});if(!isOpen){el.classList.add('open');a.classList.add('open');}}
+// Open first FAQ by default
+(function(){const first=document.querySelector('.faq-q');if(first){first.classList.add('open');first.nextElementSibling.classList.add('open');}})();
 
 function openVenue(id){
     currentVenueId=id;const v=venues[id];if(!v)return;
