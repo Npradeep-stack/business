@@ -5,31 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="theme-color" content="#05070A">
-    <title>Vivaha Venue</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>Vivaha Venue — Handpicked Wedding &amp; Event Venues in AP &amp; Telangana</title>
+    <meta name="description" content="Discover and book verified wedding halls, reception venues and event spaces across Andhra Pradesh and Telangana. Transparent pricing, 40% advance booking, dedicated support.">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --gold:#F5C518;--gold2:#E8A500;--bg:#080B12;--card:#0F1420;--card2:#141825;
-            --text:#F0F2F8;--dim:#7A859E;--dim2:#4A5568;--border:rgba(255,255,255,0.07);
-            --green:#48BB78;--red:#F56565;--blue:#63B3ED;
+            --bg:#F8F6F4;--card:#FFFFFF;--card2:#F0EBE5;--border:#EAE3DD;
+            --text:#2B2B2B;--dim:#7A6E68;--dim2:#B0A89F;
+            --rose:#AF3A81;--rose2:#9C3372;--gold:#D4AF37;--gold2:#B8960C;
+            --blush:#F3DADF;
+            --green:#10B981;--red:#EF4444;--blue:#2471A3;
             --safe-top:env(safe-area-inset-top,12px);--safe-bottom:env(safe-area-inset-bottom,0px);
-            --radius:22px;--font:'DM Sans',sans-serif;--display:'Cormorant Garamond',serif;
+            --radius:24px;--font:'Inter',sans-serif;--display:'Cormorant Garamond',serif;
         }
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
         html{scroll-behavior:smooth;}
-        body{background:var(--bg);color:var(--text);font-family:var(--font);overflow-x:hidden;min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));}
+        body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;overflow-x:hidden;min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));}
         ::-webkit-scrollbar{display:none;}*{scrollbar-width:none;}
         img{will-change:auto;}
         .status-bar{height:calc(var(--safe-top) + 10px);background:transparent;}
-        .topbar{position:sticky;top:0;z-index:100;background:rgba(8,11,18,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
+        .topbar{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;justify-content:space-between;}
         .topbar-left{display:flex;flex-direction:column;}
-        .topbar-greeting{font-size:12px;color:var(--dim);font-weight:500;}
-        .topbar-brand{font-family:var(--display);font-size:26px;color:var(--gold);line-height:1;letter-spacing:0.3px;}
+        .topbar-greeting{font-size:11px;color:var(--dim2);font-weight:300;letter-spacing:0.5px;}
+        .topbar-brand{font-family:var(--display);font-size:28px;font-weight:500;color:var(--text);line-height:1;letter-spacing:0.01em;}
         .topbar-actions{display:flex;gap:10px;}
-        .icon-btn{width:40px;height:40px;background:var(--card);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text);font-size:15px;cursor:pointer;transition:all 0.2s;position:relative;}
-        .icon-btn:active{background:var(--gold);color:#000;transform:scale(0.92);}
+        .icon-btn{width:40px;height:40px;background:transparent;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:16px;cursor:pointer;transition:all 0.2s;position:relative;}
+        .icon-btn:active{background:#AF3A81;color:#fff;transform:scale(0.92);}
         .notif-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--bg);}
         .page{display:none;animation:fadeUp 0.28s cubic-bezier(0.22,1,0.36,1) both;}
         .page.active{display:block;}
@@ -37,110 +40,132 @@
         @keyframes slideUp{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
         @keyframes pulse{0%,100%{opacity:1;transform:scale3d(1,1,1)}50%{opacity:0.5;transform:scale3d(0.8,0.8,1)}}
         .scroll-area{padding:0 0 20px;}
-        .section{padding:22px 20px 0;}
+        .section{padding:52px 20px 0;}
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-        .section-title{font-size:13px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.8px;}
-        .see-all{font-size:12px;font-weight:600;color:var(--gold);cursor:pointer;}
+        .section-title{font-size:11px;font-weight:400;color:var(--dim2);text-transform:uppercase;letter-spacing:3px;}
+        .see-all{font-size:12px;font-weight:600;color:#AF3A81;cursor:pointer;}
         .search-wrap{padding:16px 20px 0;}
-        .search-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:0 16px;height:50px;transition:border-color 0.2s;}
-        .search-bar:focus-within{border-color:rgba(245,197,24,0.4);}
+        .search-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);border-radius:50px;padding:0 20px;height:52px;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
+        .search-bar:focus-within{border-color:rgba(175,58,129,0.4);}
         .search-bar i{color:var(--dim);font-size:15px;flex-shrink:0;}
-        .search-bar input{background:none;border:none;color:var(--text);font-family:var(--font);font-size:15px;width:100%;outline:none;}
+        .search-bar input{background:none;border:none;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;width:100%;outline:none;}
         .search-bar input::placeholder{color:var(--dim2);}
         .search-clear{color:var(--dim);font-size:15px;cursor:pointer;flex-shrink:0;padding:4px;display:none;}
         .search-clear.visible{display:block;}
-        .hero-banner{margin:18px 20px 0;background:linear-gradient(135deg,#1A1400 0%,#0D0E18 50%,#001A14 100%);border-radius:var(--radius);padding:22px;border:1px solid rgba(245,197,24,0.15);position:relative;overflow:hidden;cursor:pointer;transition:transform 0.25s;}
-        .hero-banner:hover{transform:scale(1.01);}
-        .hero-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:radial-gradient(circle,rgba(245,197,24,0.15) 0%,transparent 70%);pointer-events:none;}
-        .hero-kicker{font-size:11px;font-weight:700;color:var(--gold2);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
-        .hero-title{font-family:var(--display);font-size:28px;line-height:1.2;margin-bottom:10px;}
-        .hero-title em{color:var(--gold);font-style:normal;}
-        .hero-sub{font-size:13px;color:var(--dim);margin-bottom:18px;line-height:1.5;}
-        .hero-cta{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#000;font-weight:700;font-size:13px;border-radius:12px;padding:10px 18px;cursor:pointer;border:none;font-family:var(--font);}
-        .hero-cta:active{transform:scale(0.95);background:var(--gold2);}
+        .hero-banner{
+            margin:24px 0 0;
+            position:relative;overflow:hidden;cursor:pointer;
+            height:82vw;max-height:460px;min-height:320px;
+        }
+        .hero-banner::after{
+            content:'';position:absolute;inset:0;
+            background:linear-gradient(to top, rgba(30,18,14,0.72) 0%, rgba(30,18,14,0.18) 55%, transparent 100%);
+        }
+        .hero-banner-img{width:100%;height:100%;object-fit:cover;display:block;}
+        .hero-banner-body{
+            position:absolute;bottom:0;left:0;right:0;z-index:2;
+            padding:28px 24px 32px;
+        }
+        .hero-kicker{font-size:10px;font-weight:400;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;font-family:var(--font);}
+        .hero-title{
+            font-family:var(--display);font-size:clamp(38px,11vw,52px);
+            line-height:1.08;margin-bottom:18px;font-weight:500;
+            color:#FFFFFF;letter-spacing:-0.01em;
+        }
+        .hero-title em{font-style:italic;font-weight:400;}
+        .hero-sub{font-size:13px;color:rgba(255,255,255,0.72);margin-bottom:24px;line-height:1.6;font-weight:300;max-width:280px;}
+        .hero-cta{
+            display:inline-flex;align-items:center;gap:10px;
+            background:#FFFFFF;color:var(--text);
+            font-weight:500;font-size:13px;letter-spacing:0.3px;
+            border-radius:50px;padding:12px 24px;
+            cursor:pointer;border:none;font-family:var(--font);
+            box-shadow:0 8px 24px rgba(0,0,0,0.18);
+        }
+        .hero-cta:active{transform:scale(0.96);}
         .chip-row{display:flex;gap:8px;overflow-x:auto;padding:0 20px 2px;scrollbar-width:none;}
-        .chip{background:var(--card);border:1px solid var(--border);border-radius:50px;padding:9px 16px;white-space:nowrap;font-size:13px;font-weight:600;cursor:pointer;transition:all 0.25s;flex-shrink:0;color:var(--dim);}
-        .chip.active,.chip:active{background:var(--gold);color:#000;border-color:var(--gold);}
+        .chip{background:transparent;border:1px solid var(--border);border-radius:50px;padding:8px 16px;white-space:nowrap;font-size:12px;font-weight:400;cursor:pointer;transition:all 0.25s;flex-shrink:0;color:var(--dim);}
+        .chip.active,.chip:active{background:#AF3A81;color:#fff;border-color:#AF3A81;}
         .occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-        .occ-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px 5px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
-        .occ-icon{width:42px;height:42px;background:rgba(245,197,24,0.1);border-radius:14px;display:flex;align-items:center;justify-content:center;}
-        .occ-icon i{font-size:18px;color:var(--gold);}
-        .occ-label{font-size:10px;font-weight:700;color:var(--dim);text-align:center;}
-        .occ-box.active{background:var(--gold);border-color:var(--gold);transform:scale(1.05);}
-        .occ-box.active .occ-icon{background:rgba(0,0,0,0.15);}
-        .occ-box.active .occ-icon i,.occ-box.active .occ-label{color:#000;}
+        .occ-box{background:var(--card);border:none;border-radius:20px;padding:14px 5px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 4px 16px rgba(0,0,0,0.05);}
+        .occ-icon{width:42px;height:42px;background:rgba(175,58,129,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+        .occ-icon i{font-size:18px;color:#AF3A81;}
+        .occ-label{font-size:10px;font-weight:400;color:var(--dim);text-align:center;letter-spacing:0.3px;}
+        .occ-box.active{background:#AF3A81;border-color:#AF3A81;transform:scale(1.05);}
+        .occ-box.active .occ-icon{background:rgba(0,0,0,0.08);}
+        .occ-box.active .occ-icon i,.occ-box.active .occ-label{color:#fff;}
         /* Trust */
         .trust-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-        .trust-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
-        .trust-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;}
-        .trust-num{font-size:20px;font-weight:800;color:var(--gold);font-family:var(--display);}
-        .trust-lbl{font-size:10px;color:var(--dim);font-weight:600;}
+        .trust-box{background:transparent;border:none;padding:16px 10px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;}
+        .trust-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;background:transparent!important;}
+        .trust-num{font-size:26px;font-weight:500;color:var(--text);font-family:var(--display);}
+        .trust-lbl{font-size:11px;color:var(--dim2);font-weight:300;letter-spacing:1px;font-family:var(--font);}
         /* Venue Cards */
         .venues-scroll{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
         .hscroll{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
-        .venue-card-h{flex-shrink:0;width:220px;background:var(--card);border:1px solid var(--border);border-radius:20px;overflow:hidden;cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),border-color 0.2s;color:inherit;will-change:transform;}
-        .venue-card-h:active{transform:scale3d(0.96,0.96,1);border-color:var(--gold);}
-        .venue-card-h img{width:100%;height:130px;object-fit:cover;display:block;}
-        .hscroll-card{flex-shrink:0;width:190px;background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;cursor:pointer;transition:all 0.3s;}
-        .hscroll-card:active{transform:scale(0.96);border-color:var(--gold);}
+        .venue-card-h{flex-shrink:0;width:220px;background:var(--card);border:none;border-radius:20px;overflow:hidden;cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;color:inherit;will-change:transform;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+        .venue-card-h:active{transform:scale3d(0.96,0.96,1);box-shadow:0 4px 20px rgba(195,141,148,0.15);}
+        .venue-card-h img{width:100%;height:150px;object-fit:cover;display:block;}
+        .hscroll-card{flex-shrink:0;width:190px;background:var(--card);border:none;border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+        .hscroll-card:active{transform:scale(0.96);box-shadow:0 4px 20px rgba(195,141,148,0.15);}
         .hscroll-card img{width:100%;height:110px;object-fit:cover;display:block;}
         .hsc-info{padding:10px 12px 12px;}
         .venue-img-wrap{position:relative;}
-        .venue-tag{position:absolute;top:10px;left:10px;background:rgba(8,11,18,0.85);backdrop-filter:blur(8px);border-radius:8px;padding:3px 8px;font-size:9px;font-weight:800;color:var(--gold);letter-spacing:1px;}
-        .venue-fav{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(8,11,18,0.85);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+        .venue-tag{position:absolute;top:12px;left:12px;background:rgba(255,255,255,0.88);backdrop-filter:blur(12px);border-radius:50px;padding:4px 10px;font-size:9px;font-weight:400;color:var(--text);letter-spacing:1.5px;font-family:var(--font);}
+        .venue-fav{position:absolute;top:10px;right:10px;width:30px;height:30px;background:rgba(255,255,255,0.92);backdrop-filter:blur(8px);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;}
         .venue-fav i{font-size:13px;color:var(--dim);}
         .venue-fav.liked i{color:var(--red);}
         .venue-info{padding:12px 14px 14px;}
-        .venue-name{font-size:14px;font-weight:700;margin-bottom:4px;}
+        .venue-name{font-size:15px;font-weight:500;font-family:var(--display);margin-bottom:4px;letter-spacing:0.01em;}
         .venue-loc{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:4px;margin-bottom:10px;}
         .venue-bottom{display:flex;justify-content:space-between;align-items:center;}
-        .venue-price{font-size:15px;font-weight:800;}
+        .venue-price{font-size:15px;font-weight:400;color:var(--text);}
         .venue-price-sub{font-size:10px;color:var(--dim);font-weight:400;}
         .venue-rating{display:flex;align-items:center;gap:4px;background:rgba(245,197,24,0.1);padding:4px 8px;border-radius:8px;}
         .venue-rating i{font-size:10px;color:var(--gold);}
         .venue-rating span{font-size:11px;font-weight:700;color:var(--gold);}
         .vgrid{display:flex;flex-direction:column;gap:16px;padding:0 20px;}
-        .venue-card-v{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:all 0.3s;color:inherit;}
-        .venue-card-v:active{transform:scale(0.98);border-color:var(--gold);}
-        .venue-card-v .venue-img-wrap img{width:100%;height:180px;object-fit:cover;display:block;}
+        .venue-card-v{background:var(--card);border:none;border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;color:inherit;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
+        .venue-card-v:active{transform:scale(0.98);box-shadow:0 4px 20px rgba(195,141,148,0.15);}
+        .venue-card-v .venue-img-wrap img{width:100%;height:220px;object-fit:cover;display:block;}
         .venue-card-v .venue-info{padding:16px 18px 18px;}
-        .venue-card-v .venue-name{font-size:17px;margin-bottom:5px;}
+        .venue-card-v .venue-name{font-size:20px;font-family:var(--display);font-weight:500;margin-bottom:5px;letter-spacing:0.01em;}
         .venue-card-v .venue-loc{font-size:12px;margin-bottom:12px;}
-        .venue-card-v .venue-price{font-size:18px;}
+        .venue-card-v .venue-price{font-size:17px;font-weight:400;}
         /* Review cards */
-        .review-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;flex-shrink:0;width:280px;}
+        .review-card{background:var(--card);border:none;border-radius:20px;padding:22px;flex-shrink:0;width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.05);}
         .reviewer-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-        .reviewer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#000;flex-shrink:0;}
-        .reviewer-name{font-size:13px;font-weight:700;}
+        .reviewer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#9C3372,#AF3A81);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;}
+        .reviewer-name{font-size:13px;font-weight:500;}
         .reviewer-stars{color:var(--gold);font-size:11px;}
-        .review-text{font-size:13px;color:var(--dim);line-height:1.6;}
+        .review-text{font-size:13px;color:var(--dim);line-height:1.75;font-weight:300;font-style:italic;}
         /* FAQ */
-        .faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;margin-bottom:10px;overflow:hidden;transition:border-color 0.25s;}
-        .faq-item:has(.faq-q.open){border-color:rgba(245,197,24,0.3);}
-        .faq-q{padding:16px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none;-webkit-user-select:none;}
+        .faq-item{background:var(--card);border:none;border-radius:20px;margin-bottom:10px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
+        .faq-item:has(.faq-q.open){border-color:#AF3A81;}
+        .faq-q{padding:18px 20px;font-size:14px;font-weight:400;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;user-select:none;-webkit-user-select:none;}
         .faq-q:active{background:var(--card2);}
-        .faq-q i{color:var(--gold);font-size:13px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);flex-shrink:0;}
+        .faq-q i{color:#AF3A81;font-size:13px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);flex-shrink:0;}
         .faq-q.open i{transform:rotate(180deg);}
         .faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),padding 0.25s;padding:0 16px;font-size:13px;color:var(--dim);line-height:1.7;}
         .faq-a.open{max-height:300px;padding:0 16px 16px;}
         /* Footer */
-        .footer{background:var(--card);border-top:1px solid var(--border);padding:28px 20px calc(100px + var(--safe-bottom));margin-top:10px;}
-        .footer-brand{font-family:var(--display);font-size:26px;color:var(--gold);margin-bottom:6px;}
-        .footer-sub{font-size:13px;color:var(--dim);margin-bottom:20px;line-height:1.5;}
+        .footer{background:#F8F6F4;border-top:1px solid var(--border);padding:48px 24px calc(100px + var(--safe-bottom));margin-top:0;}
+        .footer-brand{font-family:var(--display);font-size:32px;font-weight:400;font-style:italic;color:var(--text);margin-bottom:10px;letter-spacing:0.01em;}
+        .footer-sub{font-size:13px;color:var(--dim);font-weight:300;margin-bottom:24px;line-height:1.7;}
         .footer-links{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
-        .footer-link{font-size:13px;color:var(--text);opacity:0.7;cursor:pointer;}
+        .footer-link{font-size:13px;color:var(--dim);font-weight:300;cursor:pointer;}
         .footer-social{display:flex;gap:12px;}
-        .social-btn{width:38px;height:38px;background:var(--card2);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;cursor:pointer;}
-        .social-btn:active{background:var(--gold);color:#000;}
-        .footer-copy{font-size:11px;color:var(--dim2);margin-top:18px;}
+        .social-btn{width:36px;height:36px;background:rgba(175,58,129,0.08);border:1px solid rgba(175,58,129,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#AF3A81;font-size:14px;cursor:pointer;}
+        .social-btn:active{background:#AF3A81;color:#fff;}
+        .footer-copy{font-size:11px;color:var(--dim2);font-weight:300;margin-top:24px;letter-spacing:0.5px;}
         /* Bookings */
         .booking-list{padding:0 20px;display:flex;flex-direction:column;gap:14px;}
-        .booking-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;}
+        .booking-card{background:var(--card);border:none;border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
         .booking-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
-        .booking-venue{font-size:15px;font-weight:700;}
+        .booking-venue{font-size:16px;font-weight:500;font-family:var(--display);}
         .booking-status{font-size:10px;font-weight:800;padding:4px 10px;border-radius:8px;letter-spacing:0.5px;}
         .status-confirmed{background:rgba(72,187,120,0.15);color:var(--green);}
-        .status-pending{background:rgba(245,197,24,0.15);color:var(--gold);}
+        .status-pending{background:rgba(195,141,148,0.1);color:var(--rose2);}
         .status-completed{background:rgba(120,120,140,0.15);color:var(--dim);}
         .status-cancelled{background:rgba(245,101,101,0.15);color:var(--red);}
         .booking-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim);margin-bottom:6px;}
@@ -148,7 +173,7 @@
         .booking-footer{margin-top:14px;display:flex;gap:10px;}
         .btn-sm{flex:1;padding:10px;border-radius:12px;font-size:13px;font-weight:700;font-family:var(--font);cursor:pointer;border:none;transition:all 0.2s;}
         .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text);}
-        .btn-primary{background:var(--gold);color:#000;}
+        .btn-primary{background:var(--text);color:#FAF7F2;font-weight:400;letter-spacing:0.3px;}
         .btn-sm:active{transform:scale(0.95);opacity:0.85;}
         .empty-state{text-align:center;padding:60px 20px;}
         .empty-icon{font-size:48px;margin-bottom:16px;opacity:0.3;}
@@ -156,128 +181,128 @@
         .empty-sub{font-size:14px;color:var(--dim);line-height:1.5;}
         /* Profile */
         .profile-header{padding:24px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;}
-        .avatar{width:80px;height:80px;background:linear-gradient(135deg,var(--gold2),var(--gold));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#000;font-weight:800;margin-bottom:14px;font-family:var(--display);}
+        .avatar{width:80px;height:80px;background:linear-gradient(135deg,#9C3372,#AF3A81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;color:#fff;font-weight:800;margin-bottom:14px;font-family:var(--display);}
         .profile-name{font-size:20px;font-weight:700;margin-bottom:4px;}
         .profile-email{font-size:13px;color:var(--dim);margin-bottom:18px;}
         .profile-badges{display:flex;gap:10px;}
-        .badge{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:8px 14px;text-align:center;}
-        .badge-num{font-size:18px;font-weight:800;color:var(--gold);}
+        .badge{background:var(--card);border:none;border-radius:16px;padding:10px 18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,0.05);}
+        .badge-num{font-size:18px;font-weight:800;color:var(--text);font-family:var(--display);}
         .badge-lbl{font-size:10px;color:var(--dim);font-weight:600;}
         .menu-list{padding:0 20px;display:flex;flex-direction:column;gap:4px;}
-        .menu-item{display:flex;align-items:center;gap:14px;padding:16px;background:var(--card);border:1px solid var(--border);border-radius:16px;cursor:pointer;transition:all 0.2s;}
+        .menu-item{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--card);border:none;border-radius:20px;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.05);}
         .menu-item:active{background:var(--card2);}
         .menu-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:16px;}
         .menu-text{flex:1;}
-        .menu-label{font-size:14px;font-weight:600;}
+        .menu-label{font-size:14px;font-weight:400;}
         .menu-sub{font-size:11px;color:var(--dim);margin-top:2px;}
         .menu-arrow{color:var(--dim2);font-size:13px;}
-        .menu-icon.gold{background:rgba(245,197,24,0.12);color:var(--gold);}
+        .menu-icon.gold{background:rgba(175,58,129,0.07);color:#AF3A81;}
         .menu-icon.blue{background:rgba(99,179,237,0.12);color:var(--blue);}
         .menu-icon.green{background:rgba(72,187,120,0.12);color:var(--green);}
         .menu-icon.red{background:rgba(245,101,101,0.12);color:var(--red);}
         /* Auth */
         .auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
         .auth-overlay.open{display:flex;}
-        .auth-modal{background:var(--card);border:1px solid rgba(245,197,24,0.2);border-radius:28px;padding:28px;width:100%;max-width:380px;animation:fadeUp 0.35s ease;}
-        .auth-logo{font-family:var(--display);font-size:32px;color:var(--gold);text-align:center;margin-bottom:4px;}
+        .auth-modal{background:var(--card);border:none;border-radius:28px;padding:32px;width:100%;max-width:380px;animation:fadeUp 0.35s ease;box-shadow:0 24px 60px rgba(0,0,0,0.14);}
+        .auth-logo{font-family:var(--display);font-size:34px;font-weight:500;font-style:italic;color:var(--text);text-align:center;margin-bottom:4px;letter-spacing:0.01em;}
         .auth-sub{font-size:13px;color:var(--dim);text-align:center;margin-bottom:28px;}
         .auth-tabs{display:flex;background:var(--card2);border-radius:14px;padding:4px;margin-bottom:24px;}
         .auth-tab{flex:1;text-align:center;padding:10px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.2s;color:var(--dim);}
-        .auth-tab.active{background:var(--gold);color:#000;}
+        .auth-tab.active{background:var(--text);color:#FAF7F2;}
         .auth-form{display:none;}
         .auth-form.active{display:block;}
         .auth-field{margin-bottom:14px;}
-        .auth-field label{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:6px;}
-        .auth-field input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:15px;outline:none;transition:border-color 0.2s;}
-        .auth-field input:focus{border-color:var(--gold);}
+        .auth-field label{font-size:10px;font-weight:400;color:var(--dim2);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-bottom:7px;}
+        .auth-field input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;outline:none;transition:all 0.2s;}
+        .auth-field input:focus{border-color:#AF3A81;box-shadow:0 0 0 3px rgba(175,58,129,0.1);}
         .auth-field input::placeholder{color:var(--dim2);}
-        .auth-btn{width:100%;padding:15px;background:var(--gold);color:#000;font-weight:800;font-size:15px;border-radius:16px;border:none;font-family:var(--font);cursor:pointer;margin-top:6px;}
+        .auth-btn{width:100%;padding:15px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;margin-top:6px;}
         .auth-btn:active{transform:scale(0.97);}
         .auth-error{font-size:12px;color:var(--red);text-align:center;margin-top:10px;min-height:18px;}
         .auth-skip{font-size:12px;color:var(--dim);text-align:center;margin-top:14px;cursor:pointer;}
-        .auth-skip span{color:var(--gold);font-weight:600;}
+        .auth-skip span{color:#AF3A81;font-weight:600;}
         /* Sheet */
         .sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(4px);}
         .sheet-overlay.open{display:flex;align-items:flex-end;}
-        .sheet{background:var(--card);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;}
+        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);}
         .sheet-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:14px auto 22px;}
-        .sheet-title{font-size:18px;font-weight:700;padding:0 20px;margin-bottom:20px;}
+        .sheet-title{font-size:22px;font-weight:500;font-family:var(--display);padding:0 20px;margin-bottom:20px;letter-spacing:0.01em;}
         .filter-group{padding:0 20px;margin-bottom:22px;}
         .filter-group-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
         .filter-chips{display:flex;flex-wrap:wrap;gap:8px;}
-        .filter-chip{padding:8px 16px;border-radius:50px;background:var(--card2);border:1px solid var(--border);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;}
-        .filter-chip.active{background:var(--gold);color:#000;border-color:var(--gold);}
+        .filter-chip{padding:8px 16px;border-radius:50px;background:var(--card);border:1px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;}
+        .filter-chip.active{background:#AF3A81;color:#fff;border-color:#AF3A81;}
         .sheet-footer{padding:0 20px;display:flex;gap:10px;}
         /* Venue detail */
         .detail-sheet .sheet{padding-bottom:calc(90px + var(--safe-bottom));}
         .detail-img{width:100%;height:240px;object-fit:cover;display:block;}
         .detail-body{padding:20px;}
         .detail-tag-row{display:flex;gap:8px;margin-bottom:14px;}
-        .detail-tag{font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:8px;background:rgba(245,197,24,0.12);color:var(--gold);}
-        .detail-name{font-size:24px;font-weight:700;font-family:var(--display);margin-bottom:6px;}
+        .detail-tag{font-size:9px;font-weight:400;letter-spacing:2px;padding:4px 12px;border-radius:50px;background:rgba(175,58,129,0.08);color:#AF3A81;font-family:var(--font);}
+        .detail-name{font-size:30px;font-weight:500;font-family:var(--display);margin-bottom:6px;color:var(--text);letter-spacing:0.01em;font-style:italic;}
         .detail-loc{font-size:13px;color:var(--dim);display:flex;align-items:center;gap:6px;margin-bottom:16px;}
         .detail-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
-        .stat-box{background:var(--card2);border-radius:14px;padding:12px;text-align:center;}
-        .stat-val{font-size:16px;font-weight:800;color:var(--gold);}
+        .stat-box{background:var(--bg);border-radius:16px;padding:14px;text-align:center;}
+        .stat-val{font-size:18px;font-weight:500;font-family:var(--display);color:var(--text);}
         .stat-lbl{font-size:10px;color:var(--dim);margin-top:3px;}
-        .detail-desc{font-size:14px;color:var(--dim);line-height:1.65;margin-bottom:18px;}
-        .book-btn{width:100%;padding:16px;background:var(--gold);color:#000;font-weight:800;font-size:16px;border-radius:16px;border:none;font-family:var(--font);cursor:pointer;}
+        .detail-desc{font-size:14px;color:var(--dim);line-height:1.8;margin-bottom:20px;font-weight:300;}
+        .book-btn{width:100%;padding:16px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;}
         .book-btn:active{transform:scale(0.97);}
         /* Payment */
-        .pay-box{background:var(--card2);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px;}
+        .pay-box{background:var(--bg);border:none;border-radius:20px;padding:18px;margin-bottom:18px;}
         .pay-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:14px;}
         .pay-row .lbl{color:var(--dim);}
         .pay-row .val{font-weight:600;}
         .pay-divider{border:none;border-top:1px solid var(--border);margin:12px 0;}
         .pay-total{font-size:16px;font-weight:800;}
         .pay-total-lbl{font-size:14px;font-weight:700;}
-        .pay-highlight{color:var(--gold);}
-        .info-box{background:rgba(245,197,24,0.07);border:1px solid rgba(245,197,24,0.2);border-radius:14px;padding:13px 15px;margin-bottom:18px;font-size:12px;color:var(--dim);line-height:1.6;}
+        .pay-highlight{color:var(--rose2);}
+        .info-box{background:rgba(212,175,55,0.07);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:13px 15px;margin-bottom:18px;font-size:12px;color:var(--dim);line-height:1.6;}
         .info-box i{color:var(--gold);margin-right:6px;}
         .info-box strong{color:var(--text);}
         /* Payment Option Cards */
-        .pay-option{background:var(--card2);border:2px solid var(--border);border-radius:18px;padding:16px;margin-bottom:12px;cursor:pointer;transition:all 0.25s;position:relative;}
-        .pay-option.selected{border-color:var(--gold);background:rgba(245,197,24,0.04);}
-        .pay-option-badge{position:absolute;top:12px;right:12px;background:var(--gold);color:#000;font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;letter-spacing:0.5px;}
+        .pay-option{background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:16px;margin-bottom:12px;cursor:pointer;transition:all 0.25s;position:relative;}
+        .pay-option.selected{border-color:#AF3A81;background:rgba(175,58,129,0.04);}
+        .pay-option-badge{position:absolute;top:12px;right:12px;background:var(--text);color:#FAF7F2;font-size:9px;font-weight:400;padding:3px 10px;border-radius:50px;letter-spacing:1px;}
         .pay-option-title{font-size:14px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px;}
-        .pay-option-amount{font-size:22px;font-weight:800;color:var(--gold);margin-bottom:4px;font-family:var(--display);}
+        .pay-option-amount{font-size:24px;font-weight:500;color:var(--text);margin-bottom:4px;font-family:var(--display);}
         .pay-option-sub{font-size:12px;color:var(--dim);line-height:1.5;}
         .pay-option-radio{width:18px;height:18px;border-radius:50%;border:2px solid var(--dim2);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
-        .pay-option.selected .pay-option-radio{border-color:var(--gold);background:var(--gold);}
-        .pay-option.selected .pay-option-radio::after{content:'';width:6px;height:6px;background:#000;border-radius:50%;display:block;}
+        .pay-option.selected .pay-option-radio{border-color:#AF3A81;background:#AF3A81;}
+        .pay-option.selected .pay-option-radio::after{content:'';width:6px;height:6px;background:#fff;border-radius:50%;display:block;}
         /* Coupon */
         .coupon-row{display:flex;gap:8px;margin-bottom:14px;}
-        .coupon-input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color 0.2s;text-transform:uppercase;}
-        .coupon-input:focus{border-color:var(--gold);}
+        .coupon-input{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:var(--radius);padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;transition:border-color 0.2s;text-transform:uppercase;}
+        .coupon-input:focus{border-color:#AF3A81;}
         .coupon-input::placeholder{color:var(--dim2);text-transform:none;}
-        .coupon-btn{padding:0 18px;background:var(--gold);color:#000;font-weight:800;font-size:13px;border-radius:14px;border:none;font-family:var(--font);cursor:pointer;white-space:nowrap;}
-        .coupon-btn:active{background:var(--gold2);}
+        .coupon-btn{padding:0 18px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:13px;border-radius:14px;border:none;font-family:var(--font);cursor:pointer;white-space:nowrap;}
+        .coupon-btn:active{background:#9C3372;}
         .coupon-success{background:rgba(72,187,120,0.08);border:1px solid rgba(72,187,120,0.25);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--green);line-height:1.6;display:none;margin-bottom:14px;}
         .coupon-success.show{display:block;}
         /* Booking Summary */
-        .booking-summary-box{background:var(--card2);border:1px solid rgba(245,197,24,0.2);border-radius:18px;padding:18px;margin-bottom:18px;}
+        .booking-summary-box{background:var(--bg);border:none;border-radius:20px;padding:18px;margin-bottom:18px;}
         .bsum-title{font-size:11px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px;}
         .bsum-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;}
         .bsum-lbl{color:var(--dim);}
         .bsum-val{font-weight:600;}
-        .bsum-total{font-size:15px;font-weight:800;color:var(--gold);}
+        .bsum-total{font-size:15px;font-weight:500;color:var(--text);font-family:var(--display);}
         /* Flow */
         .flow-step{display:none;}
         .flow-step.active{display:block;}
         .flow-field{margin-bottom:16px;}
-        .flow-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;}
-        .flow-input{width:100%;background:var(--card2);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:15px;outline:none;transition:border-color 0.2s;}
-        .flow-input:focus{border-color:var(--gold);}
+        .flow-label{font-size:10px;font-weight:400;color:var(--dim2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;}
+        .flow-input{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:14px 16px;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;outline:none;transition:all 0.2s;}
+        .flow-input:focus{border-color:#AF3A81;}
         .flow-input::placeholder{color:var(--dim2);}
         .success-wrap{text-align:center;padding:30px 20px;}
         .success-icon{width:72px;height:72px;background:rgba(72,187,120,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:32px;color:var(--green);}
         .success-title{font-family:var(--display);font-size:26px;margin-bottom:8px;}
         .success-sub{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:22px;}
-        .success-ref{background:var(--card2);border-radius:12px;padding:10px 16px;font-size:13px;color:var(--gold);font-weight:700;display:inline-block;margin-bottom:22px;}
+        .success-ref{background:var(--card2);border-radius:var(--radius);padding:10px 16px;font-size:13px;color:#AF3A81;font-weight:700;display:inline-block;margin-bottom:22px;}
         /* Modals */
         .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:900;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
         .modal-overlay.open{display:flex;}
-        .modal{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:24px;width:100%;max-width:360px;animation:fadeUp 0.3s ease;}
+        .modal{background:var(--card);border:none;border-radius:28px;padding:28px;width:100%;max-width:360px;animation:fadeUp 0.3s ease;box-shadow:0 24px 60px rgba(0,0,0,0.12);}
         .modal-icon{width:56px;height:56px;background:rgba(245,101,101,0.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--red);margin-bottom:16px;}
         .modal-title{font-size:18px;font-weight:700;margin-bottom:8px;}
         .modal-body{font-size:13px;color:var(--dim);line-height:1.65;margin-bottom:16px;}
@@ -289,13 +314,77 @@
         .modal-actions{display:flex;gap:10px;}
         .step-indicator{display:flex;gap:6px;justify-content:center;margin-bottom:20px;}
         .step-dot{width:8px;height:8px;border-radius:4px;background:var(--dim2);transition:all 0.3s;}
-        .step-dot.active{width:24px;background:var(--gold);}
-        /* Dock */
-        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:68px;background:rgba(15,20,32,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:24px;border:1px solid var(--border);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.5);animation:slideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
+        .step-dot.active{width:24px;background:var(--text);}
+        /* Amenities Grid */
+        .amenity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:20px;}
+        .amenity-item{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:14px;padding:11px 13px;font-size:12px;color:var(--dim);}
+        .amenity-item i{font-size:14px;flex-shrink:0;}
+        .amenity-item.yes i{color:var(--green);}
+        .amenity-item.no i{color:var(--dim2);}
+        .amenity-item.yes{color:var(--text);}
+        /* Map buttons */
+        .map-btns{display:flex;gap:10px;margin-bottom:18px;}
+        .map-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px;border-radius:14px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:var(--font);transition:all 0.2s;}
+        .map-btn-view{background:rgba(36,113,163,0.10);color:var(--blue);}
+        .map-btn-dir{background:rgba(36,113,163,0.10);color:var(--blue);}
+        .map-btn:active{transform:scale(0.95);opacity:0.85;}
+        /* Availability badge */
+        .avail-box{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:18px;padding:14px 16px;margin-bottom:18px;}
+        .avail-title{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;}
+        .avail-row{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:7px;}
+        .avail-row:last-child{margin-bottom:0;}
+        .avail-row .dot-green{width:7px;height:7px;border-radius:50%;background:var(--green);flex-shrink:0;}
+        .avail-row .dot-orange{width:7px;height:7px;border-radius:50%;background:#F59E0B;flex-shrink:0;}
+        .avail-row .dot-red{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;}
+        .avail-cta{width:100%;margin-top:12px;padding:11px;background:var(--text);color:#FAF7F2;border:none;border-radius:50px;font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;letter-spacing:0.3px;}
+        .avail-cta:active{transform:scale(0.97);}
+        /* Calendar modal */
+        .cal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1200;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
+        .cal-overlay.open{display:flex;}
+        .cal-modal{background:var(--bg);border-radius:28px 28px 0 0;width:100%;max-width:480px;padding:0 0 calc(30px + var(--safe-bottom));animation:slideUp 0.32s cubic-bezier(0.22,1,0.36,1) both;box-shadow:0 -12px 50px rgba(0,0,0,0.12);}
+        .cal-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);}
+        .cal-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:0 auto 14px;}
+        .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
+        .cal-month{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:0.01em;}
+        .cal-nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);}
+        .cal-nav-btn:active{background:var(--rose);color:#fff;border-color:var(--rose);}
+        .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:12px 16px 0;}
+        .cal-day-lbl{text-align:center;font-size:10px;color:var(--dim2);font-weight:400;padding:4px 0;letter-spacing:0.5px;}
+        .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:50%;cursor:pointer;transition:all 0.15s;position:relative;}
+        .cal-day:active{transform:scale(0.88);}
+        .cal-day.empty{pointer-events:none;}
+        .cal-day.past{color:var(--dim2);pointer-events:none;}
+        .cal-day.avail{color:var(--text);}
+        .cal-day.avail:hover,.cal-day.avail:active{background:rgba(175,58,129,0.12);color:var(--rose);}
+        .cal-day.booked{color:var(--dim2);pointer-events:none;text-decoration:line-through;}
+        .cal-day.limited::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#F59E0B;}
+        .cal-day.selected{background:var(--rose);color:#fff;}
+        .cal-legend{display:flex;gap:16px;padding:10px 16px 0;justify-content:center;}
+        .cal-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--dim);}
+        .cal-leg-dot{width:8px;height:8px;border-radius:50%;}
+        .cal-footer{padding:14px 16px 0;}
+        .cal-confirm{width:100%;padding:14px;background:var(--text);color:#FAF7F2;border:none;border-radius:50px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;letter-spacing:0.3px;}
+        .cal-confirm:disabled{opacity:0.4;cursor:default;}
+        /* Pricing tiers */
+        .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+        .price-tier{background:var(--bg);border-radius:16px;padding:12px 13px;}
+        .price-tier-lbl{font-size:10px;color:var(--dim2);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:5px;}
+        .price-tier-val{font-size:17px;font-weight:500;font-family:var(--display);color:var(--text);}
+        .price-tier-sub{font-size:10px;color:var(--dim);margin-top:2px;}
+        /* Vendor section */
+        .vendor-section{margin-bottom:20px;}
+        .vendor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
+        .vendor-item{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
+        .vendor-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(175,58,129,0.07);}
+        .vendor-label{font-size:9px;color:var(--dim);text-align:center;letter-spacing:0.3px;line-height:1.3;}
+        /* Section divider */
+        .detail-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
+        .detail-section-lbl{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
+        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:66px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
         .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;}
         .dock-item i{font-size:20px;line-height:1;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),color 0.2s;display:block;}
-        .dock-item span{font-size:10px;font-weight:700;letter-spacing:0.3px;line-height:1;white-space:nowrap;}
-        .dock-item.active{color:var(--gold);}
+        .dock-item span{font-size:10px;font-weight:400;letter-spacing:0.5px;line-height:1;white-space:nowrap;}
+        .dock-item.active{color:#AF3A81;}
         .dock-item.active i{transform:translateY(-2px);}
         .dock-badge{position:absolute;top:8px;left:50%;transform:translateX(6px);min-width:16px;height:16px;background:var(--red);border-radius:8px;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;padding:0 4px;border:2px solid var(--bg);}
     </style>
@@ -307,7 +396,7 @@
     <div class="status-bar"></div>
     <div class="topbar">
         <div class="topbar-left">
-            <span class="topbar-greeting" id="home-greeting">Namaste 🙏</span>
+            <span class="topbar-greeting" id="home-greeting">Good day</span>
             <span class="topbar-brand">Vivaha Venue</span>
         </div>
         <div class="topbar-actions">
@@ -315,30 +404,26 @@
             <div class="icon-btn" onclick="openAuthModal('login')"><i class="fa-solid fa-circle-user"></i></div>
         </div>
     </div>
-    <div class="scroll-area">
-        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="homeSearch" placeholder="Search venues, cities..."><i class="fa-solid fa-xmark search-clear" id="homeSearchClear" onclick="clearSearch('home')"></i></div></div>
-
+    <!-- ① HERO -->
         <div class="hero-banner" onclick="goPage('explore')">
-            <div class="hero-kicker"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 1.4s infinite;"></span> 47 bookings confirmed this week</div>
-            <div class="hero-title">Your Dream<br><em>Wedding Venue</em><br>Awaits</div>
-            <div class="hero-sub">500+ premium halls across AP & Telangana. Pay just 40% to lock your date.</div>
-            <button class="hero-cta"><i class="fa-solid fa-calendar-check"></i> Book Now</button>
-        </div>
-
-        <!-- Trust Numbers -->
-        <div class="section">
-            <div class="trust-row">
-                <div class="trust-box"><div class="trust-icon" style="background:rgba(245,197,24,0.12);"><i class="fa-solid fa-building-columns" style="color:var(--gold);"></i></div><div class="trust-num">500+</div><div class="trust-lbl">Venues</div></div>
-                <div class="trust-box"><div class="trust-icon" style="background:rgba(72,187,120,0.12);"><i class="fa-solid fa-heart" style="color:var(--green);"></i></div><div class="trust-num">12K+</div><div class="trust-lbl">Couples</div></div>
-                <div class="trust-box"><div class="trust-icon" style="background:rgba(99,179,237,0.12);"><i class="fa-solid fa-shield-halved" style="color:var(--blue);"></i></div><div class="trust-num">100%</div><div class="trust-lbl">Verified</div></div>
+            <img class="hero-banner-img" loading="eager" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Wedding venue">
+            <div class="hero-banner-body">
+                <div class="hero-kicker">Handpicked venues · AP & Telangana</div>
+                <div class="hero-title">Discover spaces<br>crafted for<em> unforgettable</em><br>celebrations</div>
+                <button class="hero-cta"><i class="fa-solid fa-compass" style="color:var(--rose);"></i> Browse Venues</button>
             </div>
         </div>
 
-        <div class="section"><div class="section-header"><span class="section-title">Popular Cities</span><span class="see-all">View All</span></div></div>
+        <!-- ② SEARCH BAR -->
+        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="homeSearch" placeholder="Search venues, cities..."><i class="fa-solid fa-xmark search-clear" id="homeSearchClear" onclick="clearSearch('home')"></i></div></div>
+
+        <!-- ③ FEATURED CITIES -->
+        <div class="section"><div class="section-header"><span class="section-title">Featured Cities</span><span class="see-all">View All</span></div></div>
         <div class="chip-row" id="cityChips">
             <div class="chip active">All</div><div class="chip">Kakinada</div><div class="chip">Vijayawada</div><div class="chip">Hyderabad</div><div class="chip">Vizag</div><div class="chip">Rajahmundry</div><div class="chip">Tirupati</div>
         </div>
 
+        <!-- ④ VENUE CATEGORIES -->
         <div class="section"><div class="section-header"><span class="section-title">Browse by Occasion</span></div>
             <div class="occ-grid" id="occGrid">
                 <div class="occ-box" data-type="wedding"><div class="occ-icon"><i class="fa-solid fa-heart"></i></div><div class="occ-label">Wedding</div></div>
@@ -352,8 +437,8 @@
             </div>
         </div>
 
-        <!-- Popular Venues -->
-        <div class="section"><div class="section-header"><span class="section-title">Popular Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
+        <!-- ⑤ FEATURED VENUES -->
+        <div class="section"><div class="section-header"><span class="section-title">Featured Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
         <div class="venues-scroll">
             <div class="venue-card-h" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><div class="venue-bottom"><div><div class="venue-price">₹4.5L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
             <div class="venue-card-h" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><div class="venue-bottom"><div><div class="venue-price">₹2.2L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
@@ -361,46 +446,51 @@
             <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><div class="venue-bottom"><div><div class="venue-price">₹1.8L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
         </div>
 
-        <!-- Top Rated -->
-        <div class="section"><div class="section-header"><span class="section-title">⭐ Top Rated Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
-        <div class="hscroll">
-            <div class="hscroll-card" onclick="openVenue('v5')"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">Novotel Vizag Bay</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Vizag</span><span style="color:var(--gold);">4.9★</span></div></div></div>
-            <div class="hscroll-card" onclick="openVenue('v3')"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">Grand Elite Gardens</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Hyderabad</span><span style="color:var(--gold);">4.8★</span></div></div></div>
-            <div class="hscroll-card" onclick="openVenue('v1')"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">V Convention Center</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Vijayawada</span><span style="color:var(--gold);">4.9★</span></div></div></div>
-        </div>
-
-        <!-- Budget Friendly -->
-        <div class="section"><div class="section-header"><span class="section-title">💰 Budget Friendly Halls</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
-        <div class="hscroll">
-            <div class="hscroll-card" onclick="openVenue('v4')"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">S Convention</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Kakinada</span><span style="color:var(--green);font-weight:700;">₹1.8L</span></div></div></div>
-            <div class="hscroll-card" onclick="openVenue('v2')"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">River Bay Resort</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Rajahmundry</span><span style="color:var(--green);font-weight:700;">₹2.2L</span></div></div></div>
-        </div>
-
-        <!-- Luxury -->
-        <div class="section"><div class="section-header"><span class="section-title">✨ Luxury Wedding Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
-        <div class="hscroll">
-            <div class="hscroll-card" onclick="openVenue('v5')"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">Novotel Vizag Bay</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>Beachfront · Vizag</span><span style="color:var(--gold);">₹7.2L</span></div></div></div>
-            <div class="hscroll-card" onclick="openVenue('v3')"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt=""><div class="hsc-info"><div style="font-size:13px;font-weight:700;margin-bottom:3px;">Grand Elite Gardens</div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--dim);"><span>3 Acres · Hyderabad</span><span style="color:var(--gold);">₹5.5L</span></div></div></div>
-        </div>
-
-        <!-- Recently Booked -->
-        <div class="section"><div class="section-header"><span class="section-title">🔥 Recently Booked</span></div>
-            <div style="display:flex;flex-direction:column;gap:10px;">
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="openVenue('v1')">
-                    <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=100" style="width:52px;height:52px;border-radius:12px;object-fit:cover;flex-shrink:0;" alt="">
-                    <div style="flex:1;"><div style="font-size:14px;font-weight:700;margin-bottom:2px;">V Convention Center</div><div style="font-size:11px;color:var(--dim);">Vijayawada · 47 bookings this month</div></div>
-                    <span style="background:rgba(245,101,101,0.12);color:var(--red);font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">2 dates left</span>
+        <!-- ⑥ HOW IT WORKS -->
+        <div class="section"><div class="section-header"><span class="section-title">How It Works</span></div>
+            <div style="display:flex;flex-direction:column;gap:0;padding-top:4px;">
+                <div style="display:flex;gap:16px;align-items:flex-start;padding-bottom:24px;position:relative;">
+                    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:#AF3A81;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;font-family:var(--display);z-index:1;">1</div>
+                        <div style="width:1.5px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.3),rgba(175,58,129,0.05));margin-top:6px;min-height:32px;"></div>
+                    </div>
+                    <div style="padding-top:8px;"><div style="font-size:14px;font-weight:500;margin-bottom:5px;color:var(--text);">Search Your City</div><div style="font-size:12px;color:var(--dim);line-height:1.65;">Browse verified halls in Vijayawada, Hyderabad, Vizag and more. Filter by budget, capacity and occasion type.</div></div>
                 </div>
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;" onclick="openVenue('v5')">
-                    <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=100" style="width:52px;height:52px;border-radius:12px;object-fit:cover;flex-shrink:0;" alt="">
-                    <div style="flex:1;"><div style="font-size:14px;font-weight:700;margin-bottom:2px;">Novotel Vizag Bay</div><div style="font-size:11px;color:var(--dim);">Vizag · 23 bookings this week</div></div>
-                    <span style="background:rgba(245,101,101,0.12);color:var(--red);font-size:9px;font-weight:800;padding:3px 8px;border-radius:6px;white-space:nowrap;">1 slot left</span>
+                <div style="display:flex;gap:16px;align-items:flex-start;padding-bottom:24px;position:relative;">
+                    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:#AF3A81;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;font-family:var(--display);z-index:1;">2</div>
+                        <div style="width:1.5px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.3),rgba(175,58,129,0.05));margin-top:6px;min-height:32px;"></div>
+                    </div>
+                    <div style="padding-top:8px;"><div style="font-size:14px;font-weight:500;margin-bottom:5px;color:var(--text);">Check Availability</div><div style="font-size:12px;color:var(--dim);line-height:1.65;">View real-time date availability on the venue calendar. Pick your event date with confidence — no double bookings.</div></div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;padding-bottom:24px;position:relative;">
+                    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:#AF3A81;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;font-family:var(--display);z-index:1;">3</div>
+                        <div style="width:1.5px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.3),rgba(175,58,129,0.05));margin-top:6px;min-height:32px;"></div>
+                    </div>
+                    <div style="padding-top:8px;"><div style="font-size:14px;font-weight:500;margin-bottom:5px;color:var(--text);">Pay 40% to Lock Your Date</div><div style="font-size:12px;color:var(--dim);line-height:1.65;">Secure your hall with just 40% advance via Razorpay. Pay the remaining 60% directly to the hall 2 days before the event.</div></div>
+                </div>
+                <div style="display:flex;gap:16px;align-items:flex-start;">
+                    <div style="display:flex;flex-direction:column;align-items:center;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:#AF3A81;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:700;font-family:var(--display);z-index:1;">4</div>
+                    </div>
+                    <div style="padding-top:8px;"><div style="font-size:14px;font-weight:500;margin-bottom:5px;color:var(--text);">Celebrate Your Big Day</div><div style="font-size:12px;color:var(--dim);line-height:1.65;">Walk into your dream venue on the day. Our support team is available right up to your event to make everything seamless.</div></div>
                 </div>
             </div>
         </div>
 
-        <!-- Customer Reviews -->
-        <div class="section"><div class="section-header"><span class="section-title">💬 Customer Reviews</span></div></div>
+        <!-- ⑦ WHY CHOOSE VIVAH VENUE -->
+        <div class="section"><div class="section-header"><span class="section-title">Why Choose Us</span></div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="background:var(--card);border:none;border-radius:20px;padding:18px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 6px 20px rgba(0,0,0,0.05);"><div style="width:42px;height:42px;border-radius:14px;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-lock" style="font-size:16px;color:#AF3A81;"></i></div><div><div style="font-size:14px;font-weight:500;margin-bottom:5px;">Secure Advance Booking</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Pay 40% online to lock your date. Remaining 60% paid directly at the hall 2 days before your event.</div></div></div>
+                <div style="background:var(--card);border:none;border-radius:20px;padding:18px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 6px 20px rgba(0,0,0,0.05);"><div style="width:42px;height:42px;border-radius:14px;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-circle-check" style="font-size:16px;color:#AF3A81;"></i></div><div><div style="font-size:14px;font-weight:500;margin-bottom:5px;">100% Verified Venues</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Every hall physically verified by our team. What you see is what you get — guaranteed.</div></div></div>
+                <div style="background:var(--card);border:none;border-radius:20px;padding:18px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 6px 20px rgba(0,0,0,0.05);"><div style="width:42px;height:42px;border-radius:14px;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-tag" style="font-size:16px;color:#AF3A81;"></i></div><div><div style="font-size:14px;font-weight:500;margin-bottom:5px;">Exclusive Partner Discounts</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Use coupon FREEDECOR100 for free decoration consultation & discount from verified partner decorators.</div></div></div>
+                <div style="background:var(--card);border:none;border-radius:20px;padding:18px;display:flex;gap:16px;align-items:flex-start;box-shadow:0 6px 20px rgba(0,0,0,0.05);"><div style="width:42px;height:42px;border-radius:14px;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-phone" style="font-size:16px;color:#AF3A81;"></i></div><div><div style="font-size:14px;font-weight:500;margin-bottom:5px;">Dedicated Support</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Our team is available Mon–Sat, 9am–7pm to help you plan the perfect celebration.</div></div></div>
+            </div>
+        </div>
+
+        <!-- ⑧ CUSTOMER REVIEWS -->
+        <div class="section"><div class="section-header"><span class="section-title">Guest Reviews</span></div></div>
         <div class="hscroll">
             <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Ravi Kumar</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Vivaha Venue made finding our dream hall so easy. Booked V Convention in 10 minutes!"</div></div>
             <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">L</div><div><div class="reviewer-name">Lakshmi Reddy</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Paid only 40% advance — rest paid at the hall. Zero stress. Our Godavari view wedding was magical!"</div></div>
@@ -408,18 +498,32 @@
             <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya Nair</div><div class="reviewer-stars">★★★★☆</div></div></div><div class="review-text">"The booking summary was crystal clear — no hidden charges at all. Great experience!"</div></div>
         </div>
 
-        <!-- Why Choose -->
-        <div class="section"><div class="section-header"><span class="section-title">🌟 Why Choose Vivaha Venue</span></div>
-            <div style="display:flex;flex-direction:column;gap:12px;">
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:14px;background:rgba(245,197,24,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🔒</div><div><div style="font-size:14px;font-weight:700;margin-bottom:4px;">Secure Advance Booking</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Pay 40% online to lock your date. Remaining 60% paid directly at the hall 2 days before your event.</div></div></div>
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:14px;background:rgba(72,187,120,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">✅</div><div><div style="font-size:14px;font-weight:700;margin-bottom:4px;">100% Verified Venues</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Every hall physically verified by our team. What you see is what you get — guaranteed.</div></div></div>
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:14px;background:rgba(99,179,237,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💸</div><div><div style="font-size:14px;font-weight:700;margin-bottom:4px;">Exclusive Partner Discounts</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Use coupon FREEDECOR100 for free decoration consultation & discount from verified partner decorators.</div></div></div>
-                <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;gap:14px;align-items:flex-start;"><div style="width:42px;height:42px;border-radius:14px;background:rgba(245,101,101,0.12);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📞</div><div><div style="font-size:14px;font-weight:700;margin-bottom:4px;">Dedicated Support</div><div style="font-size:12px;color:var(--dim);line-height:1.6;">Our team is available Mon–Sat, 9am–7pm to help you plan the perfect celebration.</div></div></div>
+        <!-- ⑨ VENUE OWNER CTA — LIST YOUR VENUE -->
+        <div class="section">
+            <div style="background:linear-gradient(135deg,#2B1A25 0%,#3D1F32 100%);border-radius:24px;padding:28px 24px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;border-radius:50%;background:rgba(175,58,129,0.18);"></div>
+                <div style="position:absolute;bottom:-30px;left:-10px;width:90px;height:90px;border-radius:50%;background:rgba(212,175,55,0.10);"></div>
+                <div style="position:relative;z-index:1;">
+                    <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);border-radius:50px;padding:5px 14px;margin-bottom:16px;">
+                        <i class="fa-solid fa-building-columns" style="color:#D4AF37;font-size:11px;"></i>
+                        <span style="font-size:10px;font-weight:400;color:#D4AF37;letter-spacing:1.5px;">FOR VENUE OWNERS</span>
+                    </div>
+                    <div style="font-family:var(--display);font-size:26px;font-weight:500;color:#FFFFFF;line-height:1.2;margin-bottom:10px;letter-spacing:0.01em;">List Your Venue.<br><em style="color:rgba(212,175,55,0.9);">Reach More Families.</em></div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">Join 200+ trusted hall owners on Vivaha Venue. Get verified bookings, transparent payments and dedicated account support — at zero upfront cost.</div>
+                    <div style="display:flex;gap:14px;margin-bottom:20px;">
+                        <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Zero listing fee</span></div>
+                        <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Advance guaranteed</span></div>
+                        <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Your own dashboard</span></div>
+                    </div>
+                    <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#2B1A25;font-weight:600;font-size:13px;letter-spacing:0.3px;border-radius:50px;padding:13px 24px;cursor:pointer;border:none;font-family:var(--font);box-shadow:0 6px 20px rgba(0,0,0,0.25);">
+                        <i class="fa-brands fa-whatsapp" style="font-size:16px;color:#10B981;"></i> List My Venue
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- FAQ -->
-        <div class="section"><div class="section-header"><span class="section-title">❓ FAQ</span></div>
+        <!-- ⑩ FAQ -->
+        <div class="section"><div class="section-header"><span class="section-title">FAQ</span></div>
             <div id="faqList">
                 <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does the 40% advance work? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Pay 40% of the hall price online to confirm and lock your date. The remaining 60% is paid directly to the hall owner 2 days before your event day. No hidden charges.</div></div>
                 <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the FREEDECOR100 coupon? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">FREEDECOR100 gives you a free decoration consultation from our partner decorators plus an exclusive discount on their services. This is a partner benefit — not free decoration from the hall itself.</div></div>
@@ -436,10 +540,13 @@
             <div class="footer-links">
                 <span class="footer-link" onclick="goPage('explore')">Browse Venues</span>
                 <span class="footer-link" onclick="goPage('bookings')">My Bookings</span>
-                <span class="footer-link" onclick="goPage('profile')">My Profile</span>
+                <span class="footer-link">About Us</span>
                 <span class="footer-link" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help.','_blank')">Contact Us</span>
+                <span class="footer-link">Partner With Us</span>
                 <span class="footer-link">Privacy Policy</span>
                 <span class="footer-link">Terms of Service</span>
+                <span class="footer-link">Cancellation &amp; Refund</span>
+                <span class="footer-link">Careers</span>
             </div>
             <div class="footer-social">
                 <div class="social-btn"><i class="fa-brands fa-instagram"></i></div>
@@ -447,7 +554,7 @@
                 <div class="social-btn"><i class="fa-brands fa-youtube"></i></div>
                 <div class="social-btn"><i class="fa-brands fa-whatsapp"></i></div>
             </div>
-            <div class="footer-copy">© 2025 Vivaha Venue. All rights reserved. Made with ❤️ for Telugu weddings.</div>
+            <div class="footer-copy">© 2026 Vivaha Venue. All rights reserved. </div>
         </div>
     </div>
 </div>
@@ -455,7 +562,7 @@
 <!-- EXPLORE PAGE -->
 <div class="page" id="page-explore">
     <div class="status-bar"></div>
-    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">500+ Venues</span><span class="topbar-brand">Explore</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openSheet('filter-sheet')"><i class="fa-solid fa-sliders"></i></div></div></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">AP &amp; Telangana</span><span class="topbar-brand">Explore</span></div><div class="topbar-actions"><div class="icon-btn" onclick="openSheet('filter-sheet')"><i class="fa-solid fa-sliders"></i></div></div></div>
     <div class="scroll-area">
         <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="exploreSearch" placeholder="Search venues or cities..." oninput="filterVenues(this.value);toggleClear('explore',this.value)"><i class="fa-solid fa-xmark search-clear" id="exploreSearchClear" onclick="clearSearch('explore')"></i></div></div>
         <div class="section" style="padding-bottom:16px;"><div class="chip-row" style="padding:0;"><div class="chip active">All</div><div class="chip">Under ₹2L</div><div class="chip">₹2L–₹5L</div><div class="chip">5★ Only</div><div class="chip">Outdoor</div><div class="chip">AC Hall</div></div></div>
@@ -556,24 +663,24 @@
 
                 <div style="font-size:10px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Choose Payment Plan</div>
                 <div class="pay-option selected" id="payOpt40" onclick="selectPayOption('40')">
-                    <div style="display:flex;align-items:flex-start;gap:12px;"><div class="pay-option-radio" id="radio40"></div><div style="flex:1;"><div class="pay-option-title"><i class="fa-solid fa-hand-holding-heart" style="color:var(--gold);font-size:13px;"></i> Option 1 — Pay 40% Advance</div><div class="pay-option-amount" id="opt40-amount">₹—</div><div class="pay-option-sub">Remaining <strong id="opt40-remain">₹—</strong> paid directly to hall owner<br>📅 2 days before event</div></div></div>
+                    <div style="display:flex;align-items:flex-start;gap:12px;"><div class="pay-option-radio" id="radio40"></div><div style="flex:1;"><div class="pay-option-title"><i class="fa-solid fa-hand-holding-heart" style="color:var(--gold);font-size:13px;"></i> Option 1 — Pay 40% Advance</div><div class="pay-option-amount" id="opt40-amount">₹—</div><div class="pay-option-sub">Remaining <strong id="opt40-remain">₹—</strong> paid directly to hall owner<br>2 days before event</div></div></div>
                     <div class="pay-option-badge">RECOMMENDED</div>
                 </div>
                 <div class="pay-option" id="payOptFull" onclick="selectPayOption('full')">
-                    <div style="display:flex;align-items:flex-start;gap:12px;"><div class="pay-option-radio" id="radioFull"></div><div style="flex:1;"><div class="pay-option-title"><i class="fa-solid fa-shield-halved" style="color:var(--blue);font-size:13px;"></i> Option 2 — Pay Full Amount</div><div class="pay-option-amount" id="optFull-amount">₹—</div><div class="pay-option-sub">Complete payment upfront<br>🔒 Instant confirmation, nothing due at hall</div></div></div>
+                    <div style="display:flex;align-items:flex-start;gap:12px;"><div class="pay-option-radio" id="radioFull"></div><div style="flex:1;"><div class="pay-option-title"><i class="fa-solid fa-shield-halved" style="color:var(--blue);font-size:13px;"></i> Option 2 — Pay Full Amount</div><div class="pay-option-amount" id="optFull-amount">₹—</div><div class="pay-option-sub">Complete payment upfront<br>Instant confirmation, nothing due at hall</div></div></div>
                 </div>
 
                 <div style="font-size:10px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin:16px 0 10px;">Coupon Code</div>
                 <div class="coupon-row"><input class="coupon-input" id="coupon-input" type="text" placeholder="Enter coupon code (e.g. FREEDECOR100)"><button class="coupon-btn" onclick="applyCoupon()">Apply</button></div>
-                <div class="coupon-success" id="coupon-success"><i class="fa-solid fa-circle-check" style="margin-right:6px;"></i><strong>FREEDECOR100 applied! 🎉</strong><br>Free Decoration Consultation from our partner decorator + exclusive discount on their services.</div>
+                <div class="coupon-success" id="coupon-success"><i class="fa-solid fa-circle-check" style="margin-right:6px;"></i><strong>FREEDECOR100 applied.</strong><br>Free Decoration Consultation from our partner decorator + exclusive discount on their services.</div>
 
                 <div class="pay-box" id="pay-breakdown" style="margin-top:4px;">
                     <div class="pay-row"><span class="lbl">Hall Price (Full Day)</span><span class="val" id="pb-full">—</span></div>
                     <div class="pay-row"><span class="lbl" id="pb-advance-lbl">40% Advance (Online)</span><span class="val pay-highlight" id="pb-advance">—</span></div>
                     <div class="pay-row"><span class="lbl">Platform Fee (2%)</span><span class="val" id="pb-platform">—</span></div>
                     <hr class="pay-divider">
-                    <div class="pay-row"><span class="pay-total-lbl" style="font-size:15px;">💳 Pay Now</span><span class="pay-total pay-highlight" id="pb-total" style="font-size:18px;">—</span></div>
-                    <div class="pay-row" id="pb-remaining-row" style="background:rgba(72,187,120,0.07);padding:8px;border-radius:10px;margin-top:4px;"><span class="lbl" style="font-size:12px;">🏛️ Pay at Hall on Event Day</span><span class="val" id="pb-remaining" style="font-size:13px;color:var(--green);font-weight:700;">—</span></div>
+                    <div class="pay-row"><span class="pay-total-lbl" style="font-size:15px;">Pay Now</span><span class="pay-total pay-highlight" id="pb-total" style="font-size:18px;">—</span></div>
+                    <div class="pay-row" id="pb-remaining-row" style="background:rgba(72,187,120,0.07);padding:8px;border-radius:10px;margin-top:4px;"><span class="lbl" style="font-size:12px;">Pay at Hall on Event Day</span><span class="val" id="pb-remaining" style="font-size:13px;color:var(--green);font-weight:700;">—</span></div>
                 </div>
 
                 <div class="info-box"><i class="fa-solid fa-circle-info"></i><strong>Flexible payment:</strong> Option 1 — pay 40% now, rest at hall 2 days before event. Option 2 — pay full amount online, nothing due at hall.</div>
@@ -585,7 +692,7 @@
                 <div class="detail-tag-row"><div class="detail-tag">STEP 3 OF 3</div></div>
                 <div class="detail-name" style="margin-bottom:4px;">Confirm Booking</div>
                 <p style="font-size:13px;color:var(--dim);margin-bottom:20px;">Review your booking summary before paying</p>
-                <div class="booking-summary-box"><div class="bsum-title">📋 Booking Summary</div><div id="confirm-summary"></div></div>
+                <div class="booking-summary-box"><div class="bsum-title">Booking Summary</div><div id="confirm-summary"></div></div>
                 <div class="info-box" style="border-color:rgba(245,101,101,0.25);background:rgba(245,101,101,0.05);"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red);"></i><strong>Cancellation:</strong> 5% of advance + platform fee deducted. Refund in 5–7 business days.</div>
                 <div style="background:linear-gradient(135deg,rgba(13,110,253,0.08),rgba(13,110,253,0.04));border:1px solid rgba(13,110,253,0.2);border-radius:14px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;"><div style="width:40px;height:40px;background:rgba(13,110,253,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💳</div><div><div style="font-weight:700;font-size:14px;margin-bottom:2px;">Razorpay Secure Payment</div><div style="font-size:11px;color:var(--dim);">256-bit SSL · UPI · Cards · Net Banking · Wallets</div></div></div>
                 <div style="display:flex;gap:10px;"><button class="btn-sm btn-outline" onclick="bookNext(1)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="btn-sm btn-primary" style="flex:2;" onclick="confirmBooking()"><i class="fa-solid fa-lock"></i> Proceed to Pay</button></div>
@@ -607,6 +714,29 @@
     <div class="modal" style="text-align:center;"><div style="font-size:40px;margin-bottom:14px;">✅</div><div class="modal-title">Booking Cancelled</div><div class="modal-body" id="cancel-confirm-msg">Refund in 5–7 business days.</div><button class="btn-sm btn-primary" style="width:100%;" onclick="document.getElementById('cancelled-modal').classList.remove('open')">Done</button></div>
 </div>
 
+<!-- AVAILABILITY CALENDAR -->
+<div class="cal-overlay" id="cal-overlay" onclick="closeCalendar(event)">
+    <div class="cal-modal" id="cal-modal">
+        <div class="cal-header">
+            <div class="cal-handle"></div>
+            <div class="cal-nav">
+                <button class="cal-nav-btn" onclick="calChangeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                <div class="cal-month" id="cal-month-label">Month</div>
+                <button class="cal-nav-btn" onclick="calChangeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-legend">
+            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--green);"></div> Available</div>
+            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:#F59E0B;"></div> Limited</div>
+            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--dim2);"></div> Booked</div>
+        </div>
+        <div class="cal-footer">
+            <button class="cal-confirm" id="cal-confirm" disabled onclick="confirmCalDate()">Select a Date to Continue</button>
+        </div>
+    </div>
+</div>
+
 <!-- DOCK -->
 <nav class="dock">
     <div class="dock-item active" id="dock-home" onclick="goPage('home')"><i class="fa-solid fa-house-chimney"></i><span>Home</span></div>
@@ -620,11 +750,26 @@ function saveToStorage(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch
 function loadFromStorage(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
 
 const venues={
-    v1:{name:'V Convention Center',loc:'Benz Circle, Vijayawada',city:'Vijayawada',tag:'ULTRA LUXE',priceRaw:450000,price:'₹4,50,000',rating:'4.9',reviews:'284',cap:'1200',img:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900',desc:'A premier landmark in Vijayawada featuring grand AC halls, world-class décor and full catering. Perfect for royal Telugu weddings.'},
-    v2:{name:'River Bay Resort',loc:'Godavari Bank, Rajahmundry',city:'Rajahmundry',tag:'SCENIC',priceRaw:220000,price:'₹2,20,000',rating:'4.7',reviews:'172',cap:'600',img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=900',desc:'Nestled on the Godavari riverbank — breathtaking outdoor setting, curated floral décor and riverside dining.'},
-    v3:{name:'Grand Elite Gardens',loc:'Jubilee Hills, Hyderabad',city:'Hyderabad',tag:'POPULAR',priceRaw:550000,price:'₹5,50,000',rating:'4.8',reviews:'319',cap:'1500',img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900',desc:"Hyderabad's most sought-after wedding garden. 3-acre grounds, crystal ballroom, premium catering and expert event planning."},
-    v4:{name:'S Convention',loc:'Main Road, Kakinada',city:'Kakinada',tag:'DIVINE',priceRaw:180000,price:'₹1,80,000',rating:'4.6',reviews:'98',cap:'400',img:'https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=900',desc:'Beautiful convention hall in Kakinada. Ideal for intimate weddings with personalized service and affordable elegance.'},
-    v5:{name:'Novotel Vizag Bay',loc:'Beach Road, Visakhapatnam',city:'Vizag',tag:'BEACHFRONT',priceRaw:720000,price:'₹7,20,000',rating:'4.9',reviews:'267',cap:'1200',img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=900',desc:'Only beachfront 5-star wedding venue on the Bay of Bengal — sunset ceremonies, infinity pool receptions & Michelin chefs.'}
+    v1:{name:'V Convention Center',loc:'Benz Circle, Vijayawada',city:'Vijayawada',tag:'ULTRA LUXE',priceRaw:450000,price:'₹4,50,000',rating:'4.9',reviews:'284',cap:'1200',img:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900',desc:'A premier landmark in Vijayawada featuring grand AC halls, world-class décor and full catering. Perfect for royal Telugu weddings.',
+        mapLat:'16.5062',mapLng:'80.6480',mapQuery:'V+Convention+Center+Benz+Circle+Vijayawada',
+        amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:24,alcohol:false},
+        pricing:{weekday:380000,weekend:450000,festival:550000,peakSeason:600000}},
+    v2:{name:'River Bay Resort',loc:'Godavari Bank, Rajahmundry',city:'Rajahmundry',tag:'SCENIC',priceRaw:220000,price:'₹2,20,000',rating:'4.7',reviews:'172',cap:'600',img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=900',desc:'Nestled on the Godavari riverbank — breathtaking outdoor setting, curated floral décor and riverside dining.',
+        mapLat:'17.0005',mapLng:'81.8040',mapQuery:'River+Bay+Resort+Godavari+Rajahmundry',
+        amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:12,alcohol:false},
+        pricing:{weekday:180000,weekend:220000,festival:280000,peakSeason:320000}},
+    v3:{name:'Grand Elite Gardens',loc:'Jubilee Hills, Hyderabad',city:'Hyderabad',tag:'POPULAR',priceRaw:550000,price:'₹5,50,000',rating:'4.8',reviews:'319',cap:'1500',img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900',desc:"Hyderabad's most sought-after wedding garden. 3-acre grounds, crystal ballroom, premium catering and expert event planning.",
+        mapLat:'17.4329',mapLng:'78.4071',mapQuery:'Grand+Elite+Gardens+Jubilee+Hills+Hyderabad',
+        amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:36,alcohol:true},
+        pricing:{weekday:450000,weekend:550000,festival:680000,peakSeason:750000}},
+    v4:{name:'S Convention',loc:'Main Road, Kakinada',city:'Kakinada',tag:'DIVINE',priceRaw:180000,price:'₹1,80,000',rating:'4.6',reviews:'98',cap:'400',img:'https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=900',desc:'Beautiful convention hall in Kakinada. Ideal for intimate weddings with personalized service and affordable elegance.',
+        mapLat:'16.9891',mapLng:'82.2475',mapQuery:'S+Convention+Hall+Kakinada',
+        amenities:{ac:true,parking:true,catering:false,decoration:true,powerBackup:true,rooms:8,alcohol:false},
+        pricing:{weekday:150000,weekend:180000,festival:220000,peakSeason:250000}},
+    v5:{name:'Novotel Vizag Bay',loc:'Beach Road, Visakhapatnam',city:'Vizag',tag:'BEACHFRONT',priceRaw:720000,price:'₹7,20,000',rating:'4.9',reviews:'267',cap:'1200',img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=900',desc:'Only beachfront 5-star wedding venue on the Bay of Bengal — sunset ceremonies, infinity pool receptions & Michelin chefs.',
+        mapLat:'17.7231',mapLng:'83.3013',mapQuery:'Novotel+Visakhapatnam+Beach+Road',
+        amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:60,alcohol:true},
+        pricing:{weekday:600000,weekend:720000,festival:900000,peakSeason:1000000}}
 };
 
 let myBookings=loadFromStorage('vv_bookings',[]);
@@ -667,12 +812,12 @@ function updateProfileUI(){
     document.getElementById('auth-menu-label').textContent=currentUser?'Sign Out':'Sign In';
     document.getElementById('auth-menu-sub').textContent=currentUser?'Tap to sign out':'Login or create account';
     document.getElementById('auth-menu-icon').className='fa-solid '+(currentUser?'fa-right-from-bracket':'fa-right-to-bracket');
-    const g=document.getElementById('home-greeting');if(g)g.textContent=currentUser?'Namaste, '+currentUser.name.split(' ')[0]+' 🙏':'Namaste 🙏';
+    const g=document.getElementById('home-greeting');if(g)g.textContent=currentUser?'Hello, '+currentUser.name.split(' ')[0]:'Good day';
 }
 function openEditProfile(){if(!currentUser){openAuthModal('login');return;}document.getElementById('edit-name').value=currentUser.name||'';document.getElementById('edit-email').value=currentUser.email||'';document.getElementById('edit-phone').value=currentUser.phone||'';document.getElementById('edit-profile-modal').classList.add('open');}
 function saveProfile(){const n=document.getElementById('edit-name').value.trim(),e=document.getElementById('edit-email').value.trim(),p=document.getElementById('edit-phone').value.trim();if(!n||!e){alert('Name and email required.');return;}currentUser={...currentUser,name:n,email:e,phone:p};saveToStorage('vv_user',currentUser);document.getElementById('edit-profile-modal').classList.remove('open');updateProfileUI();showToast('Profile updated!');}
 
-function showToast(msg){let t=document.getElementById('app-toast');if(!t){t=document.createElement('div');t.id='app-toast';t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--gold);color:#000;font-weight:700;font-size:13px;padding:10px 20px;border-radius:50px;z-index:2000;opacity:0;transition:opacity 0.3s;white-space:nowrap;box-shadow:0 4px 20px rgba(0,0,0,0.4);max-width:calc(100% - 40px);text-align:center;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._timer);t._timer=setTimeout(()=>{t.style.opacity='0';},2800);}
+function showToast(msg){let t=document.getElementById('app-toast');if(!t){t=document.createElement('div');t.id='app-toast';t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#2D2D2D;color:#FAF7F2;font-weight:400;font-size:13px;letter-spacing:0.3px;padding:12px 22px;border-radius:50px;z-index:2000;opacity:0;transition:opacity 0.3s;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.2);max-width:calc(100% - 40px);text-align:center;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._timer);t._timer=setTimeout(()=>{t.style.opacity='0';},2800);}
 
 let currentPage='home';
 function goPage(name){document.getElementById('page-'+currentPage).classList.remove('active');document.getElementById('dock-'+currentPage).classList.remove('active');currentPage=name;document.getElementById('page-'+name).classList.add('active');document.getElementById('dock-'+name).classList.add('active');if(name==='bookings')renderBookings();if(name==='profile')updateProfileUI();window.scrollTo(0,0);}
@@ -708,7 +853,7 @@ function showInvoice(i){
     const ex=document.getElementById('invoice-modal');if(ex)ex.remove();
     const m=document.createElement('div');m.id='invoice-modal';m.className='modal-overlay open';
     m.innerHTML='<div class="modal" style="max-height:85vh;overflow-y:auto;"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;"><div style="font-size:18px;font-weight:700;"><i class="fa-solid fa-file-invoice" style="color:var(--gold);margin-right:8px;"></i>Invoice</div><div class="icon-btn" onclick="document.getElementById(\'invoice-modal\').remove()"><i class="fa-solid fa-xmark"></i></div></div><div style="background:rgba(245,197,24,0.07);border:1px solid rgba(245,197,24,0.2);border-radius:14px;padding:14px;margin-bottom:16px;"><div style="font-size:11px;color:var(--dim);margin-bottom:4px;">BOOKING REFERENCE</div><div style="font-size:18px;font-weight:800;color:var(--gold);">'+b.id+'</div></div>'
-        +'<div class="booking-summary-box" style="margin-bottom:14px;"><div class="bsum-title">📋 Booking Summary</div>'
+        +'<div class="booking-summary-box" style="margin-bottom:14px;"><div class="bsum-title">Booking Summary</div>'
         +'<div class="bsum-row"><span class="bsum-lbl">Hall Name</span><span class="bsum-val" style="font-size:13px;text-align:right;max-width:55%;">'+b.venue+'</span></div>'
         +'<div class="bsum-row"><span class="bsum-lbl">Event Date</span><span class="bsum-val">'+b.date+'</span></div>'
         +'<div class="bsum-row"><span class="bsum-lbl">Guest Count</span><span class="bsum-val">'+b.guests+'</span></div>'
@@ -745,18 +890,85 @@ function toggleFaq(el){const a=el.nextElementSibling;const isOpen=a.classList.co
 function openVenue(id){
     currentVenueId=id;const v=venues[id];if(!v)return;
     const adv40=v.priceRaw*0.40,plat=v.priceRaw*PLATFORM_FEE_PCT;
-    document.getElementById('venue-content').innerHTML='<img class="detail-img" src="'+v.img+'" alt="'+v.name+'">'
-        +'<div class="detail-body"><div class="detail-tag-row"><div class="detail-tag">'+v.tag+'</div></div>'
+    const a=v.amenities||{};
+    const p=v.pricing||{weekday:v.priceRaw,weekend:v.priceRaw,festival:v.priceRaw,peakSeason:v.priceRaw};
+    const mapUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(v.loc);
+    const dirUrl='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(v.loc);
+    function ai(cond,icon,label){return'<div class="amenity-item '+(cond?'yes':'no')+'"><i class="fa-solid '+(cond?'fa-circle-check':'fa-circle-xmark')+'"></i><span>'+label+'</span></div>';}
+    const roomsText=a.rooms?(a.rooms+' Rooms'):'No Rooms';
+    document.getElementById('venue-content').innerHTML=
+        '<img class="detail-img" src="'+v.img+'" alt="'+v.name+'">'
+        +'<div class="detail-body">'
+        // Tag + name + location
+        +'<div class="detail-tag-row"><div class="detail-tag">'+v.tag+'</div><div class="detail-tag" style="background:rgba(16,185,129,0.08);color:var(--green);">VERIFIED PARTNER</div></div>'
         +'<div class="detail-name">'+v.name+'</div>'
         +'<div class="detail-loc"><i class="fa-solid fa-location-dot"></i> '+v.loc+'</div>'
+        // Stats
         +'<div class="detail-stats"><div class="stat-box"><div class="stat-val">'+v.rating+'★</div><div class="stat-lbl">Rating</div></div><div class="stat-box"><div class="stat-val">'+v.reviews+'</div><div class="stat-lbl">Reviews</div></div><div class="stat-box"><div class="stat-val">'+v.cap+'</div><div class="stat-lbl">Capacity</div></div></div>'
+        // Google Maps buttons
+        +'<div class="map-btns">'
+        +'<button class="map-btn map-btn-view" onclick="window.open(\''+mapUrl+'\',\'_blank\')"><i class="fa-solid fa-map-location-dot"></i> View on Map</button>'
+        +'<button class="map-btn map-btn-dir" onclick="window.open(\''+dirUrl+'\',\'_blank\')"><i class="fa-solid fa-diamond-turn-right"></i> Get Directions</button>'
+        +'</div>'
+        // Description
         +'<div class="detail-desc">'+v.desc+'</div>'
-        +'<div style="font-size:10px;font-weight:800;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;">Payment Options</div>'
+        // Availability
+        +'<hr class="detail-divider">'
+        +'<div class="detail-section-lbl">Availability</div>'
+        +'<div class="avail-box">'
+        +'<div class="avail-title">Status for Upcoming Dates</div>'
+        +'<div class="avail-row"><div class="dot-green"></div><span>Available this weekend</span></div>'
+        +'<div class="avail-row"><div class="dot-green"></div><span>Available next month</span></div>'
+        +'<div class="avail-row"><div class="dot-orange"></div><span>Limited dates remaining in December</span></div>'
+        +'<button class="avail-cta" onclick="openCalendar(\''+id+'\')"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i> Check Availability</button>'
+        +'</div>'
+        // Pricing Tiers
+        +'<hr class="detail-divider">'
+        +'<div class="detail-section-lbl">Pricing by Day Type</div>'
+        +'<div class="pricing-grid">'
+        +'<div class="price-tier"><div class="price-tier-lbl">Weekday</div><div class="price-tier-val">'+fmt(p.weekday)+'</div><div class="price-tier-sub">Mon – Thu</div></div>'
+        +'<div class="price-tier"><div class="price-tier-lbl">Weekend</div><div class="price-tier-val">'+fmt(p.weekend)+'</div><div class="price-tier-sub">Fri – Sun</div></div>'
+        +'<div class="price-tier"><div class="price-tier-lbl">Festival</div><div class="price-tier-val">'+fmt(p.festival)+'</div><div class="price-tier-sub">Ugadi, Diwali, etc.</div></div>'
+        +'<div class="price-tier"><div class="price-tier-lbl">Peak Season</div><div class="price-tier-val">'+fmt(p.peakSeason)+'</div><div class="price-tier-sub">Nov – Feb</div></div>'
+        +'</div>'
+        // Amenities
+        +'<hr class="detail-divider">'
+        +'<div class="detail-section-lbl">Venue Details & Amenities</div>'
+        +'<div class="amenity-grid">'
+        +ai(a.ac,'','Air Conditioning')
+        +ai(a.parking,'','Parking Available')
+        +ai(a.catering,'','In-house Catering')
+        +ai(a.decoration,'','Décor Services')
+        +ai(a.powerBackup,'','Power Backup')
+        +'<div class="amenity-item yes"><i class="fa-solid fa-door-open" style="color:#AF3A81;"></i><span>'+roomsText+'</span></div>'
+        +ai(a.alcohol,'','Alcohol Permitted')
+        +'<div class="amenity-item yes"><i class="fa-solid fa-clock" style="color:#AF3A81;"></i><span>Full Day Rental</span></div>'
+        +'</div>'
+        // Vendor Ecosystem
+        +'<hr class="detail-divider">'
+        +'<div class="detail-section-lbl">Partner Vendors</div>'
+        +'<div class="vendor-grid">'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner decorators…\')"><div class="vendor-icon">🎨</div><div class="vendor-label">Decorator</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner photographers…\')"><div class="vendor-icon">📸</div><div class="vendor-label">Photographer</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner caterers…\')"><div class="vendor-icon">🍽️</div><div class="vendor-label">Caterer</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner makeup artists…\')"><div class="vendor-icon">💄</div><div class="vendor-label">Makeup Artist</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our event planners…\')"><div class="vendor-icon">📋</div><div class="vendor-label">Event Planner</div></div>'
+        +'</div>'
+        // Payment section
+        +'<hr class="detail-divider">'
+        +'<div class="detail-section-lbl">Payment Options</div>'
         +'<div style="background:var(--card2);border:1px solid rgba(245,197,24,0.2);border-radius:16px;padding:16px;margin-bottom:16px;">'
-        +'<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px;"><span style="color:var(--dim);">Hall Price</span><span style="font-weight:700;">'+v.price+'</span></div>'
+        +'<div style="display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px;"><span style="color:var(--dim);">Base Hall Price</span><span style="font-weight:700;">'+v.price+'</span></div>'
         +'<div style="background:rgba(245,197,24,0.07);border:1px solid rgba(245,197,24,0.15);border-radius:12px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">Option 1 — Pay 40% Advance</div><div style="font-size:11px;color:var(--dim);">Remaining '+fmt(v.priceRaw*0.60)+' paid at hall</div></div><div style="font-size:18px;font-weight:800;color:var(--gold);">'+fmt(adv40)+'</div></div>'
         +'<div style="border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center;"><div><div style="font-size:12px;font-weight:700;margin-bottom:2px;">Option 2 — Pay Full Amount</div><div style="font-size:11px;color:var(--dim);">Everything settled online</div></div><div style="font-size:18px;font-weight:800;color:var(--gold);">'+fmt(v.priceRaw)+'</div></div></div>'
         +'<div class="info-box"><i class="fa-solid fa-tag"></i>Use coupon <strong>FREEDECOR100</strong> for free decoration consultation from our partner decorators!</div>'
+        // Operational proof strip
+        +'<div style="background:rgba(175,58,129,0.05);border:1px solid rgba(175,58,129,0.12);border-radius:14px;padding:12px 14px;margin-bottom:16px;display:flex;flex-direction:column;gap:8px;">'
+        +'<div style="font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:2px;">Operational Promise</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim);"><i class="fa-solid fa-clock" style="color:#AF3A81;width:14px;"></i> Booking Confirmation Within 24 Hours</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim);"><i class="fa-solid fa-user-check" style="color:#AF3A81;width:14px;"></i> Dedicated Relationship Manager</div>'
+        +'<div style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--dim);"><i class="fa-solid fa-shield-halved" style="color:#AF3A81;width:14px;"></i> Venue Inspection Team Verified</div>'
+        +'</div>'
         +'<div style="position:sticky;bottom:0;background:linear-gradient(0,var(--card) 70%,transparent);padding-top:16px;padding-bottom:8px;">'
         +'<button class="book-btn" onclick="startBooking(\''+id+'\')"><i class="fa-solid fa-calendar-check"></i> Book Now — from '+fmt(adv40+plat)+' advance</button>'
         +'</div><div style="height:16px;"></div></div>';
@@ -853,6 +1065,71 @@ function confirmBooking(){
         +'<div style="text-align:center;margin-top:12px;font-size:11px;color:#555;">🔒 256-bit SSL · Razorpay certified</div></div>';
     document.body.appendChild(overlay);
     document.getElementById('rzBtn').onclick=()=>{document.getElementById('rzBtn').textContent='⏳ Processing...';document.getElementById('rzBtn').style.opacity='0.7';setTimeout(()=>{document.body.removeChild(overlay);document.getElementById('booking-ref').textContent='Ref: '+refId;document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));document.getElementById('fstep-success').classList.add('active');document.querySelectorAll('.step-dot').forEach(d=>d.classList.remove('active'));const inner=document.getElementById('booking-sheet-inner');if(inner)inner.scrollTop=0;},1800);};
+}
+
+// ── Availability Calendar ──────────────────────────────────────────
+let calYear,calMonth,calSelectedDate=null,calVenueId=null;
+// Simulate some booked/limited dates
+const bookedDays={1:[5,12,19,26],2:[3,10,17],3:[7,14,21,28],4:[4,11,18,25],5:[2,9,16,23,30],6:[6,13,20],7:[3,10,17,24],8:[7,14,21],9:[4,11,18,25],10:[2,9,16,23],11:[1,8,15,22,29],12:[6,13,20,27]};
+const limitedDays={1:[10,17],2:[14],3:[4,11],4:[7],5:[6,13],6:[3,10,17],7:[5,12],8:[3,10],9:[7,14],10:[5,12],11:[3,10,17,24],12:[3,10,17,24]};
+function openCalendar(venueId){
+    calVenueId=venueId;calSelectedDate=null;
+    const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth()+1;
+    renderCalendar();document.getElementById('cal-overlay').classList.add('open');
+}
+function closeCalendar(e){if(!e||e.target.id==='cal-overlay')document.getElementById('cal-overlay').classList.remove('open');}
+function calChangeMonth(dir){
+    calMonth+=dir;
+    if(calMonth>12){calMonth=1;calYear++;}
+    if(calMonth<1){calMonth=12;calYear--;}
+    renderCalendar();
+}
+function renderCalendar(){
+    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    document.getElementById('cal-month-label').textContent=months[calMonth-1]+' '+calYear;
+    const firstDay=new Date(calYear,calMonth-1,1).getDay();
+    const daysInMonth=new Date(calYear,calMonth,0).getDate();
+    const now=new Date();const today=now.getDate(),todayM=now.getMonth()+1,todayY=now.getFullYear();
+    const booked=bookedDays[calMonth]||[];const limited=limitedDays[calMonth]||[];
+    let html='<div class="cal-day-lbl">Su</div><div class="cal-day-lbl">Mo</div><div class="cal-day-lbl">Tu</div><div class="cal-day-lbl">We</div><div class="cal-day-lbl">Th</div><div class="cal-day-lbl">Fr</div><div class="cal-day-lbl">Sa</div>';
+    for(let i=0;i<firstDay;i++)html+='<div class="cal-day empty"></div>';
+    for(let d=1;d<=daysInMonth;d++){
+        const isPast=(calYear<todayY)||(calYear===todayY&&calMonth<todayM)||(calYear===todayY&&calMonth===todayM&&d<today);
+        const isBooked=booked.includes(d);
+        const isLimited=limited.includes(d);
+        const isSelected=calSelectedDate===d;
+        let cls='cal-day';
+        if(isPast)cls+=' past';
+        else if(isBooked)cls+=' booked';
+        else if(isLimited)cls+=' avail limited';
+        else cls+=' avail';
+        if(isSelected)cls+=' selected';
+        html+='<div class="'+cls+'"'+(isBooked||isPast?'':' onclick="calSelectDay('+d+')"')+'>'+d+'</div>';
+    }
+    document.getElementById('cal-grid').innerHTML=html;
+    updateCalConfirm();
+}
+function calSelectDay(d){
+    calSelectedDate=d;renderCalendar();updateCalConfirm();
+}
+function updateCalConfirm(){
+    const btn=document.getElementById('cal-confirm');
+    if(calSelectedDate){
+        const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        btn.textContent='Continue with '+calSelectedDate+' '+months[calMonth-1]+' '+calYear;
+        btn.disabled=false;
+    }else{btn.textContent='Select a Date to Continue';btn.disabled=true;}
+}
+function confirmCalDate(){
+    if(!calSelectedDate)return;
+    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const dateStr=calYear+'-'+(calMonth<10?'0':'')+calMonth+'-'+(calSelectedDate<10?'0':'')+calSelectedDate;
+    document.getElementById('cal-overlay').classList.remove('open');
+    closeSheet('venue-sheet');
+    if(calVenueId){
+        startBooking(calVenueId);
+        setTimeout(()=>{const d=document.getElementById('b-date');if(d)d.value=dateStr;},400);
+    }
 }
 
 updateProfileUI();renderBookings();updateDockBadge();
