@@ -6,9 +6,12 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#FFFFFF">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Vivaha Venue — Handpicked Wedding &amp; Event Venues in AP &amp; Telangana</title>
     <meta name="description" content="Discover and book verified wedding halls, reception venues and event spaces across Andhra Pradesh and Telangana. Transparent pricing, 40% advance booking, dedicated support.">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
@@ -18,7 +21,7 @@
             --blush:#F3DADF;
             --green:#10B981;--red:#EF4444;--blue:#2471A3;
             --safe-top:env(safe-area-inset-top,12px);--safe-bottom:env(safe-area-inset-bottom,0px);
-            --radius:24px;--font:'Inter',sans-serif;--display:'Cormorant Garamond',serif;
+            --radius:24px;--font:'DM Sans',sans-serif;--display:'Cormorant Garamond',serif;
         }
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
         html{scroll-behavior:smooth;}
@@ -34,8 +37,8 @@
         .icon-btn{width:40px;height:40px;background:transparent;border:none;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:16px;cursor:pointer;transition:all 0.2s;position:relative;}
         .icon-btn:active{background:#AF3A81;color:#fff;transform:scale(0.92);}
         .notif-dot{position:absolute;top:8px;right:8px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1.5px solid var(--bg);}
-        .page{display:none;animation:fadeUp 0.28s cubic-bezier(0.22,1,0.36,1) both;}
-        .page.active{display:block;}
+        .page{display:none;animation:fadeUp 0.16s cubic-bezier(0.22,1,0.36,1) both;}
+        .page.active{display:block;contain:layout style;}
         @keyframes fadeUp{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
         @keyframes slideUp{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
         @keyframes pulse{0%,100%{opacity:1;transform:scale3d(1,1,1)}50%{opacity:0.5;transform:scale3d(0.8,0.8,1)}}
@@ -68,10 +71,12 @@
         }
         .hero-kicker{font-size:10px;font-weight:400;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;font-family:var(--font);}
         .hero-title{
-            font-family:var(--display);font-size:clamp(38px,11vw,52px);
-            line-height:1.08;margin-bottom:18px;font-weight:500;
-            color:#FFFFFF;letter-spacing:-0.01em;
+            font-family:var(--display);font-size:clamp(44px,12vw,72px);
+            line-height:1.06;margin-bottom:18px;font-weight:500;
+            color:#FFFFFF;letter-spacing:-0.02em;
         }
+        @media(max-width:768px){.hero-title{font-size:clamp(44px,13vw,56px);}}
+        @media(max-width:480px){.hero-title{font-size:44px;}}
         .hero-title em{font-style:italic;font-weight:400;}
         .hero-sub{font-size:13px;color:rgba(255,255,255,0.72);margin-bottom:24px;line-height:1.6;font-weight:300;max-width:280px;}
         .hero-cta{
@@ -146,7 +151,7 @@
         .faq-q:active{background:var(--card2);}
         .faq-q i{color:#AF3A81;font-size:13px;transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);flex-shrink:0;}
         .faq-q.open i{transform:rotate(180deg);}
-        .faq-a{max-height:0;overflow:hidden;transition:max-height 0.35s cubic-bezier(0.22,1,0.36,1),padding 0.25s;padding:0 16px;font-size:13px;color:var(--dim);line-height:1.7;}
+        .faq-a{max-height:0;overflow:hidden;transition:max-height 0.22s cubic-bezier(0.22,1,0.36,1),padding 0.25s;padding:0 16px;font-size:13px;color:var(--dim);line-height:1.7;}
         .faq-a.open{max-height:300px;padding:0 16px 16px;}
         /* Footer */
         .footer{background:#F8F6F4;border-top:1px solid var(--border);padding:48px 24px calc(100px + var(--safe-bottom));margin-top:0;}
@@ -203,7 +208,7 @@
         /* Auth */
         .auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
         .auth-overlay.open{display:flex;}
-        .auth-modal{background:var(--card);border:none;border-radius:28px;padding:32px;width:100%;max-width:380px;animation:fadeUp 0.35s ease;box-shadow:0 24px 60px rgba(0,0,0,0.14);}
+        .auth-modal{background:var(--card);border:none;border-radius:28px;padding:32px;width:100%;max-width:380px;animation:fadeUp 0.18s ease;box-shadow:0 24px 60px rgba(0,0,0,0.14);}
         .auth-logo{font-family:var(--display);font-size:34px;font-weight:500;font-style:italic;color:var(--text);text-align:center;margin-bottom:4px;letter-spacing:0.01em;}
         .auth-sub{font-size:13px;color:var(--dim);text-align:center;margin-bottom:28px;}
         .auth-tabs{display:flex;background:var(--card2);border-radius:14px;padding:4px;margin-bottom:24px;}
@@ -224,14 +229,15 @@
         /* Sheet */
         .sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(4px);}
         .sheet-overlay.open{display:flex;align-items:flex-end;}
-        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.3s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);}
+        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.2s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);}
         .sheet-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:14px auto 22px;}
         .sheet-title{font-size:22px;font-weight:500;font-family:var(--display);padding:0 20px;margin-bottom:20px;letter-spacing:0.01em;}
         .filter-group{padding:0 20px;margin-bottom:22px;}
         .filter-group-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
         .filter-chips{display:flex;flex-wrap:wrap;gap:8px;}
-        .filter-chip{padding:8px 16px;border-radius:50px;background:var(--card);border:1px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;}
-        .filter-chip.active{background:#AF3A81;color:#fff;border-color:#AF3A81;}
+        .filter-chip{padding:8px 14px;border-radius:50px;background:var(--card);border:1.5px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;}
+        .filter-chip.active{background:#AF3A81;color:#fff;border-color:#AF3A81;font-weight:500;}
+        .filter-chip.active i{color:#fff!important;}
         .sheet-footer{padding:0 20px;display:flex;gap:10px;}
         /* Venue detail */
         .detail-sheet .sheet{padding-bottom:calc(90px + var(--safe-bottom));}
@@ -302,7 +308,7 @@
         /* Modals */
         .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:900;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
         .modal-overlay.open{display:flex;}
-        .modal{background:var(--card);border:none;border-radius:28px;padding:28px;width:100%;max-width:360px;animation:fadeUp 0.3s ease;box-shadow:0 24px 60px rgba(0,0,0,0.12);}
+        .modal{background:var(--card);border:none;border-radius:28px;padding:28px;width:100%;max-width:360px;animation:fadeUp 0.16s ease;box-shadow:0 24px 60px rgba(0,0,0,0.12);}
         .modal-icon{width:56px;height:56px;background:rgba(245,101,101,0.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--red);margin-bottom:16px;}
         .modal-title{font-size:18px;font-weight:700;margin-bottom:8px;}
         .modal-body{font-size:13px;color:var(--dim);line-height:1.65;margin-bottom:16px;}
@@ -338,33 +344,148 @@
         .avail-row .dot-red{width:7px;height:7px;border-radius:50%;background:var(--red);flex-shrink:0;}
         .avail-cta{width:100%;margin-top:12px;padding:11px;background:var(--text);color:#FAF7F2;border:none;border-radius:50px;font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;letter-spacing:0.3px;}
         .avail-cta:active{transform:scale(0.97);}
-        /* Calendar modal */
-        .cal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1200;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
-        .cal-overlay.open{display:flex;}
-        .cal-modal{background:var(--bg);border-radius:28px 28px 0 0;width:100%;max-width:480px;padding:0 0 calc(30px + var(--safe-bottom));animation:slideUp 0.32s cubic-bezier(0.22,1,0.36,1) both;box-shadow:0 -12px 50px rgba(0,0,0,0.12);}
-        .cal-header{padding:16px 20px 14px;border-bottom:1px solid var(--border);}
-        .cal-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:0 auto 14px;}
-        .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-        .cal-month{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:0.01em;}
-        .cal-nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);}
-        .cal-nav-btn:active{background:var(--rose);color:#fff;border-color:var(--rose);}
-        .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;padding:12px 16px 0;}
-        .cal-day-lbl{text-align:center;font-size:10px;color:var(--dim2);font-weight:400;padding:4px 0;letter-spacing:0.5px;}
-        .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;border-radius:50%;cursor:pointer;transition:all 0.15s;position:relative;}
-        .cal-day:active{transform:scale(0.88);}
-        .cal-day.empty{pointer-events:none;}
-        .cal-day.past{color:var(--dim2);pointer-events:none;}
+        /* ── CALENDAR — premium mobile-first ─────── */
+        @keyframes calSlideUp{from{transform:translate3d(0,100%,0);opacity:0}to{transform:translate3d(0,0,0);opacity:1}}
+        @keyframes calFadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes calSlideLeft{from{transform:translate3d(28px,0,0);opacity:0}to{transform:translate3d(0,0,0);opacity:1}}
+        @keyframes calSlideRight{from{transform:translate3d(-28px,0,0);opacity:0}to{transform:translate3d(0,0,0);opacity:1}}
+        @keyframes calDayPop{0%{transform:scale(0.7);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+        @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+        .cal-overlay{
+            display:none;position:fixed;inset:0;z-index:1200;
+            align-items:flex-end;justify-content:center;
+            background:rgba(15,10,8,0);
+            transition:background 0.18s ease;
+        }
+        .cal-overlay.open{display:flex;background:rgba(15,10,8,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+        .cal-modal{
+            background:var(--card);
+            border-radius:28px 28px 0 0;
+            width:100%;max-width:480px;
+            padding:0 0 calc(20px + var(--safe-bottom));
+            box-shadow:0 -20px 60px rgba(0,0,0,0.18);
+            transform:translate3d(0,100%,0);
+            transition:transform 0.26s cubic-bezier(0.32,0.96,0.6,1);
+            will-change:transform;
+            overflow:hidden;
+        }
+        .cal-overlay.open .cal-modal{transform:translate3d(0,0,0);}
+
+        .cal-handle-row{padding:10px 0 0;display:flex;justify-content:center;}
+        .cal-handle{width:36px;height:4px;background:var(--border);border-radius:2px;}
+
+        .cal-header{padding:14px 20px 0;}
+        .cal-venue-label{font-size:10px;font-weight:500;color:var(--dim2);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+        .cal-venue-name{font-family:var(--display);font-size:20px;font-weight:500;color:var(--text);margin-bottom:14px;letter-spacing:0.01em;font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+
+        .cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
+        .cal-month-wrap{display:flex;flex-direction:column;}
+        .cal-month{font-family:var(--display);font-size:26px;font-weight:500;letter-spacing:-0.01em;line-height:1;color:var(--text);}
+        .cal-year{font-size:12px;color:var(--dim2);font-weight:400;margin-top:2px;letter-spacing:0.5px;}
+        .cal-nav-btns{display:flex;gap:8px;}
+        .cal-nav-btn{
+            width:38px;height:38px;border-radius:50%;
+            border:1.5px solid var(--border);background:var(--bg);
+            cursor:pointer;display:flex;align-items:center;justify-content:center;
+            font-size:13px;color:var(--dim);
+            transition:all 0.14s ease;
+            -webkit-tap-highlight-color:transparent;
+        }
+        .cal-nav-btn:active{background:var(--rose);color:#fff;border-color:var(--rose);transform:scale(0.9);}
+        .cal-nav-btn:disabled{opacity:0.3;pointer-events:none;}
+
+        /* Day-of-week labels */
+        .cal-grid-wrap{padding:16px 16px 0;overflow:hidden;}
+        .cal-dow{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:4px;}
+        .cal-dow-lbl{
+            text-align:center;font-size:10px;font-weight:600;
+            color:var(--dim2);padding:4px 0;letter-spacing:1px;text-transform:uppercase;
+        }
+        /* Main grid */
+        .cal-grid{
+            display:grid;grid-template-columns:repeat(7,1fr);
+            gap:3px;
+            will-change:transform;
+        }
+        .cal-grid.anim-left{animation:calSlideLeft 0.18s cubic-bezier(0.22,1,0.36,1) both;}
+        .cal-grid.anim-right{animation:calSlideRight 0.18s cubic-bezier(0.22,1,0.36,1) both;}
+
+        .cal-day{
+            aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+            font-size:13px;font-weight:400;border-radius:50%;
+            cursor:pointer;position:relative;
+            -webkit-tap-highlight-color:transparent;
+            transition:background 0.1s ease, transform 0.1s ease, color 0.1s ease;
+            user-select:none;-webkit-user-select:none;
+        }
+        .cal-day.today-marker{font-weight:700;color:var(--rose);}
+        .cal-day.today-marker::before{
+            content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+            width:4px;height:4px;border-radius:50%;background:var(--rose);
+        }
+        .cal-day.empty,.cal-day.past-filler{pointer-events:none;color:transparent;}
+        .cal-day.past{color:var(--dim2);pointer-events:none;opacity:0.4;}
         .cal-day.avail{color:var(--text);}
-        .cal-day.avail:hover,.cal-day.avail:active{background:rgba(175,58,129,0.12);color:var(--rose);}
-        .cal-day.booked{color:var(--dim2);pointer-events:none;text-decoration:line-through;}
-        .cal-day.limited::after{content:'';position:absolute;bottom:2px;left:50%;transform:translateX(-50%);width:4px;height:4px;border-radius:50%;background:#F59E0B;}
-        .cal-day.selected{background:var(--rose);color:#fff;}
-        .cal-legend{display:flex;gap:16px;padding:10px 16px 0;justify-content:center;}
-        .cal-leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--dim);}
-        .cal-leg-dot{width:8px;height:8px;border-radius:50%;}
-        .cal-footer{padding:14px 16px 0;}
-        .cal-confirm{width:100%;padding:14px;background:var(--text);color:#FAF7F2;border:none;border-radius:50px;font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;letter-spacing:0.3px;}
-        .cal-confirm:disabled{opacity:0.4;cursor:default;}
+        .cal-day.avail:active{background:rgba(175,58,129,0.12);transform:scale(0.88);}
+
+        /* Booked — strikethrough dot */
+        .cal-day.booked{color:var(--dim2);pointer-events:none;opacity:0.45;text-decoration:line-through;}
+
+        /* Limited — amber dot */
+        .cal-day.limited::after{
+            content:'';position:absolute;bottom:3px;left:50%;transform:translateX(-50%);
+            width:4px;height:4px;border-radius:50%;background:#F59E0B;
+        }
+        /* Selected — rose fill with pop */
+        .cal-day.selected{
+            background:var(--rose);color:#fff;font-weight:600;
+            transform:scale(1.05);
+            box-shadow:0 4px 14px rgba(175,58,129,0.4);
+        }
+        /* Today ring */
+        .cal-day.today-ring{
+            border:1.5px solid var(--rose);color:var(--rose);font-weight:600;
+        }
+
+        /* Legend */
+        .cal-legend{
+            display:flex;gap:0;padding:14px 16px 0;
+            justify-content:space-between;
+            border-top:1px solid var(--border);
+            margin-top:14px;
+        }
+        .cal-leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--dim);letter-spacing:0.3px;}
+        .cal-leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+        /* Month availability summary chips */
+        .cal-avail-strip{
+            display:flex;gap:8px;padding:12px 16px 0;overflow-x:auto;scrollbar-width:none;
+        }
+        .cal-avail-chip{
+            flex-shrink:0;
+            display:flex;align-items:center;gap:5px;
+            padding:5px 11px;border-radius:50px;
+            font-size:10px;font-weight:500;letter-spacing:0.3px;
+            white-space:nowrap;
+        }
+        .cal-avail-chip.green{background:rgba(16,185,129,0.1);color:#059669;}
+        .cal-avail-chip.orange{background:rgba(245,158,11,0.12);color:#D97706;}
+        .cal-avail-chip.red{background:rgba(239,68,68,0.1);color:#DC2626;}
+
+        /* Footer CTA */
+        .cal-footer{padding:12px 16px 0;}
+        .cal-confirm{
+            width:100%;padding:15px;
+            background:var(--text);color:#FAF7F2;
+            border:none;border-radius:50px;
+            font-size:14px;font-weight:500;font-family:var(--font);
+            cursor:pointer;letter-spacing:0.3px;
+            transition:opacity 0.15s, transform 0.1s;
+            -webkit-tap-highlight-color:transparent;
+        }
+        .cal-confirm:active{transform:scale(0.97);}
+        .cal-confirm:disabled{opacity:0.3;cursor:default;transform:none;}
         /* Pricing tiers */
         .pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
         .price-tier{background:var(--bg);border-radius:16px;padding:12px 13px;}
@@ -375,19 +496,375 @@
         .vendor-section{margin-bottom:20px;}
         .vendor-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;}
         .vendor-item{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;}
-        .vendor-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(175,58,129,0.07);}
+        .vendor-icon{width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:18px;background:rgba(175,58,129,0.07);color:#AF3A81;}
         .vendor-label{font-size:9px;color:var(--dim);text-align:center;letter-spacing:0.3px;line-height:1.3;}
         /* Section divider */
         .detail-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
         .detail-section-lbl{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
-        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:66px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.45s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
+        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:66px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.22s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
         .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;}
         .dock-item i{font-size:20px;line-height:1;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),color 0.2s;display:block;}
         .dock-item span{font-size:10px;font-weight:400;letter-spacing:0.5px;line-height:1;white-space:nowrap;}
         .dock-item.active{color:#AF3A81;}
         .dock-item.active i{transform:translateY(-2px);}
         .dock-badge{position:absolute;top:8px;left:50%;transform:translateX(6px);min-width:16px;height:16px;background:var(--red);border-radius:8px;font-size:9px;font-weight:800;display:flex;align-items:center;justify-content:center;color:#fff;padding:0 4px;border:2px solid var(--bg);}
-    </style>
+    
+        /* ── FULL PAYMENT — best option ─────────────────────── */
+        @keyframes goldGlow{0%,100%{box-shadow:0 0 0 0 rgba(201,151,42,0)}50%{box-shadow:0 0 0 8px rgba(201,151,42,0.15)}}
+        .best-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,#C9972A,#E8B84B);color:#fff;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:5px 12px;border-radius:50px;text-transform:uppercase;}
+        .fp-row{background:linear-gradient(135deg,rgba(201,151,42,.08),rgba(201,151,42,.04));border:1.5px solid rgba(201,151,42,.3);border-radius:16px;padding:16px;}
+        .gold-glow{animation:goldGlow 2.5s infinite;}
+        .btn-gold{background:linear-gradient(135deg,#C9972A,#E8B84B) !important;box-shadow:0 6px 20px rgba(201,151,42,.35) !important;color:#fff !important;}
+        .ben{display:flex;align-items:flex-start;gap:8px;font-size:12px;margin-bottom:8px;color:var(--dim);}
+        .ben i{font-size:11px;margin-top:1px;flex-shrink:0;}
+        /* Testimonial */
+        .tcard{background:var(--card);border-radius:18px;padding:20px;flex-shrink:0;width:270px;box-shadow:0 6px 22px rgba(0,0,0,.05);}
+
+
+        /* ── ANIMATIONS ─────────────────────────────────────────── */
+
+        /* Fade-up: sections, cards, reviews */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                        transform 0.55s cubic-bezier(0.22,1,0.36,1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 { transition-delay: 0.08s; }
+        .fade-up.delay-2 { transition-delay: 0.16s; }
+        .fade-up.delay-3 { transition-delay: 0.24s; }
+        .fade-up.delay-4 { transition-delay: 0.32s; }
+
+        /* Card hover – venue cards */
+        .venue-card-v {
+            transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1),
+                        box-shadow 0.28s ease !important;
+        }
+        .venue-card-v:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 16px 40px rgba(175,58,129,0.13) !important;
+        }
+        .venue-card-v:hover .venue-img-wrap img {
+            transform: scale(1.04);
+        }
+        .venue-card-v .venue-img-wrap { overflow: hidden; }
+        .venue-card-v .venue-img-wrap img {
+            transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+        }
+        .venue-card-h:hover {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 14px 32px rgba(175,58,129,0.12) !important;
+        }
+        .venue-card-h .venue-img-wrap img {
+            transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+        }
+        .venue-card-h:hover .venue-img-wrap img {
+            transform: scale(1.05);
+        }
+
+        /* Skeleton loading */
+        @keyframes shimmer {
+            0%   { background-position: -400px 0; }
+            100% { background-position:  400px 0; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg,
+                #ede8e3 25%, #f5f1ee 50%, #ede8e3 75%);
+            background-size: 800px 100%;
+            animation: shimmer 1.4s infinite linear;
+            border-radius: 10px;
+        }
+        .skeleton-card {
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            margin-bottom: 16px;
+        }
+        .skeleton-img  { height: 220px; border-radius: 0; }
+        .skeleton-line { height: 14px; margin: 0 18px 10px; }
+        .skeleton-line.short { width: 55%; }
+        .skeleton-line.xs    { height: 10px; width: 40%; }
+        .skeleton-info { padding: 16px 18px 18px; }
+
+        /* Counter animation */
+        .counter-val {
+            display: inline-block;
+            font-variant-numeric: tabular-nums;
+        }
+        
+        .photo-gallery-grid {
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            grid-template-rows:180px 130px;
+            gap:3px;
+            margin-bottom:0;
+            border-radius:0;
+            overflow:hidden;
+            cursor:pointer;
+            position:relative;
+        }
+        .photo-gallery-grid .photo-main {
+            grid-column:1;grid-row:1/3;
+        }
+        .photo-gallery-grid .photo-thumb {
+            grid-column:2;
+        }
+        .photo-gallery-grid img {
+            width:100%;height:100%;object-fit:cover;display:block;
+            transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+        .photo-gallery-grid:hover img { transform:scale(1.03); }
+        .photo-gallery-grid .photo-cell {
+            overflow:hidden;position:relative;
+        }
+        .photo-gallery-grid .photo-cell img {
+            transition:transform 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+        .photo-gallery-grid .photo-cell:hover img { transform:scale(1.06); }
+        .show-all-btn {
+            position:absolute;bottom:12px;right:12px;
+            background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);
+            border:none;border-radius:8px;
+            padding:7px 14px;font-size:12px;font-weight:600;
+            color:var(--text);cursor:pointer;
+            display:flex;align-items:center;gap:6px;
+            box-shadow:0 2px 12px rgba(0,0,0,0.15);
+            transition:all 0.2s;
+            font-family:var(--font);
+        }
+        .show-all-btn:active{transform:scale(0.95);}
+
+        /* Gallery Lightbox */
+        .gallery-overlay {
+            display:none;position:fixed;inset:0;background:rgba(0,0,0,0.96);
+            z-index:2000;flex-direction:column;
+        }
+        .gallery-overlay.open { display:flex; }
+        .gallery-topbar {
+            display:flex;align-items:center;justify-content:space-between;
+            padding:18px 20px;
+            color:#fff;flex-shrink:0;
+        }
+        .gallery-title { font-size:16px;font-weight:500;font-family:var(--display); }
+        .gallery-counter { font-size:13px;color:rgba(255,255,255,0.6); }
+        .gallery-close {
+            width:40px;height:40px;background:rgba(255,255,255,0.12);border:none;
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            color:#fff;font-size:16px;cursor:pointer;
+        }
+        .gallery-main-img {
+            flex:1;display:flex;align-items:center;justify-content:center;
+            padding:0 16px;overflow:hidden;
+        }
+        .gallery-main-img img {
+            max-width:100%;max-height:100%;object-fit:contain;border-radius:12px;
+            animation:fadeUp 0.2s ease both;
+        }
+        .gallery-nav {
+            display:flex;align-items:center;justify-content:space-between;
+            padding:16px 20px;flex-shrink:0;
+        }
+        .gallery-nav-btn {
+            width:46px;height:46px;background:rgba(255,255,255,0.12);border:none;
+            border-radius:50%;display:flex;align-items:center;justify-content:center;
+            color:#fff;font-size:18px;cursor:pointer;transition:all 0.2s;
+        }
+        .gallery-nav-btn:active{background:rgba(255,255,255,0.25);}
+        .gallery-dots {
+            display:flex;gap:6px;
+        }
+        .gallery-dot {
+            width:6px;height:6px;border-radius:50%;
+            background:rgba(255,255,255,0.35);transition:all 0.2s;
+        }
+        .gallery-dot.active { background:#fff;width:18px;border-radius:3px; }
+        .gallery-thumb-strip {
+            display:flex;gap:6px;padding:0 20px 20px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;
+        }
+        .gallery-thumb {
+            flex-shrink:0;width:64px;height:64px;border-radius:10px;overflow:hidden;cursor:pointer;
+            border:2px solid transparent;transition:border-color 0.2s;
+        }
+        .gallery-thumb.active { border-color:#fff; }
+        .gallery-thumb img { width:100%;height:100%;object-fit:cover; }
+
+        /* ── HERO SEARCH BAR (MakeMyTrip style) ──────────────────────── */
+        .hero-search-card {
+            margin:0 16px;
+            background:rgba(255,255,255,0.97);
+            backdrop-filter:blur(20px);
+            border-radius:20px;
+            padding:14px 16px 16px;
+            box-shadow:0 8px 32px rgba(0,0,0,0.14);
+            position:relative;z-index:600;
+            margin-top:-36px;
+            border:1px solid rgba(255,255,255,0.9);
+        }
+        .hsearch-title {
+            font-size:11px;font-weight:600;color:var(--dim);
+            text-transform:uppercase;letter-spacing:2px;
+            margin-bottom:12px;
+        }
+        .hsearch-fields {
+            display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;
+            margin-bottom:12px;
+        }
+        @media(max-width:360px){
+            .hsearch-fields { grid-template-columns:1fr 1fr; }
+            .hsearch-fields .hsearch-field:first-child { grid-column:1/-1; }
+        }
+        .hsearch-field {
+            background:var(--bg);border:1.5px solid var(--border);
+            border-radius:14px;padding:10px 12px;
+            cursor:pointer;transition:border-color 0.2s;
+            position:relative;
+        }
+        .hsearch-field:focus-within,.hsearch-field.active {
+            border-color:rgba(175,58,129,0.5);
+            background:#fff;
+        }
+        .hsearch-field-label {
+            font-size:9px;font-weight:600;color:var(--dim2);
+            text-transform:uppercase;letter-spacing:1.5px;margin-bottom:3px;
+            display:flex;align-items:center;gap:5px;
+        }
+        .hsearch-field-label i { font-size:9px;color:#AF3A81; }
+        .hsearch-field-value {
+            font-size:13px;font-weight:500;color:var(--text);
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+        }
+        .hsearch-field-value.placeholder { color:var(--dim2);font-weight:400; }
+        .hsearch-btn {
+            width:100%;padding:14px;
+            background:linear-gradient(135deg,#AF3A81,#9C3372);
+            color:#fff;font-weight:600;font-size:14px;
+            border:none;border-radius:14px;cursor:pointer;
+            font-family:var(--font);letter-spacing:0.3px;
+            display:flex;align-items:center;justify-content:center;gap:8px;
+            box-shadow:0 4px 16px rgba(175,58,129,0.3);
+            transition:all 0.2s;
+        }
+        .hsearch-btn:active { transform:scale(0.98);opacity:0.9; }
+
+        /* Search dropdowns */
+        .hsearch-dropdown {
+            display:none;position:absolute;left:0;right:0;
+            background:var(--card);border-radius:20px;
+            box-shadow:0 16px 48px rgba(0,0,0,0.16);
+            z-index:600;padding:16px;
+            max-height:70vh;overflow-y:auto;
+            border:1px solid var(--border);
+        }
+        .hsearch-dropdown.open { display:block;animation:fadeUp 0.15s ease both; }
+        /* Wrapper for positioning context */
+        #heroSearchCard { position:relative; }
+        .hsearch-dropdown-title {
+            font-size:10px;font-weight:700;color:var(--dim);
+            text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;
+        }
+        .city-option {
+            display:flex;align-items:center;gap:10px;
+            padding:11px 12px;border-radius:12px;cursor:pointer;
+            transition:background 0.15s;font-size:14px;
+        }
+        .city-option:active,.city-option:hover { background:var(--bg); }
+        .city-option i { color:#AF3A81;font-size:13px;width:16px; }
+
+        /* Guest / Budget counter */
+        .counter-row {
+            display:flex;align-items:center;justify-content:space-between;
+            padding:12px 0;border-bottom:1px solid var(--border);
+        }
+        .counter-row:last-child { border-bottom:none; }
+        .counter-info { flex:1; }
+        .counter-label { font-size:14px;font-weight:500;margin-bottom:2px; }
+        .counter-sub { font-size:12px;color:var(--dim); }
+        .counter-ctrl { display:flex;align-items:center;gap:14px; }
+        .counter-btn {
+            width:32px;height:32px;border-radius:50%;
+            border:1.5px solid var(--border);background:transparent;
+            display:flex;align-items:center;justify-content:center;
+            font-size:16px;color:var(--text);cursor:pointer;
+            transition:all 0.2s;font-family:var(--font);
+        }
+        .counter-btn:active { background:var(--text);color:#fff;border-color:var(--text); }
+        .counter-val-display { font-size:16px;font-weight:600;min-width:28px;text-align:center; }
+
+        /* Budget range slider */
+        .budget-slider-wrap { padding:8px 0 16px; }
+        .budget-range-labels { display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--text);margin-bottom:12px; }
+        .range-track { position:relative;height:4px;background:var(--border);border-radius:2px;margin:0 4px; }
+        .range-fill { position:absolute;height:4px;background:#AF3A81;border-radius:2px; }
+        input[type=range].budget-range {
+            width:100%;-webkit-appearance:none;appearance:none;
+            height:4px;background:transparent;outline:none;
+            position:absolute;top:0;left:0;pointer-events:auto;
+        }
+        input[type=range].budget-range::-webkit-slider-thumb {
+            -webkit-appearance:none;width:22px;height:22px;
+            border-radius:50%;background:#AF3A81;cursor:pointer;
+            border:2px solid #fff;box-shadow:0 2px 8px rgba(175,58,129,0.35);
+            margin-top:-9px;
+        }
+        input[type=range].budget-range::-moz-range-thumb {
+            width:22px;height:22px;border-radius:50%;background:#AF3A81;
+            cursor:pointer;border:2px solid #fff;
+        }
+
+        /* Improved filter sheet */
+        .filter-group-label { font-size:12px;font-weight:700;color:var(--text);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px; }
+        .radio-chips { display:flex;flex-wrap:wrap;gap:8px; }
+        .radio-chip {
+            padding:8px 16px;border-radius:50px;
+            background:var(--card);border:1.5px solid var(--border);
+            font-size:12px;font-weight:500;cursor:pointer;transition:all 0.2s;
+            color:var(--dim);
+        }
+        .radio-chip.selected { background:#AF3A81;color:#fff;border-color:#AF3A81; }
+
+        /* ── DROP-DOWN OVERLAY ─────────────────────────────────────── */
+        .dropdown-backdrop {
+            display:none;position:fixed;inset:0;z-index:599;
+        }
+        .dropdown-backdrop.open { display:block; }
+
+        /* ── CITY SEARCH INPUT ────────────────────────────────────── */
+        .city-search-input-wrap {
+            display:flex;align-items:center;gap:8px;
+            background:var(--bg);border:1.5px solid var(--border);
+            border-radius:12px;padding:10px 14px;margin-bottom:12px;
+            transition:border-color 0.2s;
+        }
+        .city-search-input-wrap:focus-within { border-color:rgba(175,58,129,0.5); }
+        .city-search-input-wrap i { color:var(--dim);font-size:13px;flex-shrink:0; }
+        #city-search-input {
+            background:none;border:none;outline:none;
+            font-family:var(--font);font-size:14px;color:var(--text);
+            width:100%;
+        }
+        #city-search-input::placeholder { color:var(--dim2); }
+        .city-option.hidden { display:none; }
+        #hsf-freetext-wrap:focus-within { border-color: rgba(175,58,129,0.5) !important; background:#fff; }
+
+        /* ── AVAILABILITY BADGE ───────────────────────────────────── */
+        .avail-badge {
+            display:inline-flex;align-items:center;gap:5px;
+            font-size:10px;font-weight:600;letter-spacing:0.3px;
+            padding:4px 9px;border-radius:6px;margin-top:8px;
+        }
+        .avail-badge.green {
+            background:rgba(16,185,129,0.10);color:#059669;
+        }
+        .avail-badge.orange {
+            background:rgba(245,158,11,0.12);color:#D97706;
+        }
+        .avail-badge i { font-size:9px; }
+        </style>
 </head>
 <body>
 
@@ -405,17 +882,175 @@
         </div>
     </div>
     <!-- ① HERO -->
-        <div class="hero-banner" onclick="goPage('explore')">
+        <div class="hero-banner">
             <img class="hero-banner-img" loading="eager" src="https://images.unsplash.com/photo-1519741497674-611481863552?w=900&q=85" alt="Wedding venue">
             <div class="hero-banner-body">
                 <div class="hero-kicker">Handpicked venues · AP & Telangana</div>
                 <div class="hero-title">Discover spaces<br>crafted for<em> unforgettable</em><br>celebrations</div>
-                <button class="hero-cta"><i class="fa-solid fa-compass" style="color:var(--rose);"></i> Browse Venues</button>
             </div>
         </div>
 
-        <!-- ② SEARCH BAR -->
-        <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="homeSearch" placeholder="Search venues, cities..."><i class="fa-solid fa-xmark search-clear" id="homeSearchClear" onclick="clearSearch('home')"></i></div></div>
+        <!-- ② HERO SEARCH (MakeMyTrip style) -->
+        <div class="hero-search-card" id="heroSearchCard">
+            <div class="hsearch-title"><i class="fa-solid fa-magnifying-glass" style="color:#AF3A81;margin-right:6px;"></i>Find Your Perfect Venue</div>
+            <div class="hsearch-fields">
+                <div class="hsearch-field" id="hsf-city" onclick="openHsearchDropdown('city')">
+                    <div class="hsearch-field-label"><i class="fa-solid fa-location-dot"></i> Where</div>
+                    <div class="hsearch-field-value placeholder" id="hsf-city-val">Any City</div>
+                </div>
+                <div class="hsearch-field" id="hsf-date" onclick="openHsearchDropdown('date')">
+                    <div class="hsearch-field-label"><i class="fa-regular fa-calendar"></i> Event Date</div>
+                    <div class="hsearch-field-value placeholder" id="hsf-date-val">Pick Date</div>
+                </div>
+                <div class="hsearch-field" id="hsf-guests" onclick="openHsearchDropdown('guests')">
+                    <div class="hsearch-field-label"><i class="fa-solid fa-users"></i> Guests</div>
+                    <div class="hsearch-field-value placeholder" id="hsf-guests-val">Any Size</div>
+                </div>
+            </div>
+            <!-- Free text search row -->
+            <div style="display:flex;align-items:center;gap:10px;background:var(--bg);border:1.5px solid var(--border);border-radius:14px;padding:10px 14px;margin-bottom:12px;transition:border-color 0.2s;" id="hsf-freetext-wrap">
+                <i class="fa-solid fa-magnifying-glass" style="color:#AF3A81;font-size:13px;flex-shrink:0;"></i>
+                <input type="text" id="hsf-freetext" placeholder="Search by venue name, city, type…" autocomplete="off"
+                    style="flex:1;background:none;border:none;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;outline:none;"
+                    oninput="document.getElementById('hsf-freetext-wrap').style.borderColor=this.value?'rgba(175,58,129,0.5)':'var(--border)'"
+                >
+                <i class="fa-solid fa-xmark" id="hsf-freetext-clear" style="color:var(--dim2);font-size:13px;cursor:pointer;display:none;" onclick="document.getElementById('hsf-freetext').value='';this.style.display='none';document.getElementById('hsf-freetext-wrap').style.borderColor='var(--border)';"></i>
+            </div>
+            <button class="hsearch-btn" onclick="doHeroSearch()"><i class="fa-solid fa-magnifying-glass"></i> Search Venues</button>
+        </div>
+
+        <!-- Dropdown backdrop -->
+        <div class="dropdown-backdrop" id="dropdown-backdrop" onclick="closeAllHsearchDropdowns()"></div>
+
+        <!-- ══ WHERE dropdown ══ -->
+        <div class="hsearch-dropdown" id="hsd-city">
+            <div class="city-search-input-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="city-search-input" placeholder="Type any city in AP & Telangana…" oninput="filterCityOptions(this.value)" autocomplete="off">
+            </div>
+            <div class="hsearch-dropdown-title">Popular Cities</div>
+            <div class="city-option" data-city="All" onclick="setHsearchCity('All')"><i class="fa-solid fa-globe"></i>Anywhere — All Cities</div>
+            <div class="city-option" data-city="Vijayawada" onclick="setHsearchCity('Vijayawada')"><i class="fa-solid fa-location-dot"></i>Vijayawada</div>
+            <div class="city-option" data-city="Hyderabad" onclick="setHsearchCity('Hyderabad')"><i class="fa-solid fa-location-dot"></i>Hyderabad</div>
+            <div class="city-option" data-city="Vizag" onclick="setHsearchCity('Vizag')"><i class="fa-solid fa-location-dot"></i>Visakhapatnam</div>
+            <div class="city-option" data-city="Kakinada" onclick="setHsearchCity('Kakinada')"><i class="fa-solid fa-location-dot"></i>Kakinada</div>
+            <div class="city-option" data-city="Rajahmundry" onclick="setHsearchCity('Rajahmundry')"><i class="fa-solid fa-location-dot"></i>Rajahmundry</div>
+            <div class="city-option" data-city="Guntur" onclick="setHsearchCity('Guntur')"><i class="fa-solid fa-location-dot"></i>Guntur</div>
+            <div class="city-option" data-city="Tirupati" onclick="setHsearchCity('Tirupati')"><i class="fa-solid fa-location-dot"></i>Tirupati</div>
+            <div class="city-option" data-city="Nellore" onclick="setHsearchCity('Nellore')"><i class="fa-solid fa-location-dot"></i>Nellore</div>
+            <div class="city-option" data-city="Kurnool" onclick="setHsearchCity('Kurnool')"><i class="fa-solid fa-location-dot"></i>Kurnool</div>
+            <div class="city-option" data-city="Warangal" onclick="setHsearchCity('Warangal')"><i class="fa-solid fa-location-dot"></i>Warangal</div>
+            <div class="city-option" data-city="Eluru" onclick="setHsearchCity('Eluru')"><i class="fa-solid fa-location-dot"></i>Eluru</div>
+            <div id="city-no-results" style="display:none;padding:10px 12px;font-size:13px;color:var(--dim);text-align:center;">No match. <span style="color:#AF3A81;cursor:pointer;" id="city-use-typed">Use "<span id="city-typed-text"></span>"</span></div>
+        </div>
+
+        <!-- ══ EVENT DATE dropdown — MMT-style calendar ══ -->
+        <div class="hsearch-dropdown" id="hsd-date" style="padding:14px 14px 16px;">
+            <!-- Month nav header -->
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
+                <button id="hcal-prev" onclick="hcalChangeMonth(-1)" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);flex-shrink:0;transition:all 0.15s;" onmousedown="event.preventDefault()"><i class="fa-solid fa-chevron-left"></i></button>
+                <div id="hcal-month-label" style="font-family:var(--display);font-size:17px;font-weight:500;color:var(--text);letter-spacing:0.01em;text-align:center;flex:1;"></div>
+                <button id="hcal-next" onclick="hcalChangeMonth(1)" style="width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:var(--bg);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--dim);flex-shrink:0;transition:all 0.15s;" onmousedown="event.preventDefault()"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+            <!-- Day-of-week labels -->
+            <div style="display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:2px;margin-top:10px;">
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">SU</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">MO</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">TU</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">WE</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">TH</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">FR</div>
+                <div style="text-align:center;font-size:9px;font-weight:600;color:var(--dim2);padding:4px 0;letter-spacing:1px;">SA</div>
+            </div>
+            <!-- Calendar grid — days rendered by JS -->
+            <div id="hcal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:1px;"></div>
+            <!-- Selected date confirmation bar -->
+            <div id="hcal-selected-bar" style="display:none;margin-top:12px;background:rgba(175,58,129,0.06);border:1.5px solid rgba(175,58,129,0.2);border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                    <div style="font-size:10px;color:var(--dim2);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;">Selected Date</div>
+                    <div id="hcal-selected-text" style="font-size:14px;font-weight:600;color:#AF3A81;font-family:var(--display);"></div>
+                </div>
+                <button onclick="applyHsearchDate()" style="background:#AF3A81;color:#fff;border:none;border-radius:10px;padding:8px 16px;font-size:13px;font-weight:600;font-family:var(--font);cursor:pointer;">Confirm</button>
+            </div>
+        </div>
+
+        <!-- ══ GUESTS dropdown ══ -->
+        <div class="hsearch-dropdown" id="hsd-guests" style="padding:16px;">
+            <div style="font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;">Guest Count</div>
+            <!-- Quick presets -->
+            <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:16px;" id="hsd-guest-presets">
+                <div class="radio-chip" data-gval="50" onclick="setGuestPreset(50,this)">~50</div>
+                <div class="radio-chip" data-gval="100" onclick="setGuestPreset(100,this)">~100</div>
+                <div class="radio-chip" data-gval="200" onclick="setGuestPreset(200,this)">~200</div>
+                <div class="radio-chip" data-gval="300" onclick="setGuestPreset(300,this)">~300</div>
+                <div class="radio-chip" data-gval="500" onclick="setGuestPreset(500,this)">~500</div>
+                <div class="radio-chip" data-gval="750" onclick="setGuestPreset(750,this)">~750</div>
+                <div class="radio-chip" data-gval="1000" onclick="setGuestPreset(1000,this)">1000+</div>
+            </div>
+            <!-- Fine-tune counter -->
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+                <div>
+                    <div style="font-size:14px;font-weight:500;color:var(--text);">Exact Count</div>
+                    <div style="font-size:11px;color:var(--dim);margin-top:2px;">Fine-tune with ± buttons</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:14px;">
+                    <button class="counter-btn" onclick="adjustHsearchGuests(-50)" onmousedown="event.preventDefault()">−</button>
+                    <div class="counter-val-display" id="hsd-guests-count">100</div>
+                    <button class="counter-btn" onclick="adjustHsearchGuests(50)" onmousedown="event.preventDefault()">+</button>
+                </div>
+            </div>
+            <!-- Event type -->
+            <div style="margin-top:14px;">
+                <div style="font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;">Event Type <span style="color:var(--dim2);font-weight:400;text-transform:none;letter-spacing:0;">(pick any)</span></div>
+                <div style="display:flex;flex-wrap:wrap;gap:7px;" id="hsd-event-type-chips">
+                    <div class="radio-chip" data-etype="Wedding" onclick="toggleEventType(this)"><i class="fa-solid fa-heart" style="font-size:9px;margin-right:4px;"></i>Wedding</div>
+                    <div class="radio-chip" data-etype="Reception" onclick="toggleEventType(this)"><i class="fa-solid fa-champagne-glasses" style="font-size:9px;margin-right:4px;"></i>Reception</div>
+                    <div class="radio-chip" data-etype="Engagement" onclick="toggleEventType(this)"><i class="fa-solid fa-ring" style="font-size:9px;margin-right:4px;"></i>Engagement</div>
+                    <div class="radio-chip" data-etype="Birthday" onclick="toggleEventType(this)"><i class="fa-solid fa-cake-candles" style="font-size:9px;margin-right:4px;"></i>Birthday</div>
+                    <div class="radio-chip" data-etype="Corporate" onclick="toggleEventType(this)"><i class="fa-solid fa-briefcase" style="font-size:9px;margin-right:4px;"></i>Corporate</div>
+                    <div class="radio-chip" data-etype="Haldi" onclick="toggleEventType(this)"><i class="fa-solid fa-sun" style="font-size:9px;margin-right:4px;"></i>Haldi</div>
+                    <div class="radio-chip" data-etype="Sangeet" onclick="toggleEventType(this)"><i class="fa-solid fa-music" style="font-size:9px;margin-right:4px;"></i>Sangeet</div>
+                    <div class="radio-chip" data-etype="Mehendi" onclick="toggleEventType(this)"><i class="fa-solid fa-hand-sparkles" style="font-size:9px;margin-right:4px;"></i>Mehendi</div>
+                </div>
+            </div>
+            <button class="hsearch-btn" style="margin-top:16px;" onclick="applyHsearchGuests()"><i class="fa-solid fa-check"></i> Done</button>
+        </div>
+
+        <!-- Budget dropdown (hidden — budget lives in filter sheet only) -->
+        <div class="hsearch-dropdown" id="hsd-budget" style="display:none!important;">
+            <div class="hsearch-dropdown-title">Budget Range</div>
+            <div class="budget-slider-wrap">
+                <div class="radio-chips" style="gap:10px;flex-wrap:wrap;">
+                    <div class="radio-chip selected" id="bchip-any" onclick="setBudgetChip('any',this)">Any</div>
+                    <div class="radio-chip" id="bchip-2" onclick="setBudgetChip('2',this)">Under ₹2L</div>
+                    <div class="radio-chip" id="bchip-5" onclick="setBudgetChip('5',this)">₹2L–₹5L</div>
+                    <div class="radio-chip" id="bchip-5p" onclick="setBudgetChip('5p',this)">₹5L+</div>
+                </div>
+            </div>
+            <button class="hsearch-btn" style="margin-top:14px;" onclick="applyHsearchBudget()">Confirm</button>
+        </div>
+
+        <!-- Hidden search input for compatibility -->
+        <input type="text" id="homeSearch" style="display:none;">
+
+
+        <!-- STATS BAR -->
+        <div class="section" style="padding-top:32px;" id="statsSection">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:20px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.04);">
+                <div class="fade-up" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
+                    <span class="trust-num counter-val" data-target="50" data-suffix="+">0</span>
+                    <span class="trust-lbl">Venues</span>
+                </div>
+                <div class="fade-up delay-1" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+                    <span class="trust-num counter-val" data-target="500" data-suffix="+">0</span>
+                    <span class="trust-lbl">Events</span>
+                </div>
+                <div class="fade-up delay-2" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
+                    <span class="trust-num counter-val" data-target="12" data-suffix="">0</span>
+                    <span class="trust-lbl">Cities</span>
+                </div>
+            </div>
+        </div>
 
         <!-- ③ FEATURED CITIES -->
         <div class="section"><div class="section-header"><span class="section-title">Featured Cities</span><span class="see-all">View All</span></div></div>
@@ -426,11 +1061,11 @@
         <!-- ④ VENUE CATEGORIES -->
         <div class="section"><div class="section-header"><span class="section-title">Browse by Occasion</span></div>
             <div class="occ-grid" id="occGrid">
-                <div class="occ-box" data-type="wedding"><div class="occ-icon"><i class="fa-solid fa-heart"></i></div><div class="occ-label">Wedding</div></div>
-                <div class="occ-box" data-type="reception"><div class="occ-icon"><i class="fa-solid fa-champagne-glasses"></i></div><div class="occ-label">Reception</div></div>
-                <div class="occ-box" data-type="engagement"><div class="occ-icon"><i class="fa-solid fa-ring"></i></div><div class="occ-label">Engagement</div></div>
-                <div class="occ-box" data-type="birthday"><div class="occ-icon"><i class="fa-solid fa-cake-candles"></i></div><div class="occ-label">Birthday</div></div>
-                <div class="occ-box" data-type="corporate"><div class="occ-icon"><i class="fa-solid fa-briefcase"></i></div><div class="occ-label">Corporate</div></div>
+                <div class="occ-box fade-up" data-type="wedding"><div class="occ-icon"><i class="fa-solid fa-heart"></i></div><div class="occ-label">Wedding</div></div>
+                <div class="occ-box fade-up delay-1" data-type="reception"><div class="occ-icon"><i class="fa-solid fa-champagne-glasses"></i></div><div class="occ-label">Reception</div></div>
+                <div class="occ-box fade-up delay-2" data-type="engagement"><div class="occ-icon"><i class="fa-solid fa-ring"></i></div><div class="occ-label">Engagement</div></div>
+                <div class="occ-box fade-up delay-3" data-type="birthday"><div class="occ-icon"><i class="fa-solid fa-cake-candles"></i></div><div class="occ-label">Birthday</div></div>
+                <div class="occ-box fade-up delay-4" data-type="corporate"><div class="occ-icon"><i class="fa-solid fa-briefcase"></i></div><div class="occ-label">Corporate</div></div>
                 <div class="occ-box" data-type="haldi"><div class="occ-icon"><i class="fa-solid fa-sun"></i></div><div class="occ-label">Haldi</div></div>
                 <div class="occ-box" data-type="sangeet"><div class="occ-icon"><i class="fa-solid fa-music"></i></div><div class="occ-label">Sangeet</div></div>
                 <div class="occ-box" data-type="mehendi"><div class="occ-icon"><i class="fa-solid fa-hand-sparkles"></i></div><div class="occ-label">Mehendi</div></div>
@@ -440,10 +1075,10 @@
         <!-- ⑤ FEATURED VENUES -->
         <div class="section"><div class="section-header"><span class="section-title">Featured Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
         <div class="venues-scroll">
-            <div class="venue-card-h" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><div class="venue-bottom"><div><div class="venue-price">₹4.5L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><div class="venue-bottom"><div><div class="venue-price">₹2.2L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad</div><div class="venue-bottom"><div><div class="venue-price">₹5.5L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><div class="venue-bottom"><div><div class="venue-price">₹1.8L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹85K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><span class="avail-badge orange" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-fire"></i> Next: Jun 15</span><div class="venue-bottom"><div><div class="venue-price">₹55K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹1.2L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹42K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
         </div>
 
         <!-- ⑥ HOW IT WORKS -->
@@ -492,10 +1127,10 @@
         <!-- ⑧ CUSTOMER REVIEWS -->
         <div class="section"><div class="section-header"><span class="section-title">Guest Reviews</span></div></div>
         <div class="hscroll">
-            <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Ravi Kumar</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Vivaha Venue made finding our dream hall so easy. Booked V Convention in 10 minutes!"</div></div>
-            <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">L</div><div><div class="reviewer-name">Lakshmi Reddy</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Paid only 40% advance — rest paid at the hall. Zero stress. Our Godavari view wedding was magical!"</div></div>
-            <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sai Prasad</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Used FREEDECOR100 and got a free decoration consultation from their partner decorator. Amazing!"</div></div>
-            <div class="review-card"><div class="reviewer-row"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya Nair</div><div class="reviewer-stars">★★★★☆</div></div></div><div class="review-text">"The booking summary was crystal clear — no hidden charges at all. Great experience!"</div></div>
+            <div class="review-card fade-up"><div class="reviewer-row"><div class="reviewer-avatar">R</div><div><div class="reviewer-name">Ravi Kumar</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Vivaha Venue made finding our dream hall so easy. Booked V Convention in 10 minutes!"</div></div>
+            <div class="review-card fade-up delay-1"><div class="reviewer-row"><div class="reviewer-avatar">L</div><div><div class="reviewer-name">Lakshmi Reddy</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Paid only 40% advance — rest paid at the hall. Zero stress. Our Godavari view wedding was magical!"</div></div>
+            <div class="review-card fade-up delay-2"><div class="reviewer-row"><div class="reviewer-avatar">S</div><div><div class="reviewer-name">Sai Prasad</div><div class="reviewer-stars">★★★★★</div></div></div><div class="review-text">"Used FREEDECOR100 and got a free decoration consultation from their partner decorator. Amazing!"</div></div>
+            <div class="review-card fade-up delay-3"><div class="reviewer-row"><div class="reviewer-avatar">P</div><div><div class="reviewer-name">Priya Nair</div><div class="reviewer-stars">★★★★☆</div></div></div><div class="review-text">"The booking summary was crystal clear — no hidden charges at all. Great experience!"</div></div>
         </div>
 
         <!-- ⑨ VENUE OWNER CTA — LIST YOUR VENUE -->
@@ -515,7 +1150,7 @@
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Advance guaranteed</span></div>
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Your own dashboard</span></div>
                     </div>
-                    <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#2B1A25;font-weight:600;font-size:13px;letter-spacing:0.3px;border-radius:50px;padding:13px 24px;cursor:pointer;border:none;font-family:var(--font);box-shadow:0 6px 20px rgba(0,0,0,0.25);">
+                    <button onclick="goPage('list-venue')" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#2B1A25;font-weight:600;font-size:13px;letter-spacing:0.3px;border-radius:50px;padding:13px 24px;cursor:pointer;border:none;font-family:var(--font);box-shadow:0 6px 20px rgba(0,0,0,0.25);">
                         <i class="fa-brands fa-whatsapp" style="font-size:16px;color:#10B981;"></i> List My Venue
                     </button>
                 </div>
@@ -540,13 +1175,16 @@
             <div class="footer-links">
                 <span class="footer-link" onclick="goPage('explore')">Browse Venues</span>
                 <span class="footer-link" onclick="goPage('bookings')">My Bookings</span>
-                <span class="footer-link">About Us</span>
+                <span class="footer-link" onclick="goPage('about')">About Us</span>
                 <span class="footer-link" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help.','_blank')">Contact Us</span>
-                <span class="footer-link">Partner With Us</span>
+                <span class="footer-link" onclick="goPage('partner')">Partner With Us</span>
+                <span class="footer-link" onclick="goPage('list-venue')">List Your Venue</span>
+                <span class="footer-link" onclick="goPage('careers')">Careers</span>
+                <span class="footer-link" onclick="goPage('support')">Support Center</span>
+                <span class="footer-link" onclick="goPage('contact-sales')">Contact Sales</span>
                 <span class="footer-link">Privacy Policy</span>
                 <span class="footer-link">Terms of Service</span>
                 <span class="footer-link">Cancellation &amp; Refund</span>
-                <span class="footer-link">Careers</span>
             </div>
             <div class="footer-social">
                 <div class="social-btn"><i class="fa-brands fa-instagram"></i></div>
@@ -567,11 +1205,11 @@
         <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="exploreSearch" placeholder="Search venues or cities..." oninput="filterVenues(this.value);toggleClear('explore',this.value)"><i class="fa-solid fa-xmark search-clear" id="exploreSearchClear" onclick="clearSearch('explore')"></i></div></div>
         <div class="section" style="padding-bottom:16px;"><div class="chip-row" style="padding:0;"><div class="chip active">All</div><div class="chip">Under ₹2L</div><div class="chip">₹2L–₹5L</div><div class="chip">5★ Only</div><div class="chip">Outdoor</div><div class="chip">AC Hall</div></div></div>
         <div class="vgrid" id="vgrid">
-            <div class="venue-card-v" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Benz Circle, Vijayawada</div><div class="venue-bottom"><div><div class="venue-price">₹4,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
-            <div class="venue-card-v" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Godavari Bank, Rajahmundry</div><div class="venue-bottom"><div><div class="venue-price">₹2,20,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
-            <div class="venue-card-v" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Jubilee Hills, Hyderabad</div><div class="venue-bottom"><div><div class="venue-price">₹5,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
-            <div class="venue-card-v" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=800" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Main Road, Kakinada</div><div class="venue-bottom"><div><div class="venue-price">₹1,80,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
-            <div class="venue-card-v" onclick="openVenue('v5')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800" alt=""><div class="venue-tag">BEACHFRONT</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Novotel Vizag Bay</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Beach Road, Visakhapatnam</div><div class="venue-bottom"><div><div class="venue-price">₹7,20,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-v fade-up" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Benz Circle, Vijayawada</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹85,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-1" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Godavari Bank, Rajahmundry</div><span class="avail-badge orange"><i class="fa-solid fa-fire"></i> Next Available: Jun 15</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹55,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-2" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Jubilee Hills, Hyderabad</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,20,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-3" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=800" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Main Road, Kakinada</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹42,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-4" onclick="openVenue('v5')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800" alt=""><div class="venue-tag">BEACHFRONT</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Novotel Vizag Bay</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Beach Road, Visakhapatnam</div><span class="avail-badge orange"><i class="fa-solid fa-fire"></i> Next Available: Jun 20</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
         </div>
     </div>
 </div>
@@ -618,7 +1256,50 @@
 
 <!-- FILTER SHEET -->
 <div class="sheet-overlay" id="filter-sheet" onclick="closeSheet('filter-sheet',event)">
-    <div class="sheet"><div class="sheet-handle"></div><div class="sheet-title">Filter Venues</div><div class="filter-group"><div class="filter-group-label">Budget Range</div><div class="filter-chips"><div class="filter-chip">Under ₹2L</div><div class="filter-chip active">₹2L–₹5L</div><div class="filter-chip">₹5L+</div></div></div><div class="filter-group"><div class="filter-group-label">Guest Capacity</div><div class="filter-chips"><div class="filter-chip">100–300</div><div class="filter-chip">300–500</div><div class="filter-chip active">500–1000</div><div class="filter-chip">1000+</div></div></div><div class="filter-group"><div class="filter-group-label">Amenities</div><div class="filter-chips"><div class="filter-chip">AC</div><div class="filter-chip active">Parking</div><div class="filter-chip active">Catering</div><div class="filter-chip">Décor</div><div class="filter-chip">DJ</div></div></div><div class="sheet-footer"><button class="btn-sm btn-outline" onclick="closeSheet('filter-sheet')">Reset</button><button class="btn-sm btn-primary" onclick="closeSheet('filter-sheet');showToast('Filters applied!')">Apply Filters</button></div></div>
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">Filter Venues</div>
+        <div class="filter-group">
+            <div class="filter-group-label">Budget Range</div>
+            <div class="radio-chips" id="filter-budget-chips">
+                <div class="radio-chip selected" data-val="any" onclick="selectRadioChip(this,'filter-budget-chips')">Any</div>
+                <div class="radio-chip" data-val="2" onclick="selectRadioChip(this,'filter-budget-chips')">Under ₹2L</div>
+                <div class="radio-chip" data-val="5" onclick="selectRadioChip(this,'filter-budget-chips')">₹2L–₹5L</div>
+                <div class="radio-chip" data-val="5p" onclick="selectRadioChip(this,'filter-budget-chips')">₹5L+</div>
+            </div>
+        </div>
+        <div class="filter-group">
+            <div class="filter-group-label">Guest Capacity <span style="font-size:10px;color:var(--dim2);font-weight:400;text-transform:none;letter-spacing:0;">(select one)</span></div>
+            <div class="radio-chips" id="filter-capacity-chips">
+                <div class="radio-chip selected" data-val="any" onclick="selectRadioChip(this,'filter-capacity-chips')">Any</div>
+                <div class="radio-chip" data-val="300" onclick="selectRadioChip(this,'filter-capacity-chips')">100–300</div>
+                <div class="radio-chip" data-val="500" onclick="selectRadioChip(this,'filter-capacity-chips')">300–500</div>
+                <div class="radio-chip" data-val="1000" onclick="selectRadioChip(this,'filter-capacity-chips')">500–1000</div>
+                <div class="radio-chip" data-val="1000p" onclick="selectRadioChip(this,'filter-capacity-chips')">1000+</div>
+            </div>
+        </div>
+        <div class="filter-group">
+            <div class="filter-group-label">Amenities <span style="font-size:10px;color:#AF3A81;font-weight:500;text-transform:none;letter-spacing:0;background:rgba(175,58,129,0.08);padding:2px 8px;border-radius:50px;">tap to select multiple</span></div>
+            <div class="filter-chips" id="filter-amenity-chips" style="display:flex;flex-wrap:wrap;gap:8px;">
+                <div class="filter-chip" data-amenity="ac"><i class="fa-solid fa-snowflake" style="font-size:10px;margin-right:4px;"></i>AC</div>
+                <div class="filter-chip" data-amenity="parking"><i class="fa-solid fa-square-parking" style="font-size:10px;margin-right:4px;"></i>Parking</div>
+                <div class="filter-chip" data-amenity="catering"><i class="fa-solid fa-utensils" style="font-size:10px;margin-right:4px;"></i>Catering</div>
+                <div class="filter-chip" data-amenity="decoration"><i class="fa-solid fa-wand-magic-sparkles" style="font-size:10px;margin-right:4px;"></i>Décor</div>
+                <div class="filter-chip" data-amenity="powerBackup"><i class="fa-solid fa-bolt" style="font-size:10px;margin-right:4px;"></i>Power Backup</div>
+                <div class="filter-chip" data-amenity="alcohol"><i class="fa-solid fa-wine-glass" style="font-size:10px;margin-right:4px;"></i>Alcohol</div>
+                <div class="filter-chip" data-amenity="rooms"><i class="fa-solid fa-bed" style="font-size:10px;margin-right:4px;"></i>Rooms</div>
+                <div class="filter-chip" data-amenity="outdoor"><i class="fa-solid fa-tree" style="font-size:10px;margin-right:4px;"></i>Outdoor Space</div>
+                <div class="filter-chip" data-amenity="wifi"><i class="fa-solid fa-wifi" style="font-size:10px;margin-right:4px;"></i>Wi-Fi</div>
+                <div class="filter-chip" data-amenity="stage"><i class="fa-solid fa-star" style="font-size:10px;margin-right:4px;"></i>Stage</div>
+                <div class="filter-chip" data-amenity="soundSystem"><i class="fa-solid fa-music" style="font-size:10px;margin-right:4px;"></i>Sound System</div>
+                <div class="filter-chip" data-amenity="valetParking"><i class="fa-solid fa-car" style="font-size:10px;margin-right:4px;"></i>Valet Parking</div>
+            </div>
+        </div>
+        <div class="sheet-footer">
+            <button class="btn-sm btn-outline" onclick="resetFilters()">Reset</button>
+            <button class="btn-sm btn-primary" onclick="applyFilters()">Apply Filters</button>
+        </div>
+    </div>
 </div>
 
 <!-- VENUE DETAIL SHEET -->
@@ -648,6 +1329,7 @@
                 <div class="detail-name" style="margin-bottom:4px;">Event Details</div>
                 <p style="font-size:13px;color:var(--dim);margin-bottom:20px;">Tell us about your celebration</p>
                 <div class="flow-field"><div class="flow-label">Event Date</div><input type="date" class="flow-input" id="b-date"></div>
+                <script>document.getElementById('b-date').min=new Date().toISOString().split('T')[0];</script>
                 <div class="flow-field"><div class="flow-label">Occasion Type</div><select class="flow-input" id="b-occasion" style="appearance:none;"><option value="">Select occasion...</option><option>Wedding</option><option>Reception</option><option>Engagement</option><option>Birthday</option><option>Corporate</option><option>Sangeet</option><option>Mehendi / Haldi</option></select></div>
                 <div class="flow-field"><div class="flow-label">Expected Guests</div><input type="number" class="flow-input" id="b-guests" placeholder="e.g. 300"></div>
                 <button class="book-btn" style="margin-top:8px;" onclick="bookNext(1)">Continue <i class="fa-solid fa-arrow-right"></i></button>
@@ -694,13 +1376,13 @@
                 <p style="font-size:13px;color:var(--dim);margin-bottom:20px;">Review your booking summary before paying</p>
                 <div class="booking-summary-box"><div class="bsum-title">Booking Summary</div><div id="confirm-summary"></div></div>
                 <div class="info-box" style="border-color:rgba(245,101,101,0.25);background:rgba(245,101,101,0.05);"><i class="fa-solid fa-triangle-exclamation" style="color:var(--red);"></i><strong>Cancellation:</strong> 5% of advance + platform fee deducted. Refund in 5–7 business days.</div>
-                <div style="background:linear-gradient(135deg,rgba(13,110,253,0.08),rgba(13,110,253,0.04));border:1px solid rgba(13,110,253,0.2);border-radius:14px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;"><div style="width:40px;height:40px;background:rgba(13,110,253,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💳</div><div><div style="font-weight:700;font-size:14px;margin-bottom:2px;">Razorpay Secure Payment</div><div style="font-size:11px;color:var(--dim);">256-bit SSL · UPI · Cards · Net Banking · Wallets</div></div></div>
+                <div style="background:linear-gradient(135deg,rgba(13,110,253,0.08),rgba(13,110,253,0.04));border:1px solid rgba(13,110,253,0.2);border-radius:14px;padding:14px 16px;margin-bottom:20px;display:flex;align-items:center;gap:12px;"><div style="width:40px;height:40px;background:rgba(13,110,253,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;"><i class="fa-solid fa-credit-card" style="color:#fff;font-size:16px;"></i></div><div><div style="font-weight:700;font-size:14px;margin-bottom:2px;">Razorpay Secure Payment</div><div style="font-size:11px;color:var(--dim);">256-bit SSL · UPI · Cards · Net Banking · Wallets</div></div></div>
                 <div style="display:flex;gap:10px;"><button class="btn-sm btn-outline" onclick="bookNext(1)"><i class="fa-solid fa-arrow-left"></i> Back</button><button class="btn-sm btn-primary" style="flex:2;" onclick="confirmBooking()"><i class="fa-solid fa-lock"></i> Proceed to Pay</button></div>
             </div>
 
             <!-- SUCCESS -->
             <div class="flow-step" id="fstep-success">
-                <div class="success-wrap"><div class="success-icon"><i class="fa-solid fa-check"></i></div><div class="success-title">Booking Confirmed! 🎉</div><div class="success-sub">Your payment is received. Pay the remaining amount directly to the hall owner as per your chosen plan.</div><div class="success-ref" id="booking-ref">Ref: KH-000000</div><button class="book-btn" onclick="closeSheet('booking-sheet');goPage('bookings');resetBookingFlow();">View My Bookings</button></div>
+                <div class="success-wrap"><div class="success-icon"><i class="fa-solid fa-check"></i></div><div class="success-title">Booking Confirmed</div><div class="success-sub">Your payment is received. Pay the remaining amount directly to the hall owner as per your chosen plan.</div><div class="success-ref" id="booking-ref">Ref: KH-000000</div><button class="book-btn" onclick="closeSheet('booking-sheet');goPage('bookings');resetBookingFlow();">View My Bookings</button></div>
             </div>
         </div>
     </div>
@@ -711,30 +1393,232 @@
     <div class="modal"><div class="modal-icon"><i class="fa-solid fa-circle-xmark"></i></div><div class="modal-title">Cancel Booking?</div><div class="modal-body">This action cannot be undone.</div><div class="penalty-box"><div class="penalty-row"><span>Advance Paid</span><span id="cp-advance">—</span></div><div class="penalty-row"><span>5% Cancellation Penalty</span><span class="penalty-red" id="cp-penalty">—</span></div><div class="penalty-row"><span>Platform Fee (Non-Refundable)</span><span class="penalty-red" id="cp-platform">—</span></div><div style="border-top:1px solid rgba(245,101,101,0.2);margin:10px 0;"></div><div class="penalty-row"><span style="font-weight:700;">Refund Amount</span><span class="penalty-green" id="cp-refund" style="font-weight:800;">—</span></div></div><div class="modal-actions"><button class="btn-sm btn-outline" onclick="document.getElementById('cancel-modal').classList.remove('open')">Keep Booking</button><button class="btn-sm" style="background:var(--red);color:#fff;flex:1;" onclick="processCancellation()">Yes, Cancel</button></div></div>
 </div>
 <div class="modal-overlay" id="cancelled-modal">
-    <div class="modal" style="text-align:center;"><div style="font-size:40px;margin-bottom:14px;">✅</div><div class="modal-title">Booking Cancelled</div><div class="modal-body" id="cancel-confirm-msg">Refund in 5–7 business days.</div><button class="btn-sm btn-primary" style="width:100%;" onclick="document.getElementById('cancelled-modal').classList.remove('open')">Done</button></div>
+    <div class="modal" style="text-align:center;"><div style="margin-bottom:14px;"><i class="fa-solid fa-circle-check" style="font-size:40px;color:var(--green);"></i></div><div class="modal-title">Booking Cancelled</div><div class="modal-body" id="cancel-confirm-msg">Refund in 5–7 business days.</div><button class="btn-sm btn-primary" style="width:100%;" onclick="document.getElementById('cancelled-modal').classList.remove('open')">Done</button></div>
 </div>
 
 <!-- AVAILABILITY CALENDAR -->
 <div class="cal-overlay" id="cal-overlay" onclick="closeCalendar(event)">
     <div class="cal-modal" id="cal-modal">
+        <div class="cal-handle-row"><div class="cal-handle"></div></div>
         <div class="cal-header">
-            <div class="cal-handle"></div>
+            <div class="cal-venue-label">Checking Availability</div>
+            <div class="cal-venue-name" id="cal-venue-name">—</div>
             <div class="cal-nav">
-                <button class="cal-nav-btn" onclick="calChangeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
-                <div class="cal-month" id="cal-month-label">Month</div>
-                <button class="cal-nav-btn" onclick="calChangeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                <div class="cal-month-wrap">
+                    <div class="cal-month" id="cal-month-label">Month</div>
+                    <div class="cal-year" id="cal-year-label">2026</div>
+                </div>
+                <div class="cal-nav-btns">
+                    <button class="cal-nav-btn" id="cal-prev-btn" onclick="calChangeMonth(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="cal-nav-btn" onclick="calChangeMonth(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
         </div>
-        <div class="cal-grid" id="cal-grid"></div>
+        <!-- Availability chips summary -->
+        <div class="cal-avail-strip" id="cal-avail-strip"></div>
+        <div class="cal-grid-wrap">
+            <div class="cal-dow">
+                <div class="cal-dow-lbl">Sun</div><div class="cal-dow-lbl">Mon</div><div class="cal-dow-lbl">Tue</div>
+                <div class="cal-dow-lbl">Wed</div><div class="cal-dow-lbl">Thu</div><div class="cal-dow-lbl">Fri</div><div class="cal-dow-lbl">Sat</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+        </div>
         <div class="cal-legend">
             <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--green);"></div> Available</div>
             <div class="cal-leg-item"><div class="cal-leg-dot" style="background:#F59E0B;"></div> Limited</div>
-            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--dim2);"></div> Booked</div>
+            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--dim2);opacity:0.5;"></div> Booked</div>
+            <div class="cal-leg-item"><div class="cal-leg-dot" style="background:var(--rose);"></div> Selected</div>
         </div>
         <div class="cal-footer">
             <button class="cal-confirm" id="cal-confirm" disabled onclick="confirmCalDate()">Select a Date to Continue</button>
         </div>
     </div>
+</div>
+
+<!-- LIST YOUR VENUE PAGE -->
+<div class="page" id="page-list-venue">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">For Venue Owners</span><span class="topbar-brand">List Your Venue</span></div></div>
+    <div class="scroll-area" style="padding:24px 20px 40px;">
+        <div style="background:linear-gradient(135deg,#2B1A25 0%,#3D1F32 100%);border-radius:24px;padding:32px 24px;margin-bottom:24px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-30px;right:-20px;width:140px;height:140px;border-radius:50%;background:rgba(175,58,129,0.15);"></div>
+            <div style="font-size:10px;font-weight:500;color:#D4AF37;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;">Join 200+ Venue Partners</div>
+            <div style="font-family:var(--display);font-size:32px;font-weight:500;color:#FFFFFF;line-height:1.15;margin-bottom:12px;">Own a Venue?<br><em style="color:rgba(212,175,55,0.9);">Let Families Find You.</em></div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:24px;">Get verified bookings from Telugu families across AP and Telangana. Transparent payments, guaranteed advance, and your own dashboard — at zero upfront cost.</div>
+            <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#2B1A25;font-weight:600;font-size:14px;border-radius:50px;padding:14px 28px;cursor:pointer;border:none;font-family:var(--font);box-shadow:0 6px 20px rgba(0,0,0,0.3);"><i class="fa-brands fa-whatsapp" style="color:#10B981;font-size:16px;"></i> Apply on WhatsApp</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-indian-rupee-sign" style="color:#AF3A81;font-size:17px;"></i></div>
+                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Zero Listing Fee</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">No upfront charges. We earn only when you earn — a small commission per confirmed booking.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-shield-halved" style="color:#AF3A81;font-size:17px;"></i></div>
+                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Advance Guaranteed</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Every customer pays 40% advance online to lock your date. Your revenue is secured before the event.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-line" style="color:#AF3A81;font-size:17px;"></i></div>
+                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Your Own Dashboard</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Manage bookings, view your calendar, track payments and connect with customers — all in one place.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
+                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-user-tie" style="color:#AF3A81;font-size:17px;"></i></div>
+                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Dedicated Account Manager</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">A dedicated relationship manager helps you onboard, optimize your listing and grow your bookings.</div></div>
+            </div>
+        </div>
+        <div style="background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:24px;">
+            <div style="font-size:11px;font-weight:500;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;">How it works</div>
+            <div style="display:flex;flex-direction:column;gap:16px;">
+                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">1</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Message us on WhatsApp. Share your venue name, location and capacity.</div></div>
+                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">2</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Our team visits, photographs and verifies your venue — typically within 48 hours.</div></div>
+                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">3</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Your venue goes live. Families start discovering and booking your space.</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PARTNER WITH US PAGE -->
+<div class="page" id="page-partner">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Grow Together</span><span class="topbar-brand">Partner With Us</span></div></div>
+    <div class="scroll-area" style="padding:24px 20px 40px;">
+        <div style="margin-bottom:28px;">
+            <div style="font-family:var(--display);font-size:30px;font-weight:500;line-height:1.2;margin-bottom:10px;letter-spacing:0.01em;">Build the wedding<br><em style="color:#AF3A81;">ecosystem together.</em></div>
+            <div style="font-size:14px;color:var(--dim);line-height:1.75;">We partner with wedding service providers across AP and Telangana to create a complete booking experience for families.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-paintbrush" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Decorators</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Get referred to active wedding bookings</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-camera" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Photographers & Videographers</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Feature your portfolio on each venue listing</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-utensils" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Caterers</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Connect with families at the point of booking</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-wand-magic-sparkles" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Makeup Artists & Stylists</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Reach brides actively planning their wedding</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+        </div>
+        <button onclick="window.open('https://wa.me/919390653955?text=Hi%2C%20I%20want%20to%20partner%20with%20Vivaha%20Venue.','_blank')" style="width:100%;padding:16px;background:#AF3A81;color:#fff;font-weight:600;font-size:14px;border-radius:16px;border:none;cursor:pointer;font-family:var(--font);letter-spacing:0.3px;"><i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Enquire on WhatsApp</button>
+    </div>
+</div>
+
+<!-- CAREERS PAGE -->
+<div class="page" id="page-careers">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Join Our Team</span><span class="topbar-brand">Careers</span></div></div>
+    <div class="scroll-area" style="padding:24px 20px 40px;">
+        <div style="margin-bottom:28px;">
+            <div style="font-family:var(--display);font-size:30px;font-weight:500;line-height:1.2;margin-bottom:10px;">Help Telugu families find<br><em style="color:#AF3A81;">their perfect venue.</em></div>
+            <div style="font-size:14px;color:var(--dim);line-height:1.75;">We are a small, focused team building the most trusted wedding venue platform in Andhra Pradesh and Telangana. If that excites you, we want to hear from you.</div>
+        </div>
+        <div style="font-size:11px;font-weight:500;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;">Open Roles</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-size:16px;font-weight:500;font-family:var(--display);">Venue Operations Executive</div><div style="background:rgba(16,185,129,0.1);color:var(--green);font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;letter-spacing:0.5px;">HIRING</div></div>
+                <div style="font-size:12px;color:var(--dim);margin-bottom:12px;line-height:1.6;">Manage venue onboarding, coordinate site visits, and maintain relationships with hall owners across AP & Telangana.</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">Vijayawada / Remote</div><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">Full-time</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-size:16px;font-weight:500;font-family:var(--display);">Customer Success Associate</div><div style="background:rgba(16,185,129,0.1);color:var(--green);font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;letter-spacing:0.5px;">HIRING</div></div>
+                <div style="font-size:12px;color:var(--dim);margin-bottom:12px;line-height:1.6;">Support families through their booking journey — from first inquiry to event day. Fluent Telugu preferred.</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">Hyderabad</div><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">Full-time</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;"><div style="font-size:16px;font-weight:500;font-family:var(--display);">Product & Growth Intern</div><div style="background:rgba(212,175,55,0.15);color:var(--gold);font-size:10px;font-weight:600;padding:4px 10px;border-radius:8px;letter-spacing:0.5px;">INTERNSHIP</div></div>
+                <div style="font-size:12px;color:var(--dim);margin-bottom:12px;line-height:1.6;">Work directly with the founding team on product features, user research, and growth experiments.</div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;"><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">Remote</div><div style="background:var(--card2);border-radius:8px;padding:4px 10px;font-size:11px;color:var(--dim);">3 months</div></div>
+            </div>
+        </div>
+        <button onclick="window.open('https://wa.me/919390653955?text=Hi%2C%20I%20am%20interested%20in%20a%20role%20at%20Vivaha%20Venue.','_blank')" style="width:100%;padding:16px;background:#2B2B2B;color:#FAF7F2;font-weight:600;font-size:14px;border-radius:16px;border:none;cursor:pointer;font-family:var(--font);letter-spacing:0.3px;">Apply via WhatsApp</button>
+    </div>
+</div>
+
+<!-- SUPPORT CENTER PAGE -->
+<div class="page" id="page-support">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">We are here to help</span><span class="topbar-brand">Support Center</span></div></div>
+    <div class="scroll-area" style="padding:24px 20px 40px;">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px;">
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help%20with%20my%20booking.','_blank')">
+                <div style="width:48px;height:48px;background:rgba(16,185,129,0.08);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-brands fa-whatsapp" style="color:#10B981;font-size:22px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">WhatsApp Support</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Fastest response · Typically within 15 minutes</div></div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('tel:+919390653955')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Call Us</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">+91 93906 53955 · Mon–Sat, 9am–7pm</div></div>
+                <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+        </div>
+        <div style="font-size:11px;font-weight:500;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;">Common Topics</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I modify my booking date? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Contact us via WhatsApp at least 7 days before your event. Date changes are subject to availability and may incur a rescheduling fee.</div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does a refund take? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Refunds are processed within 5–7 business days to your original payment method after cancellation is confirmed.</div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if the venue cancels my booking? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">In the rare event of a venue cancellation, you will receive a full refund including all fees, plus dedicated support to find an alternative venue.</div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I visit the venue before booking? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Yes. Use the "Get Directions" button on any venue page to visit. We recommend confirming a site visit appointment directly with the hall owner before your trip.</div></div>
+        </div>
+    </div>
+</div>
+
+<!-- CONTACT SALES PAGE -->
+<div class="page" id="page-contact-sales">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Let's talk</span><span class="topbar-brand">Contact Sales</span></div></div>
+    <div class="scroll-area" style="padding:24px 20px 40px;">
+        <div style="margin-bottom:28px;">
+            <div style="font-family:var(--display);font-size:30px;font-weight:500;line-height:1.2;margin-bottom:10px;">Planning a large event<br><em style="color:#AF3A81;">or corporate booking?</em></div>
+            <div style="font-size:14px;color:var(--dim);line-height:1.75;">Our sales team works with event planners, corporates, and large families needing special arrangements, multi-venue quotes, or bulk bookings.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:28px;">
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955?text=Hi%2C%20I%20need%20a%20sales%20consultation.','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-building" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Corporate Events</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Annual functions, conferences, team celebrations</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955?text=Hi%2C%20I%20am%20an%20event%20planner%20looking%20for%20bulk%20venue%20access.','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-clipboard-list" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Event Planners</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">API access, bulk pricing, and co-branding options</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:center;gap:16px;cursor:pointer;" onclick="window.open('https://wa.me/919390653955','_blank')">
+                <div style="width:48px;height:48px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-users" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div style="flex:1;"><div style="font-size:15px;font-weight:500;font-family:var(--display);">Large Families & Baraat Groups</div><div style="font-size:12px;color:var(--dim);margin-top:2px;">Multiple venues, multi-day events, custom quotes</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);font-size:13px;"></i>
+            </div>
+        </div>
+        <div style="background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:20px;">
+            <div style="font-size:12px;color:var(--dim);line-height:1.7;margin-bottom:14px;">Our sales team responds within 2 business hours on weekdays. For urgent same-day requirements, please call directly.</div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;"><i class="fa-solid fa-phone" style="color:#AF3A81;"></i> +91 93906 53955</div>
+        </div>
+        <button onclick="window.open('https://wa.me/919390653955?text=Hi%2C%20I%20need%20a%20sales%20consultation%20for%20a%20large%20event.','_blank')" style="width:100%;padding:16px;background:#AF3A81;color:#fff;font-weight:600;font-size:14px;border-radius:16px;border:none;cursor:pointer;font-family:var(--font);letter-spacing:0.3px;"><i class="fa-brands fa-whatsapp" style="margin-right:8px;"></i>Talk to Sales</button>
+    </div>
+</div>
+
+<!-- GALLERY LIGHTBOX -->
+<div class="gallery-overlay" id="gallery-overlay">
+    <div class="gallery-topbar">
+        <div class="gallery-title" id="gallery-venue-name">Photos</div>
+        <div class="gallery-counter" id="gallery-counter">1 / 5</div>
+        <button class="gallery-close" onclick="closeGallery()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="gallery-main-img" id="gallery-main-img">
+        <img id="gallery-img" src="" alt="">
+    </div>
+    <div class="gallery-nav">
+        <button class="gallery-nav-btn" onclick="galleryNav(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="gallery-dots" id="gallery-dots"></div>
+        <button class="gallery-nav-btn" onclick="galleryNav(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </div>
+    <div class="gallery-thumb-strip" id="gallery-thumb-strip"></div>
 </div>
 
 <!-- DOCK -->
@@ -750,26 +1634,31 @@ function saveToStorage(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch
 function loadFromStorage(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
 
 const venues={
-    v1:{name:'V Convention Center',loc:'Benz Circle, Vijayawada',city:'Vijayawada',tag:'ULTRA LUXE',priceRaw:450000,price:'₹4,50,000',rating:'4.9',reviews:'284',cap:'1200',img:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900',desc:'A premier landmark in Vijayawada featuring grand AC halls, world-class décor and full catering. Perfect for royal Telugu weddings.',
+    v1:{name:'V Convention Center',loc:'Benz Circle, Vijayawada',city:'Vijayawada',tag:'ULTRA LUXE',priceRaw:85000,price:'₹85,000',rating:'4.9',reviews:'284',cap:'1200',img:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900',desc:'A premier landmark in Vijayawada featuring grand AC halls, world-class décor and full catering. Perfect for royal Telugu weddings.',
         mapLat:'16.5062',mapLng:'80.6480',mapQuery:'V+Convention+Center+Benz+Circle+Vijayawada',
+        halal:true,
         amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:24,alcohol:false},
-        pricing:{weekday:380000,weekend:450000,festival:550000,peakSeason:600000}},
-    v2:{name:'River Bay Resort',loc:'Godavari Bank, Rajahmundry',city:'Rajahmundry',tag:'SCENIC',priceRaw:220000,price:'₹2,20,000',rating:'4.7',reviews:'172',cap:'600',img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=900',desc:'Nestled on the Godavari riverbank — breathtaking outdoor setting, curated floral décor and riverside dining.',
+        pricing:{weekday:72000,weekend:85000,festival:110000,peakSeason:130000}},
+    v2:{name:'River Bay Resort',loc:'Godavari Bank, Rajahmundry',city:'Rajahmundry',tag:'SCENIC',priceRaw:55000,price:'₹55,000',rating:'4.7',reviews:'172',cap:'600',img:'https://images.unsplash.com/photo-1519741497674-611481863552?w=900',desc:'Nestled on the Godavari riverbank — breathtaking outdoor setting, curated floral décor and riverside dining.',
         mapLat:'17.0005',mapLng:'81.8040',mapQuery:'River+Bay+Resort+Godavari+Rajahmundry',
+        halal:false,
         amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:12,alcohol:false},
-        pricing:{weekday:180000,weekend:220000,festival:280000,peakSeason:320000}},
-    v3:{name:'Grand Elite Gardens',loc:'Jubilee Hills, Hyderabad',city:'Hyderabad',tag:'POPULAR',priceRaw:550000,price:'₹5,50,000',rating:'4.8',reviews:'319',cap:'1500',img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900',desc:"Hyderabad's most sought-after wedding garden. 3-acre grounds, crystal ballroom, premium catering and expert event planning.",
+        pricing:{weekday:45000,weekend:55000,festival:72000,peakSeason:88000}},
+    v3:{name:'Grand Elite Gardens',loc:'Jubilee Hills, Hyderabad',city:'Hyderabad',tag:'POPULAR',priceRaw:120000,price:'₹1,20,000',rating:'4.8',reviews:'319',cap:'1500',img:'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=900',desc:"Hyderabad's most sought-after wedding garden. 3-acre grounds, crystal ballroom, premium catering and expert event planning.",
         mapLat:'17.4329',mapLng:'78.4071',mapQuery:'Grand+Elite+Gardens+Jubilee+Hills+Hyderabad',
+        halal:true,
         amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:36,alcohol:true},
-        pricing:{weekday:450000,weekend:550000,festival:680000,peakSeason:750000}},
-    v4:{name:'S Convention',loc:'Main Road, Kakinada',city:'Kakinada',tag:'DIVINE',priceRaw:180000,price:'₹1,80,000',rating:'4.6',reviews:'98',cap:'400',img:'https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=900',desc:'Beautiful convention hall in Kakinada. Ideal for intimate weddings with personalized service and affordable elegance.',
+        pricing:{weekday:100000,weekend:120000,festival:155000,peakSeason:180000}},
+    v4:{name:'S Convention',loc:'Main Road, Kakinada',city:'Kakinada',tag:'DIVINE',priceRaw:42000,price:'₹42,000',rating:'4.6',reviews:'98',cap:'400',img:'https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=900',desc:'Beautiful convention hall in Kakinada. Ideal for intimate weddings with personalized service and affordable elegance.',
         mapLat:'16.9891',mapLng:'82.2475',mapQuery:'S+Convention+Hall+Kakinada',
+        halal:false,
         amenities:{ac:true,parking:true,catering:false,decoration:true,powerBackup:true,rooms:8,alcohol:false},
-        pricing:{weekday:150000,weekend:180000,festival:220000,peakSeason:250000}},
-    v5:{name:'Novotel Vizag Bay',loc:'Beach Road, Visakhapatnam',city:'Vizag',tag:'BEACHFRONT',priceRaw:720000,price:'₹7,20,000',rating:'4.9',reviews:'267',cap:'1200',img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=900',desc:'Only beachfront 5-star wedding venue on the Bay of Bengal — sunset ceremonies, infinity pool receptions & Michelin chefs.',
+        pricing:{weekday:36000,weekend:42000,festival:56000,peakSeason:68000}},
+    v5:{name:'Novotel Vizag Bay',loc:'Beach Road, Visakhapatnam',city:'Vizag',tag:'BEACHFRONT',priceRaw:150000,price:'₹1,50,000',rating:'4.9',reviews:'267',cap:'1200',img:'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=900',desc:'Only beachfront 5-star wedding venue on the Bay of Bengal — sunset ceremonies, infinity pool receptions & Michelin chefs.',
         mapLat:'17.7231',mapLng:'83.3013',mapQuery:'Novotel+Visakhapatnam+Beach+Road',
+        halal:false,
         amenities:{ac:true,parking:true,catering:true,decoration:true,powerBackup:true,rooms:60,alcohol:true},
-        pricing:{weekday:600000,weekend:720000,festival:900000,peakSeason:1000000}}
+        pricing:{weekday:125000,weekend:150000,festival:185000,peakSeason:210000}}
 };
 
 let myBookings=loadFromStorage('vv_bookings',[]);
@@ -790,7 +1679,7 @@ function doLogin(){
     const accs=loadFromStorage('vv_accounts',[]);
     const found=accs.find(a=>(a.email===e||a.name===e)&&a.pass===p);
     if(!found){document.getElementById('login-error').textContent='Invalid credentials.';return;}
-    currentUser={name:found.name,email:found.email,phone:found.phone||''};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome back, '+currentUser.name.split(' ')[0]+'! 🎉');
+    currentUser={name:found.name,email:found.email,phone:found.phone||''};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome back, '+currentUser.name.split(' ')[0]+'.');
 }
 function doSignup(){
     const n=document.getElementById('signup-name').value.trim(),e=document.getElementById('signup-email').value.trim(),ph=document.getElementById('signup-phone').value.trim(),p=document.getElementById('signup-pass').value.trim();
@@ -798,7 +1687,7 @@ function doSignup(){
     const accs=loadFromStorage('vv_accounts',[]);
     if(accs.find(a=>a.email===e)){document.getElementById('signup-error').textContent='Email already registered.';return;}
     accs.push({name:n,email:e,phone:ph,pass:p});saveToStorage('vv_accounts',accs);
-    currentUser={name:n,email:e,phone:ph};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome, '+n.split(' ')[0]+'! 🎉');
+    currentUser={name:n,email:e,phone:ph};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome, '+n.split(' ')[0]+'.');
 }
 function handleAuthMenuClick(){if(currentUser){if(!confirm('Sign out?'))return;currentUser=null;saveToStorage('vv_user',null);updateProfileUI();showToast('Signed out.');}else openAuthModal('login');}
 function updateProfileUI(){
@@ -820,12 +1709,26 @@ function saveProfile(){const n=document.getElementById('edit-name').value.trim()
 function showToast(msg){let t=document.getElementById('app-toast');if(!t){t=document.createElement('div');t.id='app-toast';t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#2D2D2D;color:#FAF7F2;font-weight:400;font-size:13px;letter-spacing:0.3px;padding:12px 22px;border-radius:50px;z-index:2000;opacity:0;transition:opacity 0.3s;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.2);max-width:calc(100% - 40px);text-align:center;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._timer);t._timer=setTimeout(()=>{t.style.opacity='0';},2800);}
 
 let currentPage='home';
-function goPage(name){document.getElementById('page-'+currentPage).classList.remove('active');document.getElementById('dock-'+currentPage).classList.remove('active');currentPage=name;document.getElementById('page-'+name).classList.add('active');document.getElementById('dock-'+name).classList.add('active');if(name==='bookings')renderBookings();if(name==='profile')updateProfileUI();window.scrollTo(0,0);}
+function goPage(name){
+    // Convert kebab-case name to element id (e.g. 'list-venue' -> 'page-list-venue')
+    const oldEl=document.getElementById('page-'+currentPage);
+    if(oldEl)oldEl.classList.remove('active');
+    const oldDock=document.getElementById('dock-'+currentPage);
+    if(oldDock)oldDock.classList.remove('active');
+    currentPage=name;
+    const newEl=document.getElementById('page-'+name);
+    if(newEl)newEl.classList.add('active');
+    const newDock=document.getElementById('dock-'+name);
+    if(newDock)newDock.classList.add('active');
+    if(name==='bookings')renderBookings();
+    if(name==='profile')updateProfileUI();
+    window.scrollTo(0,0);
+}
 function updateDockBadge(){const b=document.querySelector('#dock-bookings .dock-badge');if(b){const c=myBookings.filter(x=>x.status==='confirmed'||x.status==='pending').length;b.textContent=c;b.style.display=c>0?'flex':'none';}}
 
 function renderBookings(){
     const list=document.getElementById('bookings-list');if(!list)return;
-    if(myBookings.length===0){list.innerHTML='<div class="empty-state"><div class="empty-icon">📅</div><div class="empty-title">No Bookings Yet</div><div class="empty-sub">Book a venue and it will appear here!</div><button class="book-btn" style="margin-top:20px;max-width:200px;" onclick="goPage(\'explore\')">Browse Venues</button></div>';return;}
+    if(myBookings.length===0){list.innerHTML='<div class="empty-state"><div class="empty-icon"><i class="fa-regular fa-calendar" style="font-size:48px;color:var(--dim2);"></i></div><div class="empty-title">No Bookings Yet</div><div class="empty-sub">Book a venue and it will appear here!</div><button class="book-btn" style="margin-top:20px;max-width:200px;" onclick="goPage(\'explore\')">Browse Venues</button></div>';return;}
     const sL={confirmed:'CONFIRMED',pending:'PENDING',completed:'COMPLETED',cancelled:'CANCELLED'};
     const sC={confirmed:'status-confirmed',pending:'status-pending',completed:'status-completed',cancelled:'status-cancelled'};
     list.innerHTML=myBookings.map((b,i)=>{
@@ -868,7 +1771,45 @@ function showInvoice(i){
     m.addEventListener('click',e=>{if(e.target===m)m.remove();});document.body.appendChild(m);
 }
 
-function filterVenues(q){q=(q||'').toLowerCase().trim();document.querySelectorAll('#vgrid .venue-card-v').forEach(c=>{c.style.display=(!q||c.innerText.toLowerCase().includes(q))?'':'none';});}
+function filterVenues(q){
+    q=(q||'').toLowerCase().trim();
+    const grid=document.getElementById('vgrid');
+    if(!grid) return;
+    const cards=grid.querySelectorAll('.venue-card-v');
+    if(q.length===0){
+        cards.forEach(c=>c.style.display='');
+        return;
+    }
+    cards.forEach(c=>{
+        const vk=c.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+        const v=vk?venues[vk]:null;
+        let match=false;
+        if(v){
+            match=v.name.toLowerCase().includes(q)||
+                  v.loc.toLowerCase().includes(q)||
+                  v.city.toLowerCase().includes(q)||
+                  v.tag.toLowerCase().includes(q)||
+                  v.desc.toLowerCase().includes(q);
+        } else {
+            match=c.innerText.toLowerCase().includes(q);
+        }
+        c.style.display=match?'':'none';
+    });
+    const shown=[...cards].filter(c=>c.style.display!=='none').length;
+    if(shown===0){
+        // Show empty state if no results
+        if(!grid.querySelector('.search-empty-state')){
+            const empty=document.createElement('div');
+            empty.className='search-empty-state';
+            empty.style.cssText='text-align:center;padding:40px 20px;color:var(--dim);';
+            empty.innerHTML='<div style="font-size:36px;margin-bottom:12px;opacity:0.3;">🔍</div><div style="font-size:15px;font-weight:500;margin-bottom:6px;">No venues found</div><div style="font-size:13px;">Try a different city or keyword</div>';
+            grid.appendChild(empty);
+        }
+    } else {
+        const emp=grid.querySelector('.search-empty-state');
+        if(emp) emp.remove();
+    }
+}
 function toggleClear(id,val){const el=document.getElementById(id+'SearchClear');if(el)el.classList.toggle('visible',(val||'').length>0);}
 function clearSearch(id){const inp=document.getElementById(id+'Search');const clr=document.getElementById(id+'SearchClear');if(inp){inp.value='';inp.focus();}if(clr)clr.classList.remove('visible');filterVenues('');if(id==='home'){const ei=document.getElementById('exploreSearch');if(ei){ei.value='';toggleClear('explore','');}}}
 document.getElementById('homeSearch').addEventListener('input',function(){const q=this.value.trim();toggleClear('home',this.value);if(q.length>=1){goPage('explore');const es=document.getElementById('exploreSearch');es.value=this.value;toggleClear('explore',this.value);filterVenues(q);}else{const es=document.getElementById('exploreSearch');es.value='';toggleClear('explore','');filterVenues('');}});
@@ -896,11 +1837,27 @@ function openVenue(id){
     const dirUrl='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(v.loc);
     function ai(cond,icon,label){return'<div class="amenity-item '+(cond?'yes':'no')+'"><i class="fa-solid '+(cond?'fa-circle-check':'fa-circle-xmark')+'"></i><span>'+label+'</span></div>';}
     const roomsText=a.rooms?(a.rooms+' Rooms'):'No Rooms';
+    // Gallery photos (use venue main + additional Unsplash)
+    const galleryImgs = [
+        v.img,
+        'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800',
+        'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800',
+        'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800',
+        'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800'
+    ];
+    // Store gallery for lightbox
+    currentGallery = {imgs: galleryImgs, name: v.name, idx: 0};
     document.getElementById('venue-content').innerHTML=
-        '<img class="detail-img" src="'+v.img+'" alt="'+v.name+'">'
+        // Airbnb-style photo grid
+        '<div class="photo-gallery-grid" style="position:relative;" onclick="openGallery(0)">'
+        +'<div class="photo-cell photo-main"><img src="'+galleryImgs[0]+'" alt="'+v.name+'" loading="eager"></div>'
+        +'<div class="photo-cell photo-thumb"><img src="'+galleryImgs[1]+'" alt="" loading="lazy"></div>'
+        +'<div class="photo-cell photo-thumb"><img src="'+galleryImgs[2]+'" alt="" loading="lazy"></div>'
+        +'<button class="show-all-btn" onclick="event.stopPropagation();openGallery(0)"><i class="fa-solid fa-images"></i> Show all photos</button>'
+        +'</div>'
         +'<div class="detail-body">'
         // Tag + name + location
-        +'<div class="detail-tag-row"><div class="detail-tag">'+v.tag+'</div><div class="detail-tag" style="background:rgba(16,185,129,0.08);color:var(--green);">VERIFIED PARTNER</div></div>'
+        +'<div class="detail-tag-row"><div class="detail-tag">'+v.tag+'</div><div class="detail-tag" style="background:rgba(16,185,129,0.08);color:var(--green);">VERIFIED PARTNER</div>'+(v.halal?'<div class="detail-tag" style="background:rgba(34,197,94,0.1);color:#16a34a;"><i class="fa-solid fa-leaf" style="font-size:8px;margin-right:3px;"></i>HALAL FRIENDLY</div>':'')+'</div>'
         +'<div class="detail-name">'+v.name+'</div>'
         +'<div class="detail-loc"><i class="fa-solid fa-location-dot"></i> '+v.loc+'</div>'
         // Stats
@@ -916,11 +1873,9 @@ function openVenue(id){
         +'<hr class="detail-divider">'
         +'<div class="detail-section-lbl">Availability</div>'
         +'<div class="avail-box">'
-        +'<div class="avail-title">Status for Upcoming Dates</div>'
-        +'<div class="avail-row"><div class="dot-green"></div><span>Available this weekend</span></div>'
-        +'<div class="avail-row"><div class="dot-green"></div><span>Available next month</span></div>'
-        +'<div class="avail-row"><div class="dot-orange"></div><span>Limited dates remaining in December</span></div>'
-        +'<button class="avail-cta" onclick="openCalendar(\''+id+'\')"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i> Check Availability</button>'
+        +'<div class="avail-title">Date Availability</div>'
+        +'<div class="avail-row"><div class="dot-green"></div><span>Check live availability by selecting a date below</span></div>'
+        +'<button class="avail-cta" onclick="openCalendar(\''+id+'\')"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i> Check Availability &amp; Block Date</button>'
         +'</div>'
         // Pricing Tiers
         +'<hr class="detail-divider">'
@@ -948,11 +1903,11 @@ function openVenue(id){
         +'<hr class="detail-divider">'
         +'<div class="detail-section-lbl">Partner Vendors</div>'
         +'<div class="vendor-grid">'
-        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner decorators…\')"><div class="vendor-icon">🎨</div><div class="vendor-label">Decorator</div></div>'
-        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner photographers…\')"><div class="vendor-icon">📸</div><div class="vendor-label">Photographer</div></div>'
-        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner caterers…\')"><div class="vendor-icon">🍽️</div><div class="vendor-label">Caterer</div></div>'
-        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner makeup artists…\')"><div class="vendor-icon">💄</div><div class="vendor-label">Makeup Artist</div></div>'
-        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our event planners…\')"><div class="vendor-icon">📋</div><div class="vendor-label">Event Planner</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner decorators…\')"><div class="vendor-icon"><i class="fa-solid fa-paintbrush"></i></div><div class="vendor-label">Decorator</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner photographers…\')"><div class="vendor-icon"><i class="fa-solid fa-camera"></i></div><div class="vendor-label">Photographer</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner caterers…\')"><div class="vendor-icon"><i class="fa-solid fa-utensils"></i></div><div class="vendor-label">Caterer</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our partner makeup artists…\')"><div class="vendor-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div><div class="vendor-label">Makeup Artist</div></div>'
+        +'<div class="vendor-item" onclick="showToast(\'Connecting you with our event planners…\')"><div class="vendor-icon"><i class="fa-solid fa-clipboard-list"></i></div><div class="vendor-label">Event Planner</div></div>'
         +'</div>'
         // Payment section
         +'<hr class="detail-divider">'
@@ -1008,7 +1963,7 @@ function updatePayBreakdown(){
 function applyCoupon(){
     const code=document.getElementById('coupon-input').value.trim().toUpperCase();
     const s=document.getElementById('coupon-success');
-    if(VALID_COUPONS[code]){s.classList.add('show');showToast('Coupon applied! 🎉');}
+    if(VALID_COUPONS[code]){s.classList.add('show');showToast('Coupon applied!');}
     else{s.classList.remove('show');showToast('Invalid coupon code.');}
 }
 
@@ -1016,13 +1971,28 @@ let bookingVenueId=null,currentStep=0;
 function startBooking(id){
     if(!currentUser){closeSheet('venue-sheet');setTimeout(()=>openAuthModal('signup'),300);showToast('Please sign in to book');return;}
     bookingVenueId=id;currentVenueId=id;closeSheet('venue-sheet');resetBookingFlow();
+    // Enforce min date = today
+    const todayISO = new Date().toISOString().split('T')[0];
+    const bdate = document.getElementById('b-date');
+    if(bdate){ bdate.min = todayISO; bdate.value=''; }
     selectedPayOption='40';document.getElementById('payOpt40').classList.add('selected');document.getElementById('payOptFull').classList.remove('selected');
     updatePayBreakdown();
     document.getElementById('b-name').value=currentUser.name||'';document.getElementById('b-phone').value=currentUser.phone||'';
     document.getElementById('coupon-input').value='';document.getElementById('coupon-success').classList.remove('show');
     setTimeout(()=>openSheet('booking-sheet'),200);
 }
-function resetBookingFlow(){currentStep=0;document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));document.getElementById('fstep0').classList.add('active');updateStepDots(0);document.getElementById('b-date').value='';document.getElementById('b-occasion').value='';document.getElementById('b-guests').value='';}
+function resetBookingFlow(){
+    currentStep=0;
+    document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
+    document.getElementById('fstep0').classList.add('active');
+    updateStepDots(0);
+    // Set min date to today and clear value
+    const todayISO = new Date().toISOString().split('T')[0];
+    const bdate = document.getElementById('b-date');
+    if(bdate){ bdate.min = todayISO; bdate.value=''; }
+    document.getElementById('b-occasion').value='';
+    document.getElementById('b-guests').value='';
+}
 function updateStepDots(s){[0,1,2].forEach(i=>{const d=document.getElementById('sdot'+i);if(d)d.classList.toggle('active',i===s);});}
 
 function bookNext(step){
@@ -1043,7 +2013,7 @@ function bookNext(step){
             +'<div class="bsum-row"><span class="bsum-lbl">Platform Fee (2%)</span><span class="bsum-val">'+fmt(plat)+'</span></div>'
             +(remaining>0?'<div class="bsum-row"><span class="bsum-lbl">Remaining Amount</span><span class="bsum-val" style="color:var(--green);">'+fmt(remaining)+'</span></div>':'')
             +'<div style="border-top:1px solid var(--border);margin:10px 0;"></div>'
-            +'<div class="bsum-row"><span style="font-weight:800;font-size:15px;">💳 Proceed to Pay</span><span class="bsum-total">'+fmt(payNow)+'</span></div>';
+            +'<div class="bsum-row"><span style="font-weight:800;font-size:15px;">Proceed to Pay</span><span class="bsum-total">'+fmt(payNow)+'</span></div>';
     }
     document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));document.getElementById('fstep'+step).classList.add('active');updateStepDots(step);currentStep=step;const inner=document.getElementById('booking-sheet-inner');if(inner)inner.scrollTop=0;
 }
@@ -1057,83 +2027,686 @@ function confirmBooking(){
     saveToStorage('vv_bookings',myBookings);updateDockBadge();
     const overlay=document.createElement('div');overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);';
     overlay.innerHTML='<div style="background:#12122A;border:1px solid rgba(13,110,253,0.3);border-radius:24px;padding:28px;max-width:380px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.8);">'
-        +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;"><div style="width:38px;height:38px;background:#0D6EFD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;">💳</div><div><div style="font-size:12px;color:#aaa;">Razorpay Secure Checkout</div><div style="font-size:17px;font-weight:700;color:#fff;">'+v.name+'</div></div></div>'
+        +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;"><div style="width:38px;height:38px;background:#0D6EFD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-solid fa-credit-card" style="color:#fff;font-size:16px;"></i></div><div><div style="font-size:12px;color:#aaa;">Razorpay Secure Checkout</div><div style="font-size:17px;font-weight:700;color:#fff;">'+v.name+'</div></div></div>'
         +'<div style="background:rgba(13,110,253,0.08);border:1px solid rgba(13,110,253,0.2);border-radius:14px;padding:18px;margin-bottom:20px;"><div style="font-size:10px;color:#aaa;letter-spacing:1px;margin-bottom:4px;">TOTAL AMOUNT</div><div style="font-size:28px;font-weight:700;color:#fff;">'+fmt(advPaid+plat)+'</div><div style="font-size:11px;color:#aaa;margin-top:4px;">'+(isAdv?'40% advance':'Full payment')+' + platform fee</div></div>'
         +'<div style="margin-bottom:14px;"><div style="font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Card Number</div><input readonly value="4242 4242 4242 4242" style="width:100%;background:#0d1117;border:1px solid #222;border-radius:12px;padding:13px;color:#fff;font-size:15px;outline:none;font-family:DM Sans,sans-serif;"></div>'
         +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;"><div><div style="font-size:10px;color:#aaa;letter-spacing:1px;margin-bottom:8px;">Expiry</div><input readonly value="12/27" style="width:100%;background:#0d1117;border:1px solid #222;border-radius:12px;padding:13px;color:#fff;font-size:15px;outline:none;"></div><div><div style="font-size:10px;color:#aaa;letter-spacing:1px;margin-bottom:8px;">CVV</div><input type="password" readonly value="123" style="width:100%;background:#0d1117;border:1px solid #222;border-radius:12px;padding:13px;color:#fff;font-size:15px;outline:none;"></div></div>'
         +'<button id="rzBtn" style="width:100%;padding:16px;background:linear-gradient(135deg,#0D6EFD,#0A56C7);color:#fff;font-weight:800;font-size:15px;border-radius:16px;border:none;cursor:pointer;font-family:DM Sans,sans-serif;box-shadow:0 6px 24px rgba(13,110,253,0.4);">Pay '+fmt(advPaid+plat)+' Securely →</button>'
-        +'<div style="text-align:center;margin-top:12px;font-size:11px;color:#555;">🔒 256-bit SSL · Razorpay certified</div></div>';
+        +'<div style="text-align:center;margin-top:12px;font-size:11px;color:#555;">256-bit SSL · Razorpay certified</div></div>';
     document.body.appendChild(overlay);
-    document.getElementById('rzBtn').onclick=()=>{document.getElementById('rzBtn').textContent='⏳ Processing...';document.getElementById('rzBtn').style.opacity='0.7';setTimeout(()=>{document.body.removeChild(overlay);document.getElementById('booking-ref').textContent='Ref: '+refId;document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));document.getElementById('fstep-success').classList.add('active');document.querySelectorAll('.step-dot').forEach(d=>d.classList.remove('active'));const inner=document.getElementById('booking-sheet-inner');if(inner)inner.scrollTop=0;},1800);};
+    document.getElementById('rzBtn').onclick=()=>{document.getElementById('rzBtn').textContent='Processing...';document.getElementById('rzBtn').style.opacity='0.7';setTimeout(()=>{document.body.removeChild(overlay);document.getElementById('booking-ref').textContent='Ref: '+refId;document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));document.getElementById('fstep-success').classList.add('active');document.querySelectorAll('.step-dot').forEach(d=>d.classList.remove('active'));const inner=document.getElementById('booking-sheet-inner');if(inner)inner.scrollTop=0;},1800);};
 }
 
-// ── Availability Calendar ──────────────────────────────────────────
-let calYear,calMonth,calSelectedDate=null,calVenueId=null;
-// Simulate some booked/limited dates
-const bookedDays={1:[5,12,19,26],2:[3,10,17],3:[7,14,21,28],4:[4,11,18,25],5:[2,9,16,23,30],6:[6,13,20],7:[3,10,17,24],8:[7,14,21],9:[4,11,18,25],10:[2,9,16,23],11:[1,8,15,22,29],12:[6,13,20,27]};
-const limitedDays={1:[10,17],2:[14],3:[4,11],4:[7],5:[6,13],6:[3,10,17],7:[5,12],8:[3,10],9:[7,14],10:[5,12],11:[3,10,17,24],12:[3,10,17,24]};
+// ── Availability Calendar — professional rebuild ─────────────────────
+let calYear, calMonth, calSelectedDate=null, calVenueId=null, calAnimDir=0;
+
+// Booked dates per month (day numbers) — per-venue could be extended
+const bookedDays={
+    1:[5,12,19,26],2:[3,10,17],3:[7,14,21,28],4:[4,11,18,25],
+    5:[2,9,16,23,30],6:[6,13,20],7:[3,10,17,24],8:[7,14,21],
+    9:[4,11,18,25],10:[2,9,16,23],11:[1,8,15,22,29],12:[6,13,20,27]
+};
+const limitedDays={
+    1:[10,17],2:[14],3:[4,11],4:[7],5:[6,13],6:[3,10,17],
+    7:[5,12],8:[3,10],9:[7,14],10:[5,12],11:[3,10,17,24],12:[3,10,17,24]
+};
+
 function openCalendar(venueId){
-    calVenueId=venueId;calSelectedDate=null;
-    const now=new Date();calYear=now.getFullYear();calMonth=now.getMonth()+1;
-    renderCalendar();document.getElementById('cal-overlay').classList.add('open');
+    calVenueId=venueId;
+    calSelectedDate=null;
+    // Always open to TODAY's month — no past confusion
+    const now=new Date();
+    calYear=now.getFullYear();
+    calMonth=now.getMonth()+1;
+    calAnimDir=0;
+    // Show venue name in calendar header
+    const v=venues[venueId];
+    const nameEl=document.getElementById('cal-venue-name');
+    if(nameEl&&v) nameEl.textContent=v.name;
+    renderCalendar();
+    document.getElementById('cal-overlay').classList.add('open');
 }
-function closeCalendar(e){if(!e||e.target.id==='cal-overlay')document.getElementById('cal-overlay').classList.remove('open');}
+
+function closeCalendar(e){
+    if(!e||e.target.id==='cal-overlay'){
+        document.getElementById('cal-overlay').classList.remove('open');
+    }
+}
+
 function calChangeMonth(dir){
-    calMonth+=dir;
-    if(calMonth>12){calMonth=1;calYear++;}
-    if(calMonth<1){calMonth=12;calYear--;}
+    // Prevent going to past months
+    const now=new Date();
+    const nowY=now.getFullYear(), nowM=now.getMonth()+1;
+    let nY=calYear, nM=calMonth+dir;
+    if(nM>12){nM=1;nY++;}
+    if(nM<1){nM=12;nY--;}
+    // Block navigation before current month
+    if(nY<nowY||(nY===nowY&&nM<nowM)) return;
+    calAnimDir=dir;
+    calMonth=nM; calYear=nY;
+    calSelectedDate=null;
     renderCalendar();
 }
+
 function renderCalendar(){
-    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
-    document.getElementById('cal-month-label').textContent=months[calMonth-1]+' '+calYear;
+    const MONTHS=['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+    const now=new Date();
+    const todayD=now.getDate(), todayM=now.getMonth()+1, todayY=now.getFullYear();
+
+    // Update header
+    document.getElementById('cal-month-label').textContent=MONTHS[calMonth-1];
+    document.getElementById('cal-year-label').textContent=calYear;
+
+    // Disable prev btn if we're on current month
+    const prevBtn=document.getElementById('cal-prev-btn');
+    if(prevBtn){
+        const isCurrentMonth=(calYear===todayY&&calMonth===todayM);
+        prevBtn.disabled=isCurrentMonth;
+    }
+
+    // Update availability strip
+    const booked=bookedDays[calMonth]||[];
+    const limited=limitedDays[calMonth]||[];
+    const daysInM=new Date(calYear,calMonth,0).getDate();
+    let availCount=0, limitedCount=0, bookedCount=0;
+    for(let d=1;d<=daysInM;d++){
+        const isPast=(calYear<todayY)||(calYear===todayY&&calMonth<todayM)||(calYear===todayY&&calMonth===todayM&&d<todayD);
+        if(isPast) continue;
+        if(booked.includes(d)) bookedCount++;
+        else if(limited.includes(d)) limitedCount++;
+        else availCount++;
+    }
+    const strip=document.getElementById('cal-avail-strip');
+    if(strip){
+        let chips='';
+        if(availCount>0) chips+=`<div class="cal-avail-chip green"><i class="fa-solid fa-circle-check" style="font-size:9px;"></i> ${availCount} dates open</div>`;
+        if(limitedCount>0) chips+=`<div class="cal-avail-chip orange"><i class="fa-solid fa-fire" style="font-size:9px;"></i> ${limitedCount} limited</div>`;
+        if(bookedCount>0) chips+=`<div class="cal-avail-chip red"><i class="fa-solid fa-ban" style="font-size:9px;"></i> ${bookedCount} booked</div>`;
+        strip.innerHTML=chips||'<div class="cal-avail-chip green"><i class="fa-solid fa-circle-check" style="font-size:9px;"></i> Dates available</div>';
+    }
+
+    // Build grid
     const firstDay=new Date(calYear,calMonth-1,1).getDay();
-    const daysInMonth=new Date(calYear,calMonth,0).getDate();
-    const now=new Date();const today=now.getDate(),todayM=now.getMonth()+1,todayY=now.getFullYear();
-    const booked=bookedDays[calMonth]||[];const limited=limitedDays[calMonth]||[];
-    let html='<div class="cal-day-lbl">Su</div><div class="cal-day-lbl">Mo</div><div class="cal-day-lbl">Tu</div><div class="cal-day-lbl">We</div><div class="cal-day-lbl">Th</div><div class="cal-day-lbl">Fr</div><div class="cal-day-lbl">Sa</div>';
-    for(let i=0;i<firstDay;i++)html+='<div class="cal-day empty"></div>';
-    for(let d=1;d<=daysInMonth;d++){
-        const isPast=(calYear<todayY)||(calYear===todayY&&calMonth<todayM)||(calYear===todayY&&calMonth===todayM&&d<today);
+    let html='';
+    // Leading empty cells
+    for(let i=0;i<firstDay;i++) html+='<div class="cal-day empty"></div>';
+    // Day cells
+    for(let d=1;d<=daysInM;d++){
+        const isPast=(calYear<todayY)||
+                     (calYear===todayY&&calMonth<todayM)||
+                     (calYear===todayY&&calMonth===todayM&&d<todayD);
+        const isToday=(d===todayD&&calMonth===todayM&&calYear===todayY);
         const isBooked=booked.includes(d);
         const isLimited=limited.includes(d);
-        const isSelected=calSelectedDate===d;
+        const isSelected=(calSelectedDate===d);
         let cls='cal-day';
-        if(isPast)cls+=' past';
-        else if(isBooked)cls+=' booked';
-        else if(isLimited)cls+=' avail limited';
+        if(isSelected) cls+=' selected';
+        else if(isPast) cls+=' past';
+        else if(isBooked) cls+=' booked';
+        else if(isLimited) cls+=' avail limited';
         else cls+=' avail';
-        if(isSelected)cls+=' selected';
-        html+='<div class="'+cls+'"'+(isBooked||isPast?'':' onclick="calSelectDay('+d+')"')+'>'+d+'</div>';
+        if(isToday&&!isSelected&&!isPast) cls+=' today-ring';
+        const clickable=!isPast&&!isBooked;
+        html+=`<div class="${cls}"${clickable?` onclick="calSelectDay(${d})"`:''} role="${clickable?'button':''}">${d}</div>`;
     }
-    document.getElementById('cal-grid').innerHTML=html;
+
+    const grid=document.getElementById('cal-grid');
+    // Animate direction
+    grid.className='cal-grid';
+    grid.innerHTML=html;
+    // Trigger animation next frame
+    if(calAnimDir!==0){
+        requestAnimationFrame(()=>{
+            grid.classList.add(calAnimDir>0?'anim-left':'anim-right');
+        });
+        calAnimDir=0;
+    }
     updateCalConfirm();
 }
+
 function calSelectDay(d){
-    calSelectedDate=d;renderCalendar();updateCalConfirm();
+    calSelectedDate=d;
+    renderCalendar();
+    // Haptic feedback on mobile
+    if(navigator.vibrate) navigator.vibrate(6);
 }
+
+function updateCalConfirdar(){} // legacy alias
 function updateCalConfirm(){
     const btn=document.getElementById('cal-confirm');
+    if(!btn) return;
     if(calSelectedDate){
-        const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        btn.textContent='Continue with '+calSelectedDate+' '+months[calMonth-1]+' '+calYear;
+        const M=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        btn.textContent=`Confirm — ${calSelectedDate} ${M[calMonth-1]} ${calYear}`;
         btn.disabled=false;
-    }else{btn.textContent='Select a Date to Continue';btn.disabled=true;}
+    } else {
+        btn.textContent='Select a Date to Continue';
+        btn.disabled=true;
+    }
 }
+
 function confirmCalDate(){
-    if(!calSelectedDate)return;
-    const months=['January','February','March','April','May','June','July','August','September','October','November','December'];
+    if(!calSelectedDate) return;
     const dateStr=calYear+'-'+(calMonth<10?'0':'')+calMonth+'-'+(calSelectedDate<10?'0':'')+calSelectedDate;
     document.getElementById('cal-overlay').classList.remove('open');
     closeSheet('venue-sheet');
     if(calVenueId){
         startBooking(calVenueId);
-        setTimeout(()=>{const d=document.getElementById('b-date');if(d)d.value=dateStr;},400);
+        setTimeout(()=>{
+            const d=document.getElementById('b-date');
+            if(d){
+                const todayISO=new Date().toISOString().split('T')[0];
+                d.min=todayISO;
+                d.value=dateStr;
+            }
+        },400);
     }
+}
+
+
+// ── GALLERY LIGHTBOX ──────────────────────────────────────────────────────
+let currentGallery = {imgs:[], name:'', idx:0};
+
+function openGallery(startIdx) {
+    if(!currentGallery.imgs.length) return;
+    currentGallery.idx = startIdx || 0;
+    document.getElementById('gallery-venue-name').textContent = currentGallery.name;
+    // Build dots and thumbs
+    const dots = document.getElementById('gallery-dots');
+    const thumbs = document.getElementById('gallery-thumb-strip');
+    dots.innerHTML = currentGallery.imgs.map((_,i)=>`<div class="gallery-dot${i===currentGallery.idx?' active':''}" onclick="galleryGoTo(${i})"></div>`).join('');
+    thumbs.innerHTML = currentGallery.imgs.map((src,i)=>`<div class="gallery-thumb${i===currentGallery.idx?' active':''}" onclick="galleryGoTo(${i})"><img src="${src}" loading="lazy"></div>`).join('');
+    renderGalleryImg();
+    document.getElementById('gallery-overlay').classList.add('open');
+    document.body.style.overflow='hidden';
+}
+
+function renderGalleryImg() {
+    const img = document.getElementById('gallery-img');
+    const i = currentGallery.idx;
+    img.src = currentGallery.imgs[i];
+    img.style.animation='none';
+    requestAnimationFrame(()=>{ img.style.animation='fadeUp 0.2s ease both'; });
+    document.getElementById('gallery-counter').textContent = (i+1)+' / '+currentGallery.imgs.length;
+    // Update dots
+    document.querySelectorAll('.gallery-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+    document.querySelectorAll('.gallery-thumb').forEach((t,j)=>{ t.classList.toggle('active',j===i); if(j===i) t.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); });
+}
+
+function galleryNav(dir) {
+    const n = currentGallery.imgs.length;
+    currentGallery.idx = (currentGallery.idx + dir + n) % n;
+    renderGalleryImg();
+}
+
+function galleryGoTo(i) {
+    currentGallery.idx = i;
+    renderGalleryImg();
+}
+
+function closeGallery() {
+    document.getElementById('gallery-overlay').classList.remove('open');
+    document.body.style.overflow='';
+}
+
+// Touch swipe for gallery
+(function(){
+    let startX=0;
+    const el = document.getElementById('gallery-main-img');
+    if(!el) return;
+    el.addEventListener('touchstart',e=>{ startX=e.touches[0].clientX; },{passive:true});
+    el.addEventListener('touchend',e=>{ const dx=e.changedTouches[0].clientX-startX; if(Math.abs(dx)>50) galleryNav(dx<0?1:-1); },{passive:true});
+})();
+
+// ── HERO SEARCH JS ──────────────────────────────────────────────────────
+let hsearchState = {
+    city: 'Vijayawada',
+    date: '',
+    guests: 100,
+    budgetChip: 'any',
+    selectedDay: null,
+    selMonth: null,
+    selYear: null,
+    eventType: []
+};
+
+// ── MMT-STYLE INLINE CALENDAR FOR HERO SEARCH ──────────────────────────
+let hcalYear, hcalMonth;
+(function(){ const n=new Date(); hcalYear=n.getFullYear(); hcalMonth=n.getMonth()+1; })();
+
+const HCAL_MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const HCAL_SHORT  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+function renderHcal() {
+    const now = new Date();
+    const todayD = now.getDate(), todayM = now.getMonth()+1, todayY = now.getFullYear();
+
+    // Month label
+    const label = document.getElementById('hcal-month-label');
+    if(label) label.textContent = HCAL_MONTHS[hcalMonth-1] + ' ' + hcalYear;
+
+    // Disable prev if on current month
+    const prevBtn = document.getElementById('hcal-prev');
+    if(prevBtn) prevBtn.disabled = (hcalYear === todayY && hcalMonth === todayM);
+
+    const daysInM  = new Date(hcalYear, hcalMonth, 0).getDate();
+    const firstDay = new Date(hcalYear, hcalMonth-1, 1).getDay();
+
+    let html = '';
+    // Leading empty cells
+    for(let i = 0; i < firstDay; i++) html += '<div></div>';
+
+    for(let d = 1; d <= daysInM; d++) {
+        const isPast = (hcalYear < todayY) ||
+                       (hcalYear === todayY && hcalMonth < todayM) ||
+                       (hcalYear === todayY && hcalMonth === todayM && d < todayD);
+        const isToday  = (d === todayD && hcalMonth === todayM && hcalYear === todayY);
+        const isSel    = (hsearchState.selectedDay === d && hsearchState.selMonth === hcalMonth && hsearchState.selYear === hcalYear);
+
+        let cls = 'hcal-day';
+        if(isSel)        cls += ' hcal-sel';
+        else if(isPast)  cls += ' hcal-past';
+        else if(isToday) cls += ' hcal-today';
+        else             cls += ' hcal-avail';
+
+        const clickable = !isPast;
+        html += `<div class="${cls}"${clickable ? ` onclick="hcalSelectDay(${d})"` : ''}>${d}</div>`;
+    }
+
+    const grid = document.getElementById('hcal-grid');
+    if(grid) grid.innerHTML = html;
+    updateHcalSelectedBar();
+}
+
+function hcalSelectDay(d) {
+    hsearchState.selectedDay = d;
+    hsearchState.selMonth    = hcalMonth;
+    hsearchState.selYear     = hcalYear;
+    hsearchState.date        = hcalYear + '-' + String(hcalMonth).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    renderHcal();
+    // Auto-apply and close after short delay for satisfying feel
+    setTimeout(() => applyHsearchDate(), 220);
+}
+
+function updateHcalSelectedBar() {
+    const bar  = document.getElementById('hcal-selected-bar');
+    const text = document.getElementById('hcal-selected-text');
+    if(!bar || !text) return;
+    if(hsearchState.selectedDay && hsearchState.selMonth === hcalMonth && hsearchState.selYear === hcalYear) {
+        const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const dt = new Date(hsearchState.selYear, hsearchState.selMonth-1, hsearchState.selectedDay);
+        text.textContent = dayNames[dt.getDay()] + ', ' + hsearchState.selectedDay + ' ' + HCAL_SHORT[hsearchState.selMonth-1] + ' ' + hsearchState.selYear;
+        bar.style.display = 'flex';
+    } else {
+        bar.style.display = 'none';
+    }
+}
+
+function hcalChangeMonth(dir) {
+    const now = new Date();
+    let nY = hcalYear, nM = hcalMonth + dir;
+    if(nM > 12){ nM = 1; nY++; }
+    if(nM < 1) { nM = 12; nY--; }
+    if(nY < now.getFullYear() || (nY === now.getFullYear() && nM < now.getMonth()+1)) return;
+    hcalYear = nY; hcalMonth = nM;
+    renderHcal();
+}
+
+function openHsearchDropdown(type) {
+    closeAllHsearchDropdowns();
+    const dd = document.getElementById('hsd-' + type);
+    if(!dd) return;
+    // Position just below the hero search card
+    const card = document.getElementById('heroSearchCard');
+    dd.style.top    = (card ? card.offsetHeight + 4 : '100%') + 'px';
+    dd.style.left   = '0';
+    dd.style.right  = '0';
+    dd.style.marginTop = '0';
+    dd.classList.add('open');
+    document.getElementById('dropdown-backdrop').classList.add('open');
+    document.querySelectorAll('.hsearch-field').forEach(f => f.classList.remove('active'));
+    const field = document.getElementById('hsf-' + type);
+    if(field) field.classList.add('active');
+
+    if(type === 'date') {
+        const now = new Date(); hcalYear = now.getFullYear(); hcalMonth = now.getMonth()+1;
+        renderHcal();
+    }
+    if(type === 'city') {
+        const inp = document.getElementById('city-search-input');
+        if(inp){ inp.value = ''; filterCityOptions(''); setTimeout(() => inp.focus(), 80); }
+    }
+    if(type === 'guests') {
+        // Highlight current preset
+        document.querySelectorAll('#hsd-guest-presets .radio-chip').forEach(c => {
+            c.classList.toggle('selected', parseInt(c.dataset.gval) === hsearchState.guests);
+        });
+    }
+}
+
+function filterCityOptions(query) {
+    const q = query.trim().toLowerCase();
+    const options = document.querySelectorAll('#hsd-city .city-option');
+    let visible = 0;
+    options.forEach(opt => {
+        const match = !q || opt.dataset.city.toLowerCase().includes(q) || opt.textContent.toLowerCase().includes(q);
+        opt.classList.toggle('hidden', !match);
+        if(match) visible++;
+    });
+    const noRes   = document.getElementById('city-no-results');
+    const typedEl = document.getElementById('city-typed-text');
+    const useBtn  = document.getElementById('city-use-typed');
+    if(noRes) noRes.style.display = (q && visible === 0) ? 'block' : 'none';
+    if(typedEl) typedEl.textContent = query;
+    if(useBtn)  useBtn.onclick = () => { setHsearchCity(query.charAt(0).toUpperCase() + query.slice(1)); };
+}
+
+function closeAllHsearchDropdowns() {
+    document.querySelectorAll('.hsearch-dropdown').forEach(d => d.classList.remove('open'));
+    const bd = document.getElementById('dropdown-backdrop');
+    if(bd) bd.classList.remove('open');
+    document.querySelectorAll('.hsearch-field').forEach(f => f.classList.remove('active'));
+}
+
+function setHsearchCity(city) {
+    hsearchState.city = city;
+    const val = document.getElementById('hsf-city-val');
+    val.textContent = (city === 'All' || !city) ? 'Any City' : city;
+    val.classList.toggle('placeholder', city === 'All' || !city);
+    closeAllHsearchDropdowns();
+    const inp = document.getElementById('city-search-input');
+    if(inp) inp.value = '';
+}
+
+function applyHsearchDate() {
+    if(!hsearchState.date) return;
+    const d = new Date(hsearchState.date + 'T00:00:00');
+    const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const label = dayNames[d.getDay()] + ', ' + d.getDate() + ' ' + HCAL_SHORT[d.getMonth()] + ' ' + d.getFullYear();
+    const val = document.getElementById('hsf-date-val');
+    val.textContent = label;
+    val.classList.remove('placeholder');
+    closeAllHsearchDropdowns();
+}
+
+function setGuestPreset(n, el) {
+    hsearchState.guests = n;
+    document.getElementById('hsd-guests-count').textContent = n;
+    document.querySelectorAll('#hsd-guest-presets .radio-chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function adjustHsearchGuests(delta) {
+    hsearchState.guests = Math.max(50, Math.min(5000, hsearchState.guests + delta));
+    document.getElementById('hsd-guests-count').textContent = hsearchState.guests;
+    // Deselect presets if custom value
+    document.querySelectorAll('#hsd-guest-presets .radio-chip').forEach(c => {
+        c.classList.toggle('selected', parseInt(c.dataset.gval) === hsearchState.guests);
+    });
+}
+
+function toggleEventType(el) {
+    el.classList.toggle('selected');
+    hsearchState.eventType = [...document.querySelectorAll('#hsd-event-type-chips .radio-chip.selected')].map(c => c.dataset.etype);
+}
+
+function applyHsearchGuests() {
+    const val    = document.getElementById('hsf-guests-val');
+    const etypes = hsearchState.eventType;
+    let label    = hsearchState.guests + ' Guests';
+    if(etypes.length === 1)       label += ' · ' + etypes[0];
+    else if(etypes.length > 1)    label += ' · ' + etypes.length + ' types';
+    val.textContent = label;
+    val.classList.remove('placeholder');
+    closeAllHsearchDropdowns();
+}
+
+function setBudgetChip(chip, el) {
+    hsearchState.budgetChip = chip;
+    document.querySelectorAll('#hsd-budget .radio-chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function applyHsearchBudget() {
+    const labels = { any:'Any Budget', '2':'Under ₹2L', '5':'₹2L–₹5L', '5p':'₹5L+' };
+    const val = document.getElementById('hsf-budget-val');
+    if(val){ val.textContent = labels[hsearchState.budgetChip] || 'Any Budget'; val.classList.toggle('placeholder', hsearchState.budgetChip==='any'); }
+    closeAllHsearchDropdowns();
+}
+
+function doHeroSearch() {
+    const city = hsearchState.city;
+    const freeText = (document.getElementById('hsf-freetext')?.value||'').trim().toLowerCase();
+
+    // Show clear button if there's text
+    const ftClear = document.getElementById('hsf-freetext-clear');
+    if(ftClear) ftClear.style.display = freeText ? 'block' : 'none';
+
+    // Reset all cards first
+    document.querySelectorAll('#vgrid .venue-card-v').forEach(c=>c.style.display='');
+    goPage('explore');
+
+    // Pre-fill explore search bar for visual feedback
+    const exploreSearch = document.getElementById('exploreSearch');
+    const exploreQuery = freeText || (city && city!=='All' ? city : '');
+    if(exploreSearch) {
+        exploreSearch.value = exploreQuery;
+        toggleClear('explore', exploreQuery);
+    }
+
+    // City filter
+    if(city && city!=='All') {
+        document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{
+            const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+            const v=vk?venues[vk]:null;
+            if(!v){card.style.display='none';return;}
+            const cityMatch=(v.city===city||v.city.toLowerCase()===city.toLowerCase()||v.loc.toLowerCase().includes(city.toLowerCase())||card.innerText.toLowerCase().includes(city.toLowerCase()));
+            if(!cityMatch) card.style.display='none';
+        });
+        document.querySelectorAll('#page-explore .chip').forEach(c=>{
+            const ct=c.textContent.trim();
+            c.classList.toggle('active', ct===city||(city==='Vizag'&&ct==='Vizag'));
+        });
+    } else {
+        document.querySelectorAll('#page-explore .chip').forEach(c=>c.classList.toggle('active',c.textContent.trim()==='All'));
+    }
+
+    // Free text filter
+    if(freeText) {
+        document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{
+            if(card.style.display==='none') return;
+            const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+            const v=vk?venues[vk]:null;
+            let match=false;
+            if(v){
+                match=v.name.toLowerCase().includes(freeText)||
+                      v.loc.toLowerCase().includes(freeText)||
+                      v.city.toLowerCase().includes(freeText)||
+                      (v.tag||'').toLowerCase().includes(freeText)||
+                      (v.desc||'').toLowerCase().includes(freeText);
+            } else {
+                match=card.innerText.toLowerCase().includes(freeText);
+            }
+            if(!match) card.style.display='none';
+        });
+    }
+
+    // Budget filter
+    if(hsearchState.budgetChip && hsearchState.budgetChip!=='any') {
+        document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{
+            if(card.style.display==='none') return;
+            const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+            const v=vk?venues[vk]:null;
+            if(!v) return;
+            let show=true;
+            if(hsearchState.budgetChip==='2') show=v.priceRaw<200000;
+            else if(hsearchState.budgetChip==='5') show=v.priceRaw>=200000&&v.priceRaw<=500000;
+            else if(hsearchState.budgetChip==='5p') show=v.priceRaw>500000;
+            if(!show) card.style.display='none';
+        });
+    }
+
+    // Guest filter
+    if(hsearchState.guests && hsearchState.guests>50) {
+        document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{
+            if(card.style.display==='none') return;
+            const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+            const v=vk?venues[vk]:null;
+            if(!v) return;
+            if(parseInt(v.cap)<hsearchState.guests) card.style.display='none';
+        });
+    }
+
+    const count=[...document.querySelectorAll('#vgrid .venue-card-v')].filter(c=>c.style.display!=='none').length;
+
+    // Remove old empty state
+    const grid=document.getElementById('vgrid');
+    const oldEmpty=grid?.querySelector('.search-empty-state');
+    if(oldEmpty) oldEmpty.remove();
+
+    if(count===0) {
+        // Show "no results" inline on explore page
+        if(grid){
+            const empty=document.createElement('div');
+            empty.className='search-empty-state';
+            empty.style.cssText='text-align:center;padding:40px 20px;color:var(--dim);grid-column:1/-1;';
+            empty.innerHTML='<div style="font-size:36px;margin-bottom:12px;opacity:0.3;">🔍</div><div style="font-size:15px;font-weight:500;margin-bottom:6px;">No venues found</div><div style="font-size:13px;">Try adjusting your filters or search</div><button onclick="document.querySelectorAll(\'#vgrid .venue-card-v\').forEach(c=>c.style.display=\'\');this.parentElement.remove();showToast(\'Showing all venues\');" style="margin-top:14px;padding:10px 24px;background:var(--text);color:#FAF7F2;border:none;border-radius:50px;font-size:13px;font-family:var(--font);cursor:pointer;">Show All Venues</button>';
+            grid.appendChild(empty);
+        }
+        showToast('No venues matched — try different filters');
+    } else {
+        let msg = count+' venue'+(count!==1?'s':'')+' found';
+        if(city&&city!=='All') msg+=' in '+city;
+        if(freeText) msg+=' for "'+freeText+'"';
+        showToast(msg);
+    }
+}
+
+// ── FILTER SHEET IMPROVEMENTS ──────────────────────────────────────────
+function selectRadioChip(el, groupId) {
+    const group = document.getElementById(groupId);
+    if(!group) return;
+    group.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+// Amenity multi-select via event delegation (works even if chips are added later)
+document.getElementById('filter-amenity-chips').addEventListener('click', function(e){
+    const chip = e.target.closest('.filter-chip');
+    if(chip) chip.classList.toggle('active');
+});
+
+function resetFilters() {
+    // Reset budget
+    document.querySelectorAll('#filter-budget-chips .radio-chip').forEach((c,i)=>c.classList.toggle('selected',i===0));
+    // Reset capacity
+    document.querySelectorAll('#filter-capacity-chips .radio-chip').forEach((c,i)=>c.classList.toggle('selected',i===0));
+    // Reset amenities
+    document.querySelectorAll('#filter-amenity-chips .filter-chip').forEach(c=>c.classList.remove('active'));
+    // Show all venues
+    document.querySelectorAll('#vgrid .venue-card-v').forEach(c=>c.style.display='');
+    closeSheet('filter-sheet');
+    showToast('Filters reset');
+}
+
+function applyFilters() {
+    const budgetChip = document.querySelector('#filter-budget-chips .radio-chip.selected')?.dataset?.val || 'any';
+    const capacityChip = document.querySelector('#filter-capacity-chips .radio-chip.selected')?.dataset?.val || 'any';
+    const amenities = [...document.querySelectorAll('#filter-amenity-chips .filter-chip.active')].map(c=>c.dataset.amenity);
+
+    document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{
+        const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+        const v=vk?venues[vk]:null;
+        if(!v){card.style.display='';return;}
+        let show=true;
+
+        // Budget
+        if(budgetChip==='2') show=show&&v.priceRaw<200000;
+        else if(budgetChip==='5') show=show&&v.priceRaw>=200000&&v.priceRaw<=500000;
+        else if(budgetChip==='5p') show=show&&v.priceRaw>500000;
+
+        // Capacity
+        const cap=parseInt(v.cap)||0;
+        if(capacityChip==='300') show=show&&cap>=100&&cap<=300;
+        else if(capacityChip==='500') show=show&&cap>300&&cap<=500;
+        else if(capacityChip==='1000') show=show&&cap>500&&cap<=1000;
+        else if(capacityChip==='1000p') show=show&&cap>1000;
+
+        // Amenities (all selected must be present)
+        if(amenities.length>0 && v.amenities) {
+            show=show&&amenities.every(am=>v.amenities[am]);
+        }
+
+        card.style.display=show?'':'none';
+    });
+
+    closeSheet('filter-sheet');
+    const count = [...document.querySelectorAll('#vgrid .venue-card-v')].filter(c=>c.style.display!=='none').length;
+    showToast('Showing '+count+' venue'+(count!==1?'s':''));
+    if(currentPage!=='explore') goPage('explore');
 }
 
 updateProfileUI();renderBookings();updateDockBadge();
 if(!currentUser)setTimeout(()=>openAuthModal('login'),900);
+
+// Pre-select Vijayawada based on AP location
+(function(){
+    const cityVal = document.getElementById('hsf-city-val');
+    if(cityVal){ cityVal.textContent='Vijayawada'; cityVal.classList.remove('placeholder'); }
+    const guestVal = document.getElementById('hsf-guests-val');
+    if(guestVal){ guestVal.textContent='100 Guests'; guestVal.classList.remove('placeholder'); }
+    // hsearchState already has Vijayawada and 100 guests as defaults
+})();
+
+// ── Fade-up IntersectionObserver ──────────────────────────────────────────
+const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Don't unobserve — keeps it visible
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+function initFadeUps() {
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+}
+initFadeUps();
+
+// ── Counter animation ──────────────────────────────────────────────────────
+function animateCounter(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1200;
+    const steps = 40;
+    const interval = duration / steps;
+    let step = 0;
+    const timer = setInterval(() => {
+        step++;
+        const progress = step / steps;
+        // Ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.textContent = current + suffix;
+        if (step >= steps) {
+            el.textContent = target + suffix;
+            clearInterval(timer);
+        }
+    }, interval);
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+            entry.target.dataset.counted = '1';
+            animateCounter(entry.target);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.counter-val').forEach(el => counterObserver.observe(el));
+
 </script>
 </body>
 </html>
