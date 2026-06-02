@@ -43,7 +43,7 @@
         @keyframes slideUp{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
         @keyframes pulse{0%,100%{opacity:1;transform:scale3d(1,1,1)}50%{opacity:0.5;transform:scale3d(0.8,0.8,1)}}
         .scroll-area{padding:0 0 20px;}
-        .section{padding:52px 20px 0;}
+        .section{padding:72px 20px 0;}
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
         .section-title{font-size:11px;font-weight:400;color:var(--dim2);text-transform:uppercase;letter-spacing:3px;}
         .see-all{font-size:12px;font-weight:600;color:#AF3A81;cursor:pointer;}
@@ -58,7 +58,7 @@
         .hero-banner{
             margin:24px 0 0;
             position:relative;overflow:hidden;cursor:pointer;
-            height:82vw;max-height:460px;min-height:320px;
+            height:70vw;max-height:420px;min-height:260px;
         }
         .hero-banner::after{
             content:'';position:absolute;inset:0;
@@ -502,7 +502,7 @@
         .detail-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
         .detail-section-lbl{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
         .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:66px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.22s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
-        .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;}
+        .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;min-height:72px;}
         .dock-item i{font-size:20px;line-height:1;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),color 0.2s;display:block;}
         .dock-item span{font-size:10px;font-weight:400;letter-spacing:0.5px;line-height:1;white-space:nowrap;}
         .dock-item.active{color:#AF3A81;}
@@ -520,6 +520,35 @@
         /* Testimonial */
         .tcard{background:var(--card);border-radius:18px;padding:20px;flex-shrink:0;width:270px;box-shadow:0 6px 22px rgba(0,0,0,.05);}
 
+
+        /* ── SAVED VENUES ──────────────────────────────────────── */
+        .saved-section{padding:0 20px;}
+        .saved-venue-row{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:16px;padding:14px;margin-bottom:10px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.05);transition:all 0.2s;}
+        .saved-venue-row:active{transform:scale(0.98);}
+        .saved-venue-thumb{width:56px;height:56px;border-radius:12px;object-fit:cover;flex-shrink:0;}
+        .saved-venue-info{flex:1;min-width:0;}
+        .saved-venue-name{font-size:14px;font-weight:500;font-family:var(--display);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .saved-venue-loc{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:4px;}
+        .unsave-btn{width:32px;height:32px;border:none;background:rgba(239,68,68,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--red);cursor:pointer;flex-shrink:0;font-size:14px;}
+        /* ── SHARE ──────────────────────────────────────────────── */
+        .share-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:16px 0;}
+        .share-btn{display:flex;flex-direction:column;align-items:center;gap:8px;background:var(--card);border:none;border-radius:18px;padding:16px 8px;cursor:pointer;transition:all 0.25s;box-shadow:0 4px 16px rgba(0,0,0,0.05);}
+        .share-btn:active{transform:scale(0.94);}
+        .share-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;}
+        .share-label{font-size:11px;color:var(--dim);font-weight:400;}
+        /* ── RECENTLY VIEWED ────────────────────────────────────── */
+        .rv-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
+        .rv-card{flex-shrink:0;width:150px;background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.06);transition:all 0.2s;}
+        .rv-card:active{transform:scale(0.96);}
+        .rv-card img{width:100%;height:90px;object-fit:cover;display:block;}
+        .rv-card-info{padding:8px 10px 10px;}
+        .rv-card-name{font-size:12px;font-weight:500;font-family:var(--display);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .rv-card-price{font-size:11px;color:var(--dim);}
+        /* ── SITE VISIT SHEET ───────────────────────────────────── */
+        .visit-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+        .visit-time-chip{padding:12px;background:var(--card2);border:1.5px solid var(--border);border-radius:14px;text-align:center;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:var(--font);color:var(--dim);}
+        .visit-time-chip.selected{background:#AF3A81;border-color:#AF3A81;color:#fff;font-weight:500;}
+        .visit-time-chip:active{transform:scale(0.97);}
 
         /* ── ANIMATIONS ─────────────────────────────────────────── */
 
@@ -1081,6 +1110,12 @@
             <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹42K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
         </div>
 
+        <!-- RECENTLY VIEWED -->
+        <div id="rv-section" style="display:none;">
+            <div class="section" style="padding-bottom:0;"><div class="section-header"><span class="section-title">Recently Viewed</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
+            <div class="rv-scroll" id="rv-scroll"></div>
+        </div>
+
         <!-- ⑥ HOW IT WORKS -->
         <div class="section"><div class="section-header"><span class="section-title">How It Works</span></div>
             <div style="display:flex;flex-direction:column;gap:0;padding-top:4px;">
@@ -1229,6 +1264,7 @@
         <div class="profile-header"><div class="avatar" id="profile-avatar">?</div><div class="profile-name" id="profile-name-display">Guest User</div><div class="profile-email" id="profile-email-display">Sign in to continue</div><div class="profile-badges"><div class="badge"><div class="badge-num" id="profile-bookings-count">0</div><div class="badge-lbl">Bookings</div></div><div class="badge"><div class="badge-num" id="profile-saved-count">0</div><div class="badge-lbl">Saved</div></div><div class="badge"><div class="badge-num">4.9★</div><div class="badge-lbl">Rating</div></div></div></div>
         <div class="menu-list">
             <div class="menu-item" onclick="goPage('bookings')"><div class="menu-icon blue"><i class="fa-solid fa-calendar-check"></i></div><div class="menu-text"><div class="menu-label">My Bookings</div><div class="menu-sub" id="profile-bookings-sub">View all your bookings</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
+            <div class="menu-item" onclick="goPage('saved')"><div class="menu-icon" style="background:rgba(239,68,68,0.08);color:var(--red);"><i class="fa-solid fa-heart"></i></div><div class="menu-text"><div class="menu-label">Saved Venues</div><div class="menu-sub" id="profile-saved-sub">Your wishlist</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
             <div class="menu-item" onclick="openEditProfile()"><div class="menu-icon gold"><i class="fa-solid fa-user-pen"></i></div><div class="menu-text"><div class="menu-label">Edit Profile</div><div class="menu-sub">Update name, phone & details</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
             <div class="menu-item" onclick="openSheet('filter-sheet')"><div class="menu-icon green"><i class="fa-solid fa-sliders"></i></div><div class="menu-text"><div class="menu-label">Preferences</div><div class="menu-sub">Venue type, location & budget</div></div><i class="fa-solid fa-chevron-right menu-arrow"></i></div>
             <div class="menu-item" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help%20with%20my%20booking.','_blank')"><div class="menu-icon gold"><i class="fa-solid fa-headset"></i></div><div class="menu-text"><div class="menu-label">Help & Support</div><div class="menu-sub">Chat on WhatsApp · +91 93906 53955</div></div><i class="fa-brands fa-whatsapp" style="color:var(--green);font-size:18px;"></i></div>
@@ -1621,6 +1657,70 @@
     <div class="gallery-thumb-strip" id="gallery-thumb-strip"></div>
 </div>
 
+<!-- SAVED VENUES PAGE -->
+<div class="page" id="page-saved">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('profile')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Your wishlist</span><span class="topbar-brand">Saved Venues</span></div></div>
+    <div class="scroll-area" style="padding-top:20px;">
+        <div class="saved-section" id="saved-venues-list"></div>
+    </div>
+</div>
+
+<!-- SHARE SHEET -->
+<div class="sheet-overlay" id="share-sheet" onclick="closeSheet('share-sheet',event)">
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title" id="share-sheet-title">Share Venue</div>
+        <div style="padding:0 20px 10px;">
+            <div class="share-row">
+                <button class="share-btn" onclick="shareWhatsApp()">
+                    <div class="share-icon" style="background:rgba(16,185,129,0.1);color:#10B981;"><i class="fa-brands fa-whatsapp"></i></div>
+                    <span class="share-label">WhatsApp</span>
+                </button>
+                <button class="share-btn" onclick="shareCopyLink()">
+                    <div class="share-icon" style="background:rgba(175,58,129,0.08);color:#AF3A81;"><i class="fa-solid fa-link"></i></div>
+                    <span class="share-label">Copy Link</span>
+                </button>
+                <button class="share-btn" onclick="shareNative()">
+                    <div class="share-icon" style="background:rgba(36,113,163,0.1);color:var(--blue);"><i class="fa-solid fa-share-nodes"></i></div>
+                    <span class="share-label">Share</span>
+                </button>
+            </div>
+            <div style="background:var(--card2);border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px;">
+                <img id="share-venue-thumb" src="" style="width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;">
+                <div style="min-width:0;"><div id="share-venue-name" style="font-size:14px;font-weight:500;font-family:var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div><div id="share-venue-price" style="font-size:12px;color:var(--dim);margin-top:2px;"></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SITE VISIT SHEET -->
+<div class="sheet-overlay" id="visit-sheet" onclick="closeSheet('visit-sheet',event)">
+    <div class="sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-title">Schedule Venue Visit</div>
+        <div style="padding:0 20px 20px;">
+            <div style="background:rgba(175,58,129,0.06);border:1px solid rgba(175,58,129,0.15);border-radius:14px;padding:14px;margin-bottom:20px;display:flex;align-items:center;gap:12px;">
+                <div style="width:40px;height:40px;background:rgba(175,58,129,0.1);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-map-location-dot" style="color:#AF3A81;"></i></div>
+                <div><div id="visit-venue-name" style="font-size:14px;font-weight:500;font-family:var(--display);"></div><div id="visit-venue-loc" style="font-size:11px;color:var(--dim);margin-top:2px;"></div></div>
+            </div>
+            <div class="auth-field"><label>Your Name</label><input type="text" id="visit-name" placeholder="Ravi Kumar" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;"></div>
+            <div class="auth-field"><label>Phone Number</label><input type="tel" id="visit-phone" placeholder="+91 9XXXXXXXXX" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;"></div>
+            <div class="auth-field"><label>Preferred Date</label><input type="date" id="visit-date" style="width:100%;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;outline:none;"></div>
+            <div class="auth-field" style="margin-bottom:16px;"><label>Preferred Time</label>
+                <div class="visit-time-grid" id="visit-time-grid">
+                    <div class="visit-time-chip" onclick="selectVisitTime(this,'10:00 AM')">10:00 AM</div>
+                    <div class="visit-time-chip" onclick="selectVisitTime(this,'12:00 PM')">12:00 PM</div>
+                    <div class="visit-time-chip" onclick="selectVisitTime(this,'3:00 PM')">3:00 PM</div>
+                    <div class="visit-time-chip" onclick="selectVisitTime(this,'5:00 PM')">5:00 PM</div>
+                </div>
+            </div>
+            <button class="auth-btn" style="border-radius:16px;font-weight:600;" onclick="confirmSiteVisit()"><i class="fa-solid fa-calendar-check" style="margin-right:8px;"></i>Confirm Site Visit</button>
+            <div style="font-size:11px;color:var(--dim2);text-align:center;margin-top:12px;line-height:1.6;">Our team will call you within 2 hours to confirm your visit.</div>
+        </div>
+    </div>
+</div>
+
 <!-- DOCK -->
 <nav class="dock">
     <div class="dock-item active" id="dock-home" onclick="goPage('home')"><i class="fa-solid fa-house-chimney"></i><span>Home</span></div>
@@ -1696,8 +1796,9 @@ function updateProfileUI(){
     document.getElementById('profile-name-display').textContent=n;
     document.getElementById('profile-email-display').textContent=e;
     document.getElementById('profile-bookings-count').textContent=myBookings.length;
-    document.getElementById('profile-saved-count').textContent=savedVenues||0;
+    document.getElementById('profile-saved-count').textContent=savedVenueIds.length||0;
     document.getElementById('profile-bookings-sub').textContent=myBookings.length+' booking'+(myBookings.length!==1?'s':'');
+    const savedSub=document.getElementById('profile-saved-sub');if(savedSub)savedSub.textContent=(savedVenueIds.length||0)+' saved venue'+(savedVenueIds.length!==1?'s':'');
     document.getElementById('auth-menu-label').textContent=currentUser?'Sign Out':'Sign In';
     document.getElementById('auth-menu-sub').textContent=currentUser?'Tap to sign out':'Login or create account';
     document.getElementById('auth-menu-icon').className='fa-solid '+(currentUser?'fa-right-from-bracket':'fa-right-to-bracket');
@@ -1722,6 +1823,7 @@ function goPage(name){
     if(newDock)newDock.classList.add('active');
     if(name==='bookings')renderBookings();
     if(name==='profile')updateProfileUI();
+    if(name==='saved'){renderSavedVenues();updateProfileUI();}
     window.scrollTo(0,0);
 }
 function updateDockBadge(){const b=document.querySelector('#dock-bookings .dock-badge');if(b){const c=myBookings.filter(x=>x.status==='confirmed'||x.status==='pending').length;b.textContent=c;b.style.display=c>0?'flex':'none';}}
@@ -1819,10 +1921,237 @@ document.querySelectorAll('#cityChips .chip').forEach(chip=>{chip.addEventListen
 document.querySelectorAll('#page-explore .chip').forEach(chip=>{chip.addEventListener('click',()=>{document.querySelectorAll('#page-explore .chip').forEach(c=>c.classList.remove('active'));chip.classList.add('active');const label=chip.textContent.trim();document.querySelectorAll('#vgrid .venue-card-v').forEach(card=>{const vk=card.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];const v=vk?venues[vk]:null;if(!v){card.style.display='';return;}let show=true;if(label==='Under ₹2L')show=v.priceRaw<200000;else if(label==='₹2L–₹5L')show=v.priceRaw>=200000&&v.priceRaw<=500000;else if(label==='5★ Only')show=parseFloat(v.rating)>=4.8;else if(label==='Outdoor')show=v.tag==='SCENIC'||v.tag==='BEACHFRONT'||v.name.includes('Garden');else if(label==='AC Hall')show=v.priceRaw>=300000||parseInt(v.cap)>=800;card.style.display=show?'':'none';});});});
 document.querySelectorAll('.occ-box').forEach(box=>{box.addEventListener('click',()=>{const was=box.classList.contains('active');document.querySelectorAll('.occ-box').forEach(b=>b.classList.remove('active'));if(!was){box.classList.add('active');goPage('explore');}});});
 document.querySelectorAll('.filter-chip').forEach(chip=>chip.addEventListener('click',()=>chip.classList.toggle('active')));
-function toggleFav(e,el){e.stopPropagation();el.classList.toggle('liked');el.innerHTML=el.classList.contains('liked')?'<i class="fa-solid fa-heart"></i>':'<i class="fa-regular fa-heart"></i>';savedVenues=document.querySelectorAll('.venue-fav.liked').length;saveToStorage('vv_saved',savedVenues);const e2=document.getElementById('profile-saved-count');if(e2)e2.textContent=savedVenues;}
+// ── SAVED VENUES ─────────────────────────────────────────────────────────
+let savedVenueIds = loadFromStorage('vv_saved_ids', []);
+
+function toggleFav(e, el) {
+    e.stopPropagation();
+    const card = el.closest('[onclick]');
+    const vk = card?.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+    if (!vk) return;
+    const isSaved = savedVenueIds.includes(vk);
+    if (isSaved) {
+        savedVenueIds = savedVenueIds.filter(x => x !== vk);
+        el.classList.remove('liked');
+        el.innerHTML = '<i class="fa-regular fa-heart"></i>';
+        showToast('Removed from saved');
+    } else {
+        savedVenueIds.push(vk);
+        el.classList.add('liked');
+        el.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        showToast('❤️ Saved to wishlist');
+    }
+    saveToStorage('vv_saved_ids', savedVenueIds);
+    savedVenues = savedVenueIds.length;
+    saveToStorage('vv_saved', savedVenues);
+    const e2 = document.getElementById('profile-saved-count');
+    if (e2) e2.textContent = savedVenues;
+    syncAllFavButtons();
+}
+
+function syncAllFavButtons() {
+    document.querySelectorAll('.venue-fav').forEach(btn => {
+        const card = btn.closest('[onclick]');
+        const vk = card?.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
+        if (!vk) return;
+        const saved = savedVenueIds.includes(vk);
+        btn.classList.toggle('liked', saved);
+        btn.innerHTML = saved ? '<i class="fa-solid fa-heart"></i>' : '<i class="fa-regular fa-heart"></i>';
+    });
+}
+
+function renderSavedVenues() {
+    const list = document.getElementById('saved-venues-list');
+    if (!list) return;
+    if (savedVenueIds.length === 0) {
+        list.innerHTML = '<div class="empty-state"><div class="empty-icon"><i class="fa-regular fa-heart" style="font-size:48px;color:var(--dim2);"></i></div><div class="empty-title">No Saved Venues</div><div class="empty-sub">Tap the ❤️ on any venue to save it here for easy access.</div><button class="book-btn" style="margin-top:20px;max-width:200px;" onclick="goPage(\'explore\')">Browse Venues</button></div>';
+        return;
+    }
+    list.innerHTML = savedVenueIds.map(vk => {
+        const v = venues[vk];
+        if (!v) return '';
+        return `<div class="saved-venue-row" onclick="openVenue('${vk}')">
+            <img class="saved-venue-thumb" src="${v.img}" alt="${v.name}">
+            <div class="saved-venue-info">
+                <div class="saved-venue-name">${v.name}</div>
+                <div class="saved-venue-loc"><i class="fa-solid fa-location-dot"></i> ${v.loc}</div>
+                <div style="font-size:12px;color:var(--text);margin-top:4px;font-weight:500;">${v.price} <span style="color:var(--dim);font-weight:400;">/day</span></div>
+            </div>
+            <button class="unsave-btn" onclick="event.stopPropagation();unsaveVenue('${vk}')"><i class="fa-solid fa-heart-crack"></i></button>
+        </div>`;
+    }).join('');
+}
+
+function toggleVenueSave(vk) {
+    const isSaved = savedVenueIds.includes(vk);
+    if (isSaved) {
+        savedVenueIds = savedVenueIds.filter(x => x !== vk);
+        showToast('Removed from saved');
+    } else {
+        savedVenueIds.push(vk);
+        showToast('❤️ Saved to wishlist');
+    }
+    saveToStorage('vv_saved_ids', savedVenueIds);
+    savedVenues = savedVenueIds.length;
+    saveToStorage('vv_saved', savedVenues);
+    const e2 = document.getElementById('profile-saved-count');
+    if (e2) e2.textContent = savedVenues;
+    // Update the save button inside the venue sheet
+    const btn = document.getElementById('venue-save-btn');
+    if (btn) {
+        const nowSaved = savedVenueIds.includes(vk);
+        btn.innerHTML = '<i class="'+(nowSaved?'fa-solid':'fa-regular')+' fa-heart"></i> '+(nowSaved?'Saved':'Save');
+        btn.style.borderColor = nowSaved ? 'var(--red)' : 'var(--border)';
+        btn.style.background = nowSaved ? 'rgba(239,68,68,0.07)' : 'transparent';
+        btn.style.color = nowSaved ? 'var(--red)' : 'var(--dim)';
+    }
+    syncAllFavButtons();
+}
+
+function unsaveVenue(vk) {
+    savedVenueIds = savedVenueIds.filter(x => x !== vk);
+    saveToStorage('vv_saved_ids', savedVenueIds);
+    savedVenues = savedVenueIds.length;
+    saveToStorage('vv_saved', savedVenues);
+    const e2 = document.getElementById('profile-saved-count');
+    if (e2) e2.textContent = savedVenues;
+    syncAllFavButtons();
+    renderSavedVenues();
+    showToast('Removed from saved');
+}
+
+// ── SHARE VENUE ───────────────────────────────────────────────────────────
+let shareVenueId = null;
+
+function openShareSheet(id) {
+    shareVenueId = id;
+    const v = venues[id];
+    if (!v) return;
+    document.getElementById('share-sheet-title').textContent = 'Share ' + v.name;
+    document.getElementById('share-venue-name').textContent = v.name;
+    document.getElementById('share-venue-price').textContent = v.price + ' · ' + v.loc;
+    document.getElementById('share-venue-thumb').src = v.img;
+    openSheet('share-sheet');
+}
+
+function shareWhatsApp() {
+    const v = venues[shareVenueId];
+    if (!v) return;
+    const msg = encodeURIComponent(`Check out *${v.name}* for our event!\n📍 ${v.loc}\n💰 ${v.price}/day · ⭐ ${v.rating}\n\nFound on Vivaha Venue — vivahavenue.com`);
+    window.open(`https://wa.me/?text=${msg}`, '_blank');
+    closeSheet('share-sheet');
+}
+
+function shareCopyLink() {
+    const v = venues[shareVenueId];
+    const link = `https://vivahavenue.com/venue/${shareVenueId}`;
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(link).then(() => {
+            showToast('Link copied to clipboard!');
+            closeSheet('share-sheet');
+        });
+    } else {
+        showToast('Link: ' + link);
+        closeSheet('share-sheet');
+    }
+}
+
+function shareNative() {
+    const v = venues[shareVenueId];
+    if (!v) return;
+    if (navigator.share) {
+        navigator.share({
+            title: v.name + ' — Vivaha Venue',
+            text: `${v.name} · ${v.loc} · ${v.price}/day`,
+            url: `https://vivahavenue.com/venue/${shareVenueId}`
+        }).catch(() => {});
+    } else {
+        shareCopyLink();
+    }
+    closeSheet('share-sheet');
+}
+
+// ── RECENTLY VIEWED ───────────────────────────────────────────────────────
+let recentlyViewed = loadFromStorage('vv_recent', []);
+
+function trackRecentlyViewed(vk) {
+    recentlyViewed = recentlyViewed.filter(x => x !== vk);
+    recentlyViewed.unshift(vk);
+    if (recentlyViewed.length > 5) recentlyViewed = recentlyViewed.slice(0, 5);
+    saveToStorage('vv_recent', recentlyViewed);
+    renderRecentlyViewed();
+}
+
+function renderRecentlyViewed() {
+    const wrap = document.getElementById('rv-section');
+    const scroll = document.getElementById('rv-scroll');
+    if (!scroll) return;
+    const valid = recentlyViewed.filter(vk => venues[vk]);
+    if (valid.length === 0) {
+        if (wrap) wrap.style.display = 'none';
+        return;
+    }
+    if (wrap) wrap.style.display = '';
+    scroll.innerHTML = valid.map(vk => {
+        const v = venues[vk];
+        return `<div class="rv-card" onclick="openVenue('${vk}')">
+            <img src="${v.img}" alt="${v.name}" loading="lazy">
+            <div class="rv-card-info">
+                <div class="rv-card-name">${v.name}</div>
+                <div class="rv-card-price">${v.price}</div>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// ── SITE VISIT ────────────────────────────────────────────────────────────
+let visitVenueId = null;
+let selectedVisitTime = '';
+
+function openSiteVisit(id) {
+    visitVenueId = id;
+    const v = venues[id];
+    if (!v) return;
+    document.getElementById('visit-venue-name').textContent = v.name;
+    document.getElementById('visit-venue-loc').textContent = v.loc;
+    if (currentUser) {
+        document.getElementById('visit-name').value = currentUser.name || '';
+        document.getElementById('visit-phone').value = currentUser.phone || '';
+    }
+    const todayISO = new Date().toISOString().split('T')[0];
+    document.getElementById('visit-date').min = todayISO;
+    document.getElementById('visit-date').value = '';
+    selectedVisitTime = '';
+    document.querySelectorAll('.visit-time-chip').forEach(c => c.classList.remove('selected'));
+    openSheet('visit-sheet');
+}
+
+function selectVisitTime(el, time) {
+    selectedVisitTime = time;
+    document.querySelectorAll('.visit-time-chip').forEach(c => c.classList.remove('selected'));
+    el.classList.add('selected');
+}
+
+function confirmSiteVisit() {
+    const name = document.getElementById('visit-name').value.trim();
+    const phone = document.getElementById('visit-phone').value.trim();
+    const date = document.getElementById('visit-date').value;
+    if (!name || !phone) { showToast('Please enter your name and phone'); return; }
+    if (!date) { showToast('Please select a preferred date'); return; }
+    if (!selectedVisitTime) { showToast('Please select a preferred time'); return; }
+    const v = venues[visitVenueId];
+    const d = new Date(date + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'long', year: 'numeric' });
+    closeSheet('visit-sheet');
+    // Open WhatsApp with prefilled message
+    const msg = encodeURIComponent(`Hi Vivaha Venue Team!\n\nI'd like to schedule a site visit:\n\n🏛️ Venue: ${v.name}\n📍 ${v.loc}\n👤 Name: ${name}\n📞 Phone: ${phone}\n📅 Date: ${d}\n🕐 Time: ${selectedVisitTime}\n\nPlease confirm my visit. Thank you!`);
+    setTimeout(() => {
+        window.open(`https://wa.me/919390653955?text=${msg}`, '_blank');
+        showToast('Visit request sent on WhatsApp!');
+    }, 300);
+}
 function openSheet(id){document.getElementById(id).classList.add('open');}
 function closeSheet(id,e){if(!e){document.getElementById(id).classList.remove('open');return;}if(e.target.id===id)document.getElementById(id).classList.remove('open');}
-['booking-sheet','venue-sheet','filter-sheet'].forEach(id=>{document.getElementById(id).addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+['booking-sheet','venue-sheet','filter-sheet','share-sheet','visit-sheet'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
 
 function toggleFaq(el){const a=el.nextElementSibling;const isOpen=a.classList.contains('open');document.querySelectorAll('.faq-q').forEach(q=>{q.classList.remove('open');q.nextElementSibling.classList.remove('open');});if(!isOpen){el.classList.add('open');a.classList.add('open');}}
 // Open first FAQ by default
@@ -1830,6 +2159,8 @@ function toggleFaq(el){const a=el.nextElementSibling;const isOpen=a.classList.co
 
 function openVenue(id){
     currentVenueId=id;const v=venues[id];if(!v)return;
+    // Track recently viewed
+    trackRecentlyViewed(id);
     const adv40=v.priceRaw*0.40,plat=v.priceRaw*PLATFORM_FEE_PCT;
     const a=v.amenities||{};
     const p=v.pricing||{weekday:v.priceRaw,weekend:v.priceRaw,festival:v.priceRaw,peakSeason:v.priceRaw};
@@ -1847,6 +2178,7 @@ function openVenue(id){
     ];
     // Store gallery for lightbox
     currentGallery = {imgs: galleryImgs, name: v.name, idx: 0};
+    const isSaved = savedVenueIds.includes(id);
     document.getElementById('venue-content').innerHTML=
         // Airbnb-style photo grid
         '<div class="photo-gallery-grid" style="position:relative;" onclick="openGallery(0)">'
@@ -1860,6 +2192,13 @@ function openVenue(id){
         +'<div class="detail-tag-row"><div class="detail-tag">'+v.tag+'</div><div class="detail-tag" style="background:rgba(16,185,129,0.08);color:var(--green);">VERIFIED PARTNER</div>'+(v.halal?'<div class="detail-tag" style="background:rgba(34,197,94,0.1);color:#16a34a;"><i class="fa-solid fa-leaf" style="font-size:8px;margin-right:3px;"></i>HALAL FRIENDLY</div>':'')+'</div>'
         +'<div class="detail-name">'+v.name+'</div>'
         +'<div class="detail-loc"><i class="fa-solid fa-location-dot"></i> '+v.loc+'</div>'
+        // Action buttons row: Save + Share + Site Visit
+        +'<div style="display:flex;gap:8px;margin:14px 0;">'
+        +'<button id="venue-save-btn" onclick="toggleVenueSave(\''+id+'\')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 8px;border-radius:14px;border:1.5px solid '+(isSaved?'var(--red)':'var(--border)')+';background:'+(isSaved?'rgba(239,68,68,0.07)':'transparent')+';color:'+(isSaved?'var(--red)':'var(--dim)')+';font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;transition:all 0.2s;">'
+        +'<i class="'+(isSaved?'fa-solid':'fa-regular')+' fa-heart"></i> '+(isSaved?'Saved':'Save')+'</button>'
+        +'<button onclick="openShareSheet(\''+id+'\')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 8px;border-radius:14px;border:1.5px solid var(--border);background:transparent;color:var(--dim);font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;transition:all 0.2s;"><i class="fa-solid fa-share-nodes"></i> Share</button>'
+        +'<button onclick="openSiteVisit(\''+id+'\')" style="flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 8px;border-radius:14px;border:1.5px solid rgba(175,58,129,0.3);background:rgba(175,58,129,0.06);color:#AF3A81;font-size:13px;font-weight:500;font-family:var(--font);cursor:pointer;transition:all 0.2s;"><i class="fa-solid fa-calendar-days"></i> Visit</button>'
+        +'</div>'
         // Stats
         +'<div class="detail-stats"><div class="stat-box"><div class="stat-val">'+v.rating+'★</div><div class="stat-lbl">Rating</div></div><div class="stat-box"><div class="stat-val">'+v.reviews+'</div><div class="stat-lbl">Reviews</div></div><div class="stat-box"><div class="stat-val">'+v.cap+'</div><div class="stat-lbl">Capacity</div></div></div>'
         // Google Maps buttons
@@ -2648,6 +2987,10 @@ function applyFilters() {
 }
 
 updateProfileUI();renderBookings();updateDockBadge();
+// Restore saved venue ids from old format if needed
+if(savedVenues && savedVenueIds.length===0) { /* legacy: counts only, ids lost */ }
+syncAllFavButtons();
+renderRecentlyViewed();
 if(!currentUser)setTimeout(()=>openAuthModal('login'),900);
 
 // Pre-select Vijayawada based on AP location
