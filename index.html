@@ -229,16 +229,17 @@
         /* Sheet */
         .sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(4px);}
         .sheet-overlay.open{display:flex;align-items:flex-end;}
-        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0 0 calc(30px + var(--safe-bottom));max-height:85vh;overflow-y:auto;animation:slideUp 0.2s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);}
+        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0;max-height:88vh;overflow-y:auto;overflow-x:hidden;animation:slideUp 0.2s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);-webkit-overflow-scrolling:touch;}
         .sheet-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:14px auto 22px;}
         .sheet-title{font-size:22px;font-weight:500;font-family:var(--display);padding:0 20px;margin-bottom:20px;letter-spacing:0.01em;}
         .filter-group{padding:0 20px;margin-bottom:22px;}
         .filter-group-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
         .filter-chips{display:flex;flex-wrap:wrap;gap:8px;}
-        .filter-chip{padding:8px 14px;border-radius:50px;background:var(--card);border:1.5px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;}
+        .filter-chip{padding:8px 14px;border-radius:50px;background:var(--card);border:1.5px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none;}
+        .filter-chip *{pointer-events:none;}
         .filter-chip.active{background:#AF3A81;color:#fff;border-color:#AF3A81;font-weight:500;}
         .filter-chip.active i{color:#fff!important;}
-        .sheet-footer{padding:0 20px;display:flex;gap:10px;}
+        .sheet-footer{padding:16px 20px calc(24px + var(--safe-bottom));display:flex;gap:10px;position:sticky;bottom:0;background:var(--bg);z-index:10;border-top:1px solid var(--border);margin-top:8px;}
         /* Venue detail */
         .detail-sheet .sheet{padding-bottom:calc(90px + var(--safe-bottom));}
         .detail-img{width:100%;height:240px;object-fit:cover;display:block;}
@@ -893,6 +894,26 @@
             background:rgba(245,158,11,0.12);color:#D97706;
         }
         .avail-badge i { font-size:9px; }
+        /* ── LIST VENUE FLOW ─────────────────────────────────────── */
+        .lv-flow-step { display: none; }
+        .lv-flow-step.active { display: block; }
+        .lv-step-row { -webkit-tap-highlight-color: transparent; transition: background 0.15s; border-radius: 16px; margin: 0 -8px; padding: 0 8px; }
+        .lv-step-row:active { background: rgba(175,58,129,0.04); }
+
+        /* ── MOBILE BUTTON FIXES ─────────────────────────────────── */
+        button, .btn-sm, .icon-btn, .occ-box, .chip, .filter-chip, .radio-chip,
+        .menu-item, .venue-card-h, .venue-card-v, .dock-item, .faq-q,
+        .share-btn, .social-btn, .unsave-btn, .saved-venue-row {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        /* Ensure sheet footer buttons always have enough tap area */
+        .sheet-footer .btn-sm {
+            min-height: 50px;
+            font-size: 14px;
+            padding: 14px 10px;
+        }
+
         </style>
 </head>
 <body>
@@ -1066,17 +1087,23 @@
         <!-- STATS BAR -->
         <div class="section" style="padding-top:32px;" id="statsSection">
             <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:20px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,0.04);">
-                <div class="fade-up" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
-                    <span class="trust-num counter-val" data-target="50" data-suffix="+">0</span>
-                    <span class="trust-lbl">Venues</span>
+                <div class="fade-up" style="background:var(--card);padding:20px 10px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;">
+                    <div style="display:flex;align-items:baseline;gap:2px;line-height:1;">
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;color:var(--text);letter-spacing:-0.03em;line-height:1;"><span class="counter-val" data-target="12" data-suffix="">0</span></span><span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#AF3A81;line-height:1;margin-left:1px;">+</span>
+                    </div>
+                    <span style="font-size:10px;color:var(--dim2);font-weight:400;letter-spacing:2px;text-transform:uppercase;margin-top:6px;">Venues</span>
                 </div>
-                <div class="fade-up delay-1" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border);">
-                    <span class="trust-num counter-val" data-target="500" data-suffix="+">0</span>
-                    <span class="trust-lbl">Events</span>
+                <div class="fade-up delay-1" style="background:var(--card);padding:20px 10px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;border-left:1px solid var(--border);border-right:1px solid var(--border);">
+                    <div style="display:flex;align-items:baseline;gap:2px;line-height:1;">
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;color:var(--text);letter-spacing:-0.03em;line-height:1;"><span class="counter-val" data-target="25" data-suffix="">0</span></span><span style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:#AF3A81;line-height:1;margin-left:1px;">+</span>
+                    </div>
+                    <span style="font-size:10px;color:var(--dim2);font-weight:400;letter-spacing:2px;text-transform:uppercase;margin-top:6px;">Events</span>
                 </div>
-                <div class="fade-up delay-2" style="background:var(--card);padding:18px 10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;">
-                    <span class="trust-num counter-val" data-target="12" data-suffix="">0</span>
-                    <span class="trust-lbl">Cities</span>
+                <div class="fade-up delay-2" style="background:var(--card);padding:20px 10px 18px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;">
+                    <div style="display:flex;align-items:baseline;gap:2px;line-height:1;">
+                        <span style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:500;color:var(--text);letter-spacing:-0.03em;line-height:1;"><span class="counter-val" data-target="6" data-suffix="">0</span></span>
+                    </div>
+                    <span style="font-size:10px;color:var(--dim2);font-weight:400;letter-spacing:2px;text-transform:uppercase;margin-top:6px;">Cities</span>
                 </div>
             </div>
         </div>
@@ -1179,7 +1206,7 @@
                         <span style="font-size:10px;font-weight:400;color:#D4AF37;letter-spacing:1.5px;">FOR VENUE OWNERS</span>
                     </div>
                     <div style="font-family:var(--display);font-size:26px;font-weight:500;color:#FFFFFF;line-height:1.2;margin-bottom:10px;letter-spacing:0.01em;">List Your Venue.<br><em style="color:rgba(212,175,55,0.9);">Reach More Families.</em></div>
-                    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">Join 200+ trusted hall owners on Vivaha Venue. Get verified bookings, transparent payments and dedicated account support — at zero upfront cost.</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">Join trusted hall owners on Vivaha Venue. Get verified bookings, transparent payments and dedicated account support — at zero upfront cost.</div>
                     <div style="display:flex;gap:14px;margin-bottom:20px;">
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Zero listing fee</span></div>
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Advance guaranteed</span></div>
@@ -1291,8 +1318,8 @@
 </div>
 
 <!-- FILTER SHEET -->
-<div class="sheet-overlay" id="filter-sheet" onclick="closeSheet('filter-sheet',event)">
-    <div class="sheet">
+<div class="sheet-overlay" id="filter-sheet">
+    <div class="sheet" onclick="event.stopPropagation()">
         <div class="sheet-handle"></div>
         <div class="sheet-title">Filter Venues</div>
         <div class="filter-group">
@@ -1315,20 +1342,20 @@
             </div>
         </div>
         <div class="filter-group">
-            <div class="filter-group-label">Amenities <span style="font-size:10px;color:#AF3A81;font-weight:500;text-transform:none;letter-spacing:0;background:rgba(175,58,129,0.08);padding:2px 8px;border-radius:50px;">tap to select multiple</span></div>
-            <div class="filter-chips" id="filter-amenity-chips" style="display:flex;flex-wrap:wrap;gap:8px;">
-                <div class="filter-chip" data-amenity="ac"><i class="fa-solid fa-snowflake" style="font-size:10px;margin-right:4px;"></i>AC</div>
-                <div class="filter-chip" data-amenity="parking"><i class="fa-solid fa-square-parking" style="font-size:10px;margin-right:4px;"></i>Parking</div>
-                <div class="filter-chip" data-amenity="catering"><i class="fa-solid fa-utensils" style="font-size:10px;margin-right:4px;"></i>Catering</div>
-                <div class="filter-chip" data-amenity="decoration"><i class="fa-solid fa-wand-magic-sparkles" style="font-size:10px;margin-right:4px;"></i>Décor</div>
-                <div class="filter-chip" data-amenity="powerBackup"><i class="fa-solid fa-bolt" style="font-size:10px;margin-right:4px;"></i>Power Backup</div>
-                <div class="filter-chip" data-amenity="alcohol"><i class="fa-solid fa-wine-glass" style="font-size:10px;margin-right:4px;"></i>Alcohol</div>
-                <div class="filter-chip" data-amenity="rooms"><i class="fa-solid fa-bed" style="font-size:10px;margin-right:4px;"></i>Rooms</div>
-                <div class="filter-chip" data-amenity="outdoor"><i class="fa-solid fa-tree" style="font-size:10px;margin-right:4px;"></i>Outdoor Space</div>
-                <div class="filter-chip" data-amenity="wifi"><i class="fa-solid fa-wifi" style="font-size:10px;margin-right:4px;"></i>Wi-Fi</div>
-                <div class="filter-chip" data-amenity="stage"><i class="fa-solid fa-star" style="font-size:10px;margin-right:4px;"></i>Stage</div>
-                <div class="filter-chip" data-amenity="soundSystem"><i class="fa-solid fa-music" style="font-size:10px;margin-right:4px;"></i>Sound System</div>
-                <div class="filter-chip" data-amenity="valetParking"><i class="fa-solid fa-car" style="font-size:10px;margin-right:4px;"></i>Valet Parking</div>
+            <div class="filter-group-label">Amenities <span style="font-size:10px;color:#AF3A81;font-weight:500;text-transform:none;letter-spacing:0;background:rgba(175,58,129,0.08);padding:2px 8px;border-radius:50px;">select multiple</span></div>
+            <div class="filter-chips" id="filter-amenity-chips" onclick="event.stopPropagation()">
+                <div class="filter-chip" data-amenity="ac" onclick="this.classList.toggle('active')"><i class="fa-solid fa-snowflake" style="font-size:10px;margin-right:4px;"></i>AC</div>
+                <div class="filter-chip" data-amenity="parking" onclick="this.classList.toggle('active')"><i class="fa-solid fa-square-parking" style="font-size:10px;margin-right:4px;"></i>Parking</div>
+                <div class="filter-chip" data-amenity="catering" onclick="this.classList.toggle('active')"><i class="fa-solid fa-utensils" style="font-size:10px;margin-right:4px;"></i>Catering</div>
+                <div class="filter-chip" data-amenity="decoration" onclick="this.classList.toggle('active')"><i class="fa-solid fa-wand-magic-sparkles" style="font-size:10px;margin-right:4px;"></i>Décor</div>
+                <div class="filter-chip" data-amenity="powerBackup" onclick="this.classList.toggle('active')"><i class="fa-solid fa-bolt" style="font-size:10px;margin-right:4px;"></i>Power Backup</div>
+                <div class="filter-chip" data-amenity="alcohol" onclick="this.classList.toggle('active')"><i class="fa-solid fa-wine-glass" style="font-size:10px;margin-right:4px;"></i>Alcohol</div>
+                <div class="filter-chip" data-amenity="rooms" onclick="this.classList.toggle('active')"><i class="fa-solid fa-bed" style="font-size:10px;margin-right:4px;"></i>Rooms</div>
+                <div class="filter-chip" data-amenity="outdoor" onclick="this.classList.toggle('active')"><i class="fa-solid fa-tree" style="font-size:10px;margin-right:4px;"></i>Outdoor Space</div>
+                <div class="filter-chip" data-amenity="wifi" onclick="this.classList.toggle('active')"><i class="fa-solid fa-wifi" style="font-size:10px;margin-right:4px;"></i>Wi-Fi</div>
+                <div class="filter-chip" data-amenity="stage" onclick="this.classList.toggle('active')"><i class="fa-solid fa-star" style="font-size:10px;margin-right:4px;"></i>Stage</div>
+                <div class="filter-chip" data-amenity="soundSystem" onclick="this.classList.toggle('active')"><i class="fa-solid fa-music" style="font-size:10px;margin-right:4px;"></i>Sound System</div>
+                <div class="filter-chip" data-amenity="valetParking" onclick="this.classList.toggle('active')"><i class="fa-solid fa-car" style="font-size:10px;margin-right:4px;"></i>Valet Parking</div>
             </div>
         </div>
         <div class="sheet-footer">
@@ -1474,41 +1501,315 @@
 <!-- LIST YOUR VENUE PAGE -->
 <div class="page" id="page-list-venue">
     <div class="status-bar"></div>
-    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">For Venue Owners</span><span class="topbar-brand">List Your Venue</span></div></div>
-    <div class="scroll-area" style="padding:24px 20px 40px;">
-        <div style="background:linear-gradient(135deg,#2B1A25 0%,#3D1F32 100%);border-radius:24px;padding:32px 24px;margin-bottom:24px;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:-30px;right:-20px;width:140px;height:140px;border-radius:50%;background:rgba(175,58,129,0.15);"></div>
-            <div style="font-size:10px;font-weight:500;color:#D4AF37;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;">Join 200+ Venue Partners</div>
-            <div style="font-family:var(--display);font-size:32px;font-weight:500;color:#FFFFFF;line-height:1.15;margin-bottom:12px;">Own a Venue?<br><em style="color:rgba(212,175,55,0.9);">Let Families Find You.</em></div>
-            <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:24px;">Get verified bookings from Telugu families across AP and Telangana. Transparent payments, guaranteed advance, and your own dashboard — at zero upfront cost.</div>
-            <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#2B1A25;font-weight:600;font-size:14px;border-radius:50px;padding:14px 28px;cursor:pointer;border:none;font-family:var(--font);box-shadow:0 6px 20px rgba(0,0,0,0.3);"><i class="fa-brands fa-whatsapp" style="color:#10B981;font-size:16px;"></i> Apply on WhatsApp</button>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
-            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
-                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-indian-rupee-sign" style="color:#AF3A81;font-size:17px;"></i></div>
-                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Zero Listing Fee</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">No upfront charges. We earn only when you earn — a small commission per confirmed booking.</div></div>
-            </div>
-            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
-                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-shield-halved" style="color:#AF3A81;font-size:17px;"></i></div>
-                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Advance Guaranteed</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Every customer pays 40% advance online to lock your date. Your revenue is secured before the event.</div></div>
-            </div>
-            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
-                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-line" style="color:#AF3A81;font-size:17px;"></i></div>
-                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Your Own Dashboard</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Manage bookings, view your calendar, track payments and connect with customers — all in one place.</div></div>
-            </div>
-            <div style="background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);display:flex;align-items:flex-start;gap:16px;">
-                <div style="width:44px;height:44px;background:rgba(175,58,129,0.07);border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-user-tie" style="color:#AF3A81;font-size:17px;"></i></div>
-                <div><div style="font-size:15px;font-weight:500;margin-bottom:4px;font-family:var(--display);">Dedicated Account Manager</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">A dedicated relationship manager helps you onboard, optimize your listing and grow your bookings.</div></div>
-            </div>
-        </div>
-        <div style="background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:24px;">
-            <div style="font-size:11px;font-weight:500;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;">How it works</div>
-            <div style="display:flex;flex-direction:column;gap:16px;">
-                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">1</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Message us on WhatsApp. Share your venue name, location and capacity.</div></div>
-                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">2</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Our team visits, photographs and verifies your venue — typically within 48 hours.</div></div>
-                <div style="display:flex;gap:14px;align-items:flex-start;"><div style="width:28px;height:28px;background:#AF3A81;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0;">3</div><div style="font-size:13px;color:var(--dim);line-height:1.6;padding-top:4px;">Your venue goes live. Families start discovering and booking your space.</div></div>
+    <div class="topbar">
+        <div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div>
+        <div class="topbar-left" style="flex:1;"><span class="topbar-greeting">For Venue Owners</span><span class="topbar-brand">List Your Venue</span></div>
+    </div>
+    <div class="scroll-area" style="padding:0 0 40px;">
+
+        <!-- Hero -->
+        <div style="background:linear-gradient(135deg,#1E0F1A 0%,#3D1F32 100%);padding:32px 24px 36px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(175,58,129,0.14);pointer-events:none;"></div>
+            <div style="position:absolute;bottom:-50px;left:-20px;width:130px;height:130px;border-radius:50%;background:rgba(212,175,55,0.09);pointer-events:none;"></div>
+            <div style="position:relative;z-index:1;">
+                <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);border-radius:50px;padding:5px 14px;margin-bottom:18px;">
+                    <i class="fa-solid fa-building-columns" style="color:#D4AF37;font-size:10px;"></i>
+                    <span style="font-size:10px;font-weight:400;color:#D4AF37;letter-spacing:1.5px;">VENUE OWNERS · MARKETPLACE</span>
+                </div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:500;color:#FFFFFF;line-height:1.12;margin-bottom:12px;letter-spacing:-0.01em;">Reach more families.<br><em style="color:rgba(212,175,55,0.9);">Grow your bookings.</em></div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:10px;">Join growing hall owners on Vivaha Venue. Your listing goes live in 48 hours.</div>
+                <div style="display:flex;gap:16px;margin-bottom:26px;">
+                    <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.65);">Zero listing fee</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.65);">Advance secured</span></div>
+                    <div style="display:flex;align-items:center;gap:6px;"><div style="width:6px;height:6px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.65);">Own dashboard</span></div>
+                </div>
+                <button onclick="openListVenueFlow()" style="display:inline-flex;align-items:center;gap:10px;background:#FFFFFF;color:#1E0F1A;font-weight:600;font-size:14px;border-radius:50px;padding:14px 28px;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;box-shadow:0 8px 24px rgba(0,0,0,0.3);transition:transform 0.15s;-webkit-tap-highlight-color:transparent;">
+                    <i class="fa-solid fa-arrow-right" style="font-size:13px;"></i> Start Listing — It's Free
+                </button>
             </div>
         </div>
+
+        <!-- 5-step progress indicator -->
+        <div style="padding:28px 24px 8px;">
+            <div style="font-size:10px;font-weight:600;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;">Your Listing Journey</div>
+            <div style="display:flex;flex-direction:column;gap:0;" id="lv-steps-display">
+
+                <!-- Step 1 -->
+                <div class="lv-step-row" onclick="openListVenueStep(1)" style="display:flex;gap:0;align-items:stretch;cursor:pointer;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:#AF3A81;display:flex;align-items:center;justify-content:center;z-index:1;">
+                            <i class="fa-solid fa-building" style="color:#fff;font-size:14px;"></i>
+                        </div>
+                        <div style="width:2px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.4),rgba(175,58,129,0.1));min-height:32px;margin-top:2px;"></div>
+                    </div>
+                    <div style="flex:1;padding:0 0 28px 14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
+                            <div>
+                                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;">Step 1 of 5</div>
+                                <div style="font-size:16px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:4px;">Venue Details</div>
+                                <div style="font-size:12px;color:var(--dim);line-height:1.55;">Name, location, type, capacity and a short description of your space.</div>
+                            </div>
+                            <div style="width:32px;height:32px;border-radius:50%;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:12px;"><i class="fa-solid fa-chevron-right" style="color:#AF3A81;font-size:11px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="lv-step-row" onclick="openListVenueStep(2)" style="display:flex;gap:0;align-items:stretch;cursor:pointer;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:1;">
+                            <i class="fa-solid fa-images" style="color:var(--dim);font-size:14px;"></i>
+                        </div>
+                        <div style="width:2px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.1),rgba(175,58,129,0.05));min-height:32px;margin-top:2px;"></div>
+                    </div>
+                    <div style="flex:1;padding:0 0 28px 14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
+                            <div>
+                                <div style="font-size:9px;font-weight:600;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;">Step 2 of 5</div>
+                                <div style="font-size:16px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:4px;">Photos</div>
+                                <div style="font-size:12px;color:var(--dim);line-height:1.55;">Upload high-quality photos of your hall, banquet area, stage and outdoor spaces.</div>
+                            </div>
+                            <div style="width:32px;height:32px;border-radius:50%;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:12px;"><i class="fa-solid fa-chevron-right" style="color:#AF3A81;font-size:11px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="lv-step-row" onclick="openListVenueStep(3)" style="display:flex;gap:0;align-items:stretch;cursor:pointer;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:1;">
+                            <i class="fa-solid fa-indian-rupee-sign" style="color:var(--dim);font-size:14px;"></i>
+                        </div>
+                        <div style="width:2px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.08),rgba(175,58,129,0.03));min-height:32px;margin-top:2px;"></div>
+                    </div>
+                    <div style="flex:1;padding:0 0 28px 14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
+                            <div>
+                                <div style="font-size:9px;font-weight:600;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;">Step 3 of 5</div>
+                                <div style="font-size:16px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:4px;">Pricing</div>
+                                <div style="font-size:12px;color:var(--dim);line-height:1.55;">Set your per-day rate, half-day pricing and any seasonal rates or packages.</div>
+                            </div>
+                            <div style="width:32px;height:32px;border-radius:50%;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:12px;"><i class="fa-solid fa-chevron-right" style="color:#AF3A81;font-size:11px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="lv-step-row" onclick="openListVenueStep(4)" style="display:flex;gap:0;align-items:stretch;cursor:pointer;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:1;">
+                            <i class="fa-regular fa-calendar" style="color:var(--dim);font-size:14px;"></i>
+                        </div>
+                        <div style="width:2px;flex:1;background:linear-gradient(to bottom,rgba(175,58,129,0.06),transparent);min-height:32px;margin-top:2px;"></div>
+                    </div>
+                    <div style="flex:1;padding:0 0 28px 14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
+                            <div>
+                                <div style="font-size:9px;font-weight:600;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;">Step 4 of 5</div>
+                                <div style="font-size:16px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:4px;">Availability</div>
+                                <div style="font-size:12px;color:var(--dim);line-height:1.55;">Mark your open dates and any blocked dates on your calendar.</div>
+                            </div>
+                            <div style="width:32px;height:32px;border-radius:50%;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:12px;"><i class="fa-solid fa-chevron-right" style="color:#AF3A81;font-size:11px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="lv-step-row" onclick="openListVenueStep(5)" style="display:flex;gap:0;align-items:stretch;cursor:pointer;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:48px;flex-shrink:0;">
+                        <div style="width:40px;height:40px;border-radius:50%;background:var(--card);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:1;">
+                            <i class="fa-solid fa-circle-check" style="color:var(--dim);font-size:14px;"></i>
+                        </div>
+                    </div>
+                    <div style="flex:1;padding:0 0 4px 14px;">
+                        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:8px;">
+                            <div>
+                                <div style="font-size:9px;font-weight:600;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px;">Step 5 of 5</div>
+                                <div style="font-size:16px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:4px;">Submit for Approval</div>
+                                <div style="font-size:12px;color:var(--dim);line-height:1.55;">Our team reviews and verifies your listing. Go live in 48 hours.</div>
+                            </div>
+                            <div style="width:32px;height:32px;border-radius:50%;background:rgba(175,58,129,0.07);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:12px;"><i class="fa-solid fa-chevron-right" style="color:#AF3A81;font-size:11px;"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end lv-steps-display -->
+        </div><!-- end padding wrapper -->
+
+        <!-- Benefits strip -->
+        <div style="margin:4px 24px 0;background:var(--card);border-radius:20px;padding:20px;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+            <div style="font-size:10px;font-weight:600;color:var(--dim2);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;">Why list with us</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:rgba(175,58,129,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-shield-halved" style="color:#AF3A81;font-size:13px;"></i></div><div style="font-size:13px;color:var(--dim);line-height:1.5;"><strong style="color:var(--text);">Advance Guaranteed.</strong> 40% booked online before your date — revenue secured.</div></div>
+                <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:rgba(175,58,129,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-indian-rupee-sign" style="color:#AF3A81;font-size:13px;"></i></div><div style="font-size:13px;color:var(--dim);line-height:1.5;"><strong style="color:var(--text);">Zero upfront cost.</strong> We only earn a small commission per confirmed booking.</div></div>
+                <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:rgba(175,58,129,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-line" style="color:#AF3A81;font-size:13px;"></i></div><div style="font-size:13px;color:var(--dim);line-height:1.5;"><strong style="color:var(--text);">Owner dashboard.</strong> Manage bookings, calendar and payments in one place.</div></div>
+                <div style="display:flex;align-items:center;gap:12px;"><div style="width:32px;height:32px;background:rgba(175,58,129,0.07);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-user-tie" style="color:#AF3A81;font-size:13px;"></i></div><div style="font-size:13px;color:var(--dim);line-height:1.5;"><strong style="color:var(--text);">Dedicated support.</strong> A relationship manager assigned to your account from day one.</div></div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div style="padding:24px 24px 0;">
+            <button onclick="openListVenueFlow()" style="width:100%;padding:16px;background:#AF3A81;color:#fff;font-weight:500;font-size:15px;border-radius:16px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.3px;display:flex;align-items:center;justify-content:center;gap:10px;transition:opacity 0.15s;-webkit-tap-highlight-color:transparent;">
+                <i class="fa-solid fa-rocket" style="font-size:14px;"></i> Begin Listing Your Venue
+            </button>
+            <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--dim2);">or chat with us first —</div>
+            <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="width:100%;margin-top:8px;padding:14px;background:transparent;border:1.5px solid rgba(16,185,129,0.4);color:#059669;font-weight:500;font-size:14px;border-radius:16px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;">
+                <i class="fa-brands fa-whatsapp" style="font-size:16px;"></i> Ask us on WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<!-- LIST VENUE FLOW SHEET (5-step) -->
+<div class="sheet-overlay" id="list-venue-sheet">
+    <div class="sheet" id="list-venue-sheet-inner" style="max-height:92vh;overflow-y:auto;padding-bottom:calc(40px + var(--safe-bottom));">
+        <div style="position:sticky;top:0;background:var(--bg);z-index:10;border-radius:28px 28px 0 0;">
+            <div style="display:flex;justify-content:center;padding:12px 0 4px;"><div style="width:40px;height:4px;background:var(--dim2);border-radius:2px;"></div></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 20px 12px;">
+                <div id="lv-sheet-title" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text);">Venue Details</div>
+                <button onclick="closeSheet('list-venue-sheet')" style="display:flex;align-items:center;gap:6px;background:rgba(245,101,101,0.1);border:1.5px solid rgba(245,101,101,0.3);border-radius:50px;padding:7px 14px 7px 10px;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;color:var(--red);-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-xmark"></i> Close</button>
+            </div>
+            <!-- Step progress bar -->
+            <div style="padding:0 20px 14px;">
+                <div style="display:flex;gap:4px;">
+                    <div class="lv-prog-bar" id="lvpb1" style="flex:1;height:3px;border-radius:2px;background:#AF3A81;transition:background 0.3s;"></div>
+                    <div class="lv-prog-bar" id="lvpb2" style="flex:1;height:3px;border-radius:2px;background:var(--border);transition:background 0.3s;"></div>
+                    <div class="lv-prog-bar" id="lvpb3" style="flex:1;height:3px;border-radius:2px;background:var(--border);transition:background 0.3s;"></div>
+                    <div class="lv-prog-bar" id="lvpb4" style="flex:1;height:3px;border-radius:2px;background:var(--border);transition:background 0.3s;"></div>
+                    <div class="lv-prog-bar" id="lvpb5" style="flex:1;height:3px;border-radius:2px;background:var(--border);transition:background 0.3s;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="padding:4px 20px 20px;">
+
+            <!-- STEP 1: Venue Details -->
+            <div class="lv-flow-step active" id="lvstep1">
+                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 1 of 5</div>
+                <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Venue Details</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Tell us about your venue</div>
+                <div class="flow-field"><div class="flow-label">Venue Name</div><input type="text" class="flow-input" id="lv-name" placeholder="e.g. Royal Palace Conventions"></div>
+                <div class="flow-field"><div class="flow-label">City</div>
+                    <select class="flow-input" id="lv-city" style="appearance:none;">
+                        <option value="">Select city…</option>
+                        <option>Vijayawada</option><option>Hyderabad</option><option>Visakhapatnam</option>
+                        <option>Kakinada</option><option>Rajahmundry</option><option>Guntur</option>
+                        <option>Tirupati</option><option>Nellore</option><option>Kurnool</option>
+                        <option>Warangal</option><option>Eluru</option><option>Other</option>
+                    </select>
+                </div>
+                <div class="flow-field"><div class="flow-label">Full Address</div><input type="text" class="flow-input" id="lv-address" placeholder="Street, area, landmark…"></div>
+                <div class="flow-field"><div class="flow-label">Venue Type</div>
+                    <select class="flow-input" id="lv-type" style="appearance:none;">
+                        <option value="">Select type…</option>
+                        <option>Banquet Hall</option><option>Convention Center</option><option>Garden / Lawn</option>
+                        <option>Hotel Banquet</option><option>Resort</option><option>Kalyana Mandapam</option><option>Other</option>
+                    </select>
+                </div>
+                <div class="flow-field"><div class="flow-label">Guest Capacity</div><input type="number" class="flow-input" id="lv-capacity" placeholder="e.g. 500"></div>
+                <div class="flow-field"><div class="flow-label">Short Description</div><textarea class="flow-input" id="lv-desc" placeholder="Describe your venue's highlights, ambience and USP…" style="resize:none;min-height:90px;"></textarea></div>
+                <button onclick="lvNext(2)" style="width:100%;padding:16px;background:#2B2B2B;color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;">Continue <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+
+            <!-- STEP 2: Photos -->
+            <div class="lv-flow-step" id="lvstep2" style="display:none;">
+                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 2 of 5</div>
+                <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Photos</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Upload photos of your venue</div>
+                <div style="background:var(--card2);border:2px dashed var(--border);border-radius:20px;padding:36px 20px;text-align:center;margin-bottom:20px;cursor:pointer;" onclick="showToast('Photo upload via WhatsApp — see next step')">
+                    <div style="width:56px;height:56px;background:rgba(175,58,129,0.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><i class="fa-solid fa-images" style="color:#AF3A81;font-size:22px;"></i></div>
+                    <div style="font-size:15px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:6px;">Add venue photos</div>
+                    <div style="font-size:12px;color:var(--dim);line-height:1.6;">You can share photos via WhatsApp after submitting.<br>We'll handle professional photography if needed.</div>
+                </div>
+                <div style="background:rgba(212,175,55,0.07);border:1px solid rgba(212,175,55,0.2);border-radius:14px;padding:13px 15px;margin-bottom:20px;font-size:12px;color:var(--dim);line-height:1.6;"><i class="fa-solid fa-circle-info" style="color:var(--gold);margin-right:6px;"></i><strong style="color:var(--text);">Tip:</strong> Venues with 5+ clear photos get 3× more enquiries.</div>
+                <div style="display:flex;gap:10px;">
+                    <button onclick="lvNext(1)" style="flex:1;padding:14px;background:transparent;border:1.5px solid var(--border);border-radius:50px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--dim);-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button onclick="lvNext(3)" style="flex:2;padding:14px;background:#2B2B2B;color:#FAF7F2;font-weight:400;font-size:14px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Pricing -->
+            <div class="lv-flow-step" id="lvstep3" style="display:none;">
+                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 3 of 5</div>
+                <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Pricing</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Set your rates</div>
+                <div class="flow-field"><div class="flow-label">Full Day Rate (₹)</div><input type="number" class="flow-input" id="lv-price-day" placeholder="e.g. 75000"></div>
+                <div class="flow-field"><div class="flow-label">Half Day Rate (₹) <span style="font-size:10px;color:var(--dim2);text-transform:none;letter-spacing:0;">(optional)</span></div><input type="number" class="flow-input" id="lv-price-half" placeholder="e.g. 45000"></div>
+                <div class="flow-field"><div class="flow-label">Included in Price</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;" id="lv-inclusions">
+                        <div class="filter-chip" data-inc="decoration" onclick="this.classList.toggle('active')"><i class="fa-solid fa-wand-magic-sparkles" style="font-size:10px;margin-right:4px;"></i>Décor</div>
+                        <div class="filter-chip" data-inc="catering" onclick="this.classList.toggle('active')"><i class="fa-solid fa-utensils" style="font-size:10px;margin-right:4px;"></i>Catering</div>
+                        <div class="filter-chip" data-inc="parking" onclick="this.classList.toggle('active')"><i class="fa-solid fa-square-parking" style="font-size:10px;margin-right:4px;"></i>Parking</div>
+                        <div class="filter-chip" data-inc="ac" onclick="this.classList.toggle('active')"><i class="fa-solid fa-snowflake" style="font-size:10px;margin-right:4px;"></i>AC</div>
+                        <div class="filter-chip" data-inc="generator" onclick="this.classList.toggle('active')"><i class="fa-solid fa-bolt" style="font-size:10px;margin-right:4px;"></i>Generator</div>
+                        <div class="filter-chip" data-inc="sound" onclick="this.classList.toggle('active')"><i class="fa-solid fa-music" style="font-size:10px;margin-right:4px;"></i>Sound System</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:10px;">
+                    <button onclick="lvNext(2)" style="flex:1;padding:14px;background:transparent;border:1.5px solid var(--border);border-radius:50px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--dim);-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button onclick="lvNext(4)" style="flex:2;padding:14px;background:#2B2B2B;color:#FAF7F2;font-weight:400;font-size:14px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 4: Availability -->
+            <div class="lv-flow-step" id="lvstep4" style="display:none;">
+                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 4 of 5</div>
+                <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Availability</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">When is your venue open for bookings?</div>
+                <div style="background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:16px;">
+                    <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:14px;">Typically available on</div>
+                    <div style="display:flex;gap:8px;flex-wrap:wrap;" id="lv-days">
+                        <div class="filter-chip" onclick="this.classList.toggle('active')">Mon</div>
+                        <div class="filter-chip" onclick="this.classList.toggle('active')">Tue</div>
+                        <div class="filter-chip" onclick="this.classList.toggle('active')">Wed</div>
+                        <div class="filter-chip" onclick="this.classList.toggle('active')">Thu</div>
+                        <div class="filter-chip active" onclick="this.classList.toggle('active')">Fri</div>
+                        <div class="filter-chip active" onclick="this.classList.toggle('active')">Sat</div>
+                        <div class="filter-chip active" onclick="this.classList.toggle('active')">Sun</div>
+                    </div>
+                </div>
+                <div class="flow-field"><div class="flow-label">Advance Notice Required</div>
+                    <select class="flow-input" id="lv-notice" style="appearance:none;">
+                        <option>1 week</option><option>2 weeks</option><option>1 month</option><option>2 months</option>
+                    </select>
+                </div>
+                <div class="flow-field"><div class="flow-label">Any blocked dates? <span style="font-size:10px;color:var(--dim2);text-transform:none;letter-spacing:0;">(optional)</span></div><input type="text" class="flow-input" id="lv-blocked" placeholder="e.g. Dec 25, Jan 1, Mar 10–15"></div>
+                <div style="display:flex;gap:10px;">
+                    <button onclick="lvNext(3)" style="flex:1;padding:14px;background:transparent;border:1.5px solid var(--border);border-radius:50px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--dim);-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button onclick="lvNext(5)" style="flex:2;padding:14px;background:#2B2B2B;color:#FAF7F2;font-weight:400;font-size:14px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;">Continue <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- STEP 5: Submit -->
+            <div class="lv-flow-step" id="lvstep5" style="display:none;">
+                <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 5 of 5</div>
+                <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Submit for Approval</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Almost there — enter your contact details</div>
+                <div class="flow-field"><div class="flow-label">Your Name</div><input type="text" class="flow-input" id="lv-owner-name" placeholder="Hall owner / manager name"></div>
+                <div class="flow-field"><div class="flow-label">WhatsApp Number</div><input type="tel" class="flow-input" id="lv-owner-phone" placeholder="+91 9XXXXXXXXX"></div>
+                <div class="flow-field"><div class="flow-label">Email <span style="font-size:10px;color:var(--dim2);text-transform:none;letter-spacing:0;">(optional)</span></div><input type="email" class="flow-input" id="lv-owner-email" placeholder="you@email.com"></div>
+                <!-- Summary card -->
+                <div style="background:rgba(175,58,129,0.04);border:1.5px solid rgba(175,58,129,0.2);border-radius:16px;padding:16px;margin-bottom:20px;" id="lv-summary">
+                    <div style="font-size:10px;font-weight:600;color:var(--dim2);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;">Listing Summary</div>
+                    <div id="lv-summary-rows" style="font-size:13px;color:var(--dim);line-height:1.8;"></div>
+                </div>
+                <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:14px;padding:13px 15px;margin-bottom:20px;font-size:12px;color:var(--dim);line-height:1.6;"><i class="fa-solid fa-circle-check" style="color:var(--green);margin-right:6px;"></i>Our team will review and contact you within <strong style="color:var(--text);">48 hours</strong>. Your venue goes live after verification.</div>
+                <div style="display:flex;gap:10px;">
+                    <button onclick="lvNext(4)" style="flex:1;padding:14px;background:transparent;border:1.5px solid var(--border);border-radius:50px;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer;color:var(--dim);-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                    <button onclick="submitListVenue()" style="flex:2;padding:14px;background:#AF3A81;color:#fff;font-weight:500;font-size:14px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;-webkit-tap-highlight-color:transparent;"><i class="fa-solid fa-paper-plane"></i> Submit for Approval</button>
+                </div>
+            </div>
+
+            <!-- SUCCESS -->
+            <div class="lv-flow-step" id="lvstep-success" style="display:none;text-align:center;padding:20px 0;">
+                <div style="width:76px;height:76px;background:rgba(175,58,129,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;"><i class="fa-solid fa-check" style="font-size:30px;color:#AF3A81;"></i></div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:10px;">Submitted!</div>
+                <div style="font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:28px;">Thank you for listing with Vivaha Venue. Our team will review your application and reach you within <strong>48 hours</strong> on WhatsApp.</div>
+                <button onclick="closeSheet('list-venue-sheet');showToast('Application submitted successfully! We will contact you soon.');" style="width:100%;padding:16px;background:#2B2B2B;color:#FAF7F2;font-weight:400;font-size:14px;border-radius:50px;border:none;font-family:'DM Sans',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;">Done</button>
+            </div>
+
+        </div><!-- end padding -->
     </div>
 </div>
 
@@ -2984,6 +3285,90 @@ function applyFilters() {
     const count = [...document.querySelectorAll('#vgrid .venue-card-v')].filter(c=>c.style.display!=='none').length;
     showToast('Showing '+count+' venue'+(count!==1?'s':''));
     if(currentPage!=='explore') goPage('explore');
+}
+
+
+// ── LIST VENUE FLOW ────────────────────────────────────────────────────
+let lvCurrentStep = 1;
+
+function openListVenueFlow() {
+    lvCurrentStep = 1;
+    showLvStep(1);
+    openSheet('list-venue-sheet');
+}
+
+function openListVenueStep(n) {
+    // From the landing page step rows — open the flow sheet at that step
+    lvCurrentStep = n;
+    showLvStep(n);
+    openSheet('list-venue-sheet');
+}
+
+function showLvStep(n) {
+    // Hide all steps
+    document.querySelectorAll('.lv-flow-step').forEach(s => s.style.display = 'none');
+    // Show target step
+    const target = document.getElementById('lvstep' + n) || document.getElementById('lvstep-success');
+    if (target) target.style.display = 'block';
+    // Update progress bars
+    for (let i = 1; i <= 5; i++) {
+        const bar = document.getElementById('lvpb' + i);
+        if (bar) bar.style.background = i <= n ? '#AF3A81' : 'var(--border)';
+    }
+    // Update sheet title
+    const titles = ['','Venue Details','Photos','Pricing','Availability','Submit for Approval'];
+    const el = document.getElementById('lv-sheet-title');
+    if (el && titles[n]) el.textContent = titles[n];
+    // Scroll sheet to top
+    const inner = document.getElementById('list-venue-sheet-inner');
+    if (inner) inner.scrollTop = 0;
+    lvCurrentStep = n;
+}
+
+function lvNext(n) {
+    if (n === 5) {
+        // Build summary before showing step 5
+        const name = document.getElementById('lv-name')?.value || '—';
+        const city = document.getElementById('lv-city')?.value || '—';
+        const type = document.getElementById('lv-type')?.value || '—';
+        const cap = document.getElementById('lv-capacity')?.value || '—';
+        const price = document.getElementById('lv-price-day')?.value;
+        const rows = document.getElementById('lv-summary-rows');
+        if (rows) {
+            rows.innerHTML = `
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>Venue</span><span style="font-weight:500;color:var(--text);">${name}</span></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>City</span><span style="font-weight:500;color:var(--text);">${city}</span></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>Type</span><span style="font-weight:500;color:var(--text);">${type}</span></div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>Capacity</span><span style="font-weight:500;color:var(--text);">${cap} guests</span></div>
+                ${price ? `<div style="display:flex;justify-content:space-between;"><span>Full Day Rate</span><span style="font-weight:500;color:var(--text);">₹${parseInt(price).toLocaleString('en-IN')}</span></div>` : ''}
+            `;
+        }
+    }
+    showLvStep(n);
+}
+
+function submitListVenue() {
+    const name = document.getElementById('lv-owner-name')?.value?.trim();
+    const phone = document.getElementById('lv-owner-phone')?.value?.trim();
+    if (!name || !phone) { showToast('Please enter your name and phone number'); return; }
+    
+    const vName = document.getElementById('lv-name')?.value || '';
+    const city = document.getElementById('lv-city')?.value || '';
+    const msg = `Hi Vivaha Venue! I want to list my venue.%0A%0AVenue: ${encodeURIComponent(vName)}%0ACity: ${encodeURIComponent(city)}%0AContact: ${encodeURIComponent(name)} · ${encodeURIComponent(phone)}`;
+    
+    // Show success, then open WhatsApp
+    document.querySelectorAll('.lv-flow-step').forEach(s => s.style.display = 'none');
+    const succ = document.getElementById('lvstep-success');
+    if (succ) succ.style.display = 'block';
+    const titleEl = document.getElementById('lv-sheet-title');
+    if (titleEl) titleEl.textContent = 'Application Sent';
+    for (let i = 1; i <= 5; i++) {
+        const bar = document.getElementById('lvpb' + i);
+        if (bar) bar.style.background = '#10B981';
+    }
+    setTimeout(() => {
+        window.open(`https://wa.me/919390653955?text=${msg}`, '_blank');
+    }, 600);
 }
 
 updateProfileUI();renderBookings();updateDockBadge();
