@@ -24,8 +24,55 @@
             --radius:24px;--font:'DM Sans',sans-serif;--display:'Cormorant Garamond',serif;
         }
         *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-        html{scroll-behavior:smooth;}
-        body{background:var(--bg);color:var(--text);font-family:var(--font);font-weight:400;overflow-x:hidden;min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));}
+        html{scroll-behavior:auto;}
+        body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;line-height:1.6;overflow-x:hidden;min-height:100vh;padding-bottom:calc(90px + var(--safe-bottom));}
+
+        /* ── MOBILE TOUCH PERFORMANCE ─────────────────────────── */
+        button,a,[onclick],[role="button"],
+        .chip,.occ-box,.venue-card-h,.venue-card-v,.rv-card,
+        .hscroll-card,.review-card,.menu-item,.dock-item,
+        .faq-q,.icon-btn,.venue-fav,.auth-tab,.filter-chip,
+        .radio-chip,.booking-card,.saved-venue-row,.share-btn,
+        .visit-time-chip,.city-option,.hsearch-field,.hsearch-btn,
+        .book-btn,.auth-btn,.btn-sm,.social-btn,.see-all,.footer-link {
+            touch-action: manipulation;
+            -webkit-touch-callout: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        /* GPU-composited elements for 60fps scrolling */
+        .venues-scroll,.rv-scroll,.hscroll,.chip-row {
+            -webkit-overflow-scrolling: touch;
+            scroll-snap-type: x proximity;
+            will-change: scroll-position;
+        }
+        .venue-card-h,.rv-card,.hscroll-card { scroll-snap-align: start; }
+        /* Sheets — GPU layer */
+        .sheet,.modal,.auth-modal { will-change: transform; }
+        /* Active press feedback — instant, no delay */
+        .dock-item:active { transform: scale(0.88); transition: transform 0.08s ease !important; }
+        .chip:active,.radio-chip:active,.filter-chip:active { transform: scale(0.94); transition: transform 0.08s ease !important; }
+        .icon-btn:active { background: rgba(175,58,129,0.12); transform: scale(0.88); transition: transform 0.08s ease !important; }
+        .occ-box:active { transform: scale(0.92) !important; }
+        .menu-item:active { transform: scale(0.98); transition: transform 0.08s ease !important; }
+        .share-btn:active { transform: scale(0.91) !important; }
+        /* ── MINIMUM TOUCH TARGETS (Apple HIG: 44×44pt) ────────── */
+        .icon-btn { min-width: 44px; min-height: 44px; }
+        .dock-item { min-height: 50px; padding: 10px 0; }
+        .chip { min-height: 40px; }
+        .faq-q { min-height: 52px; }
+        .see-all { padding: 8px 4px; min-height: 36px; display: inline-flex; align-items: center; }
+        .venue-img-wrap img, .rv-card img, .hscroll-card img, .saved-venue-thumb { pointer-events: none; }
+        img.tappable { pointer-events: auto; }
+        /* Sheet animation — spring curve like iOS */
+        .sheet-overlay .sheet {
+            transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1) !important;
+        }
+        .sheet-overlay.open .sheet { transform: translateY(0) !important; }
+        /* Page transitions */
+        .page.active { animation: fadeUp 0.18s cubic-bezier(0.22,1,0.36,1) both; }
+        /* Overscroll */
+        .scroll-area, .sheet { overscroll-behavior: contain; }
         ::-webkit-scrollbar{display:none;}*{scrollbar-width:none;}
         img{will-change:auto;}
         .status-bar{height:calc(var(--safe-top) + 10px);background:transparent;}
@@ -42,13 +89,13 @@
         @keyframes fadeUp{from{opacity:0;transform:translate3d(0,10px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
         @keyframes slideUp{from{transform:translate3d(0,100%,0)}to{transform:translate3d(0,0,0)}}
         @keyframes pulse{0%,100%{opacity:1;transform:scale3d(1,1,1)}50%{opacity:0.5;transform:scale3d(0.8,0.8,1)}}
-        .scroll-area{padding:0 0 20px;}
+        .scroll-area{padding:0 0 20px;max-width:560px;margin:auto;}
         .section{padding:72px 20px 0;}
         .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-        .section-title{font-size:11px;font-weight:400;color:var(--dim2);text-transform:uppercase;letter-spacing:3px;}
-        .see-all{font-size:12px;font-weight:600;color:#AF3A81;cursor:pointer;}
+        .section-title{font-size:28px;font-weight:700;color:var(--text);line-height:1.15;letter-spacing:normal;text-transform:none;}
+        .see-all{font-size:12px;font-weight:500;color:#AF3A81;cursor:pointer;letter-spacing:.5px;}
         .search-wrap{padding:16px 20px 0;}
-        .search-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);border-radius:50px;padding:0 20px;height:52px;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
+        .search-bar{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);border-radius:50px;padding:0 20px;height:56px;transition:all 0.2s;box-shadow:0 4px 16px rgba(0,0,0,0.04);}
         .search-bar:focus-within{border-color:rgba(175,58,129,0.4);}
         .search-bar i{color:var(--dim);font-size:15px;flex-shrink:0;}
         .search-bar input{background:none;border:none;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;width:100%;outline:none;}
@@ -67,16 +114,14 @@
         .hero-banner-img{width:100%;height:100%;object-fit:cover;display:block;}
         .hero-banner-body{
             position:absolute;bottom:0;left:0;right:0;z-index:2;
-            padding:28px 24px 32px;
+            padding:24px 24px 32px;
         }
         .hero-kicker{font-size:10px;font-weight:400;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px;font-family:var(--font);}
         .hero-title{
-            font-family:var(--display);font-size:clamp(44px,12vw,72px);
-            line-height:1.06;margin-bottom:18px;font-weight:500;
-            color:#FFFFFF;letter-spacing:-0.02em;
+            font-family:var(--display);font-size:40px;
+            line-height:1.05;margin-bottom:18px;font-weight:700;
+            color:#FFFFFF;letter-spacing:-1px;
         }
-        @media(max-width:768px){.hero-title{font-size:clamp(44px,13vw,56px);}}
-        @media(max-width:480px){.hero-title{font-size:44px;}}
         .hero-title em{font-style:italic;font-weight:400;}
         .hero-sub{font-size:13px;color:rgba(255,255,255,0.72);margin-bottom:24px;line-height:1.6;font-weight:300;max-width:280px;}
         .hero-cta{
@@ -89,7 +134,7 @@
         }
         .hero-cta:active{transform:scale(0.96);}
         .chip-row{display:flex;gap:8px;overflow-x:auto;padding:0 20px 2px;scrollbar-width:none;}
-        .chip{background:transparent;border:1px solid var(--border);border-radius:50px;padding:8px 16px;white-space:nowrap;font-size:12px;font-weight:400;cursor:pointer;transition:all 0.25s;flex-shrink:0;color:var(--dim);}
+        .chip{background:transparent;border:1px solid var(--border);border-radius:50px;padding:0 16px;height:40px;display:inline-flex;align-items:center;white-space:nowrap;font-size:12px;font-weight:400;cursor:pointer;transition:all 0.25s;flex-shrink:0;color:var(--dim);}
         .chip.active,.chip:active{background:#AF3A81;color:#fff;border-color:#AF3A81;}
         .occ-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
         .occ-box{background:var(--card);border:none;border-radius:20px;padding:14px 5px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 4px 16px rgba(0,0,0,0.05);}
@@ -110,7 +155,7 @@
         .hscroll{display:flex;gap:14px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
         .venue-card-h{flex-shrink:0;width:220px;background:var(--card);border:none;border-radius:20px;overflow:hidden;cursor:pointer;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s;color:inherit;will-change:transform;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
         .venue-card-h:active{transform:scale3d(0.96,0.96,1);box-shadow:0 4px 20px rgba(195,141,148,0.15);}
-        .venue-card-h img{width:100%;height:150px;object-fit:cover;display:block;}
+        .venue-card-h img{width:100%;height:220px;object-fit:cover;display:block;}
         .hscroll-card{flex-shrink:0;width:190px;background:var(--card);border:none;border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 24px rgba(0,0,0,0.06);}
         .hscroll-card:active{transform:scale(0.96);box-shadow:0 4px 20px rgba(195,141,148,0.15);}
         .hscroll-card img{width:100%;height:110px;object-fit:cover;display:block;}
@@ -121,7 +166,7 @@
         .venue-fav i{font-size:13px;color:var(--dim);}
         .venue-fav.liked i{color:var(--red);}
         .venue-info{padding:12px 14px 14px;}
-        .venue-name{font-size:15px;font-weight:500;font-family:var(--display);margin-bottom:4px;letter-spacing:0.01em;}
+        .venue-name{font-size:16px;font-weight:600;font-family:var(--display);margin-bottom:4px;letter-spacing:0.01em;line-height:1.3;}
         .venue-loc{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:4px;margin-bottom:10px;}
         .venue-bottom{display:flex;justify-content:space-between;align-items:center;}
         .venue-price{font-size:15px;font-weight:400;color:var(--text);}
@@ -138,7 +183,7 @@
         .venue-card-v .venue-loc{font-size:12px;margin-bottom:12px;}
         .venue-card-v .venue-price{font-size:17px;font-weight:400;}
         /* Review cards */
-        .review-card{background:var(--card);border:none;border-radius:20px;padding:22px;flex-shrink:0;width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.05);}
+        .review-card{background:var(--card);border:none;border-radius:20px;padding:24px;flex-shrink:0;width:280px;box-shadow:0 8px 24px rgba(0,0,0,0.05);}
         .reviewer-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
         .reviewer-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#9C3372,#AF3A81);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff;flex-shrink:0;}
         .reviewer-name{font-size:13px;font-weight:500;}
@@ -208,7 +253,7 @@
         /* Auth */
         .auth-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:1100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
         .auth-overlay.open{display:flex;}
-        .auth-modal{background:var(--card);border:none;border-radius:28px;padding:32px;width:100%;max-width:380px;animation:fadeUp 0.18s ease;box-shadow:0 24px 60px rgba(0,0,0,0.14);}
+        .auth-modal{background:var(--card);border:none;border-radius:24px;padding:32px;width:100%;max-width:380px;animation:fadeUp 0.18s ease;box-shadow:0 24px 60px rgba(0,0,0,0.14);}
         .auth-logo{font-family:var(--display);font-size:34px;font-weight:500;font-style:italic;color:var(--text);text-align:center;margin-bottom:4px;letter-spacing:0.01em;}
         .auth-sub{font-size:13px;color:var(--dim);text-align:center;margin-bottom:28px;}
         .auth-tabs{display:flex;background:var(--card2);border-radius:14px;padding:4px;margin-bottom:24px;}
@@ -221,7 +266,7 @@
         .auth-field input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 16px;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;outline:none;transition:all 0.2s;}
         .auth-field input:focus{border-color:#AF3A81;box-shadow:0 0 0 3px rgba(175,58,129,0.1);}
         .auth-field input::placeholder{color:var(--dim2);}
-        .auth-btn{width:100%;padding:15px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;margin-top:6px;}
+        .auth-btn{width:100%;height:52px;padding:0 20px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;margin-top:6px;}
         .auth-btn:active{transform:scale(0.97);}
         .auth-error{font-size:12px;color:var(--red);text-align:center;margin-top:10px;min-height:18px;}
         .auth-skip{font-size:12px;color:var(--dim);text-align:center;margin-top:14px;cursor:pointer;}
@@ -229,13 +274,13 @@
         /* Sheet */
         .sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:500;backdrop-filter:blur(4px);}
         .sheet-overlay.open{display:flex;align-items:flex-end;}
-        .sheet{background:var(--bg);width:100%;border-radius:28px 28px 0 0;padding:0;max-height:88vh;overflow-y:auto;overflow-x:hidden;animation:slideUp 0.2s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);-webkit-overflow-scrolling:touch;}
+        .sheet{background:var(--bg);width:100%;border-radius:24px 24px 0 0;padding:0;max-height:88vh;overflow-y:auto;overflow-x:hidden;animation:slideUp 0.2s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;box-shadow:0 -8px 40px rgba(0,0,0,0.08);-webkit-overflow-scrolling:touch;}
         .sheet-handle{width:40px;height:4px;background:var(--dim2);border-radius:2px;margin:14px auto 22px;}
         .sheet-title{font-size:22px;font-weight:500;font-family:var(--display);padding:0 20px;margin-bottom:20px;letter-spacing:0.01em;}
-        .filter-group{padding:0 20px;margin-bottom:22px;}
+        .filter-group{padding:0 20px;margin-bottom:24px;}
         .filter-group-label{font-size:12px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
         .filter-chips{display:flex;flex-wrap:wrap;gap:8px;}
-        .filter-chip{padding:8px 14px;border-radius:50px;background:var(--card);border:1.5px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none;}
+        .filter-chip{height:40px;padding:0 14px;border-radius:50px;background:var(--card);border:1.5px solid var(--border);font-size:12px;font-weight:400;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none;}
         .filter-chip *{pointer-events:none;}
         .filter-chip.active{background:#AF3A81;color:#fff;border-color:#AF3A81;font-weight:500;}
         .filter-chip.active i{color:#fff!important;}
@@ -253,7 +298,7 @@
         .stat-val{font-size:18px;font-weight:500;font-family:var(--display);color:var(--text);}
         .stat-lbl{font-size:10px;color:var(--dim);margin-top:3px;}
         .detail-desc{font-size:14px;color:var(--dim);line-height:1.8;margin-bottom:20px;font-weight:300;}
-        .book-btn{width:100%;padding:16px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;}
+        .book-btn{width:100%;height:52px;padding:0 20px;background:var(--text);color:#FAF7F2;font-weight:400;font-size:14px;letter-spacing:0.5px;border-radius:50px;border:none;font-family:var(--font);cursor:pointer;}
         .book-btn:active{transform:scale(0.97);}
         /* Payment */
         .pay-box{background:var(--bg);border:none;border-radius:20px;padding:18px;margin-bottom:18px;}
@@ -301,15 +346,15 @@
         .flow-input{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:14px 16px;color:var(--text);font-family:var(--font);font-size:14px;font-weight:400;outline:none;transition:all 0.2s;}
         .flow-input:focus{border-color:#AF3A81;}
         .flow-input::placeholder{color:var(--dim2);}
-        .success-wrap{text-align:center;padding:30px 20px;}
+        .success-wrap{text-align:center;padding:32px 20px;}
         .success-icon{width:72px;height:72px;background:rgba(72,187,120,0.15);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:32px;color:var(--green);}
         .success-title{font-family:var(--display);font-size:26px;margin-bottom:8px;}
-        .success-sub{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:22px;}
-        .success-ref{background:var(--card2);border-radius:var(--radius);padding:10px 16px;font-size:13px;color:#AF3A81;font-weight:700;display:inline-block;margin-bottom:22px;}
+        .success-sub{font-size:14px;color:var(--dim);line-height:1.6;margin-bottom:24px;}
+        .success-ref{background:var(--card2);border-radius:var(--radius);padding:10px 16px;font-size:13px;color:#AF3A81;font-weight:700;display:inline-block;margin-bottom:24px;}
         /* Modals */
         .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:900;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px);}
         .modal-overlay.open{display:flex;}
-        .modal{background:var(--card);border:none;border-radius:28px;padding:28px;width:100%;max-width:360px;animation:fadeUp 0.16s ease;box-shadow:0 24px 60px rgba(0,0,0,0.12);}
+        .modal{background:var(--card);border:none;border-radius:24px;padding:24px;width:100%;max-width:360px;animation:fadeUp 0.16s ease;box-shadow:0 24px 60px rgba(0,0,0,0.12);}
         .modal-icon{width:56px;height:56px;background:rgba(245,101,101,0.15);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--red);margin-bottom:16px;}
         .modal-title{font-size:18px;font-weight:700;margin-bottom:8px;}
         .modal-body{font-size:13px;color:var(--dim);line-height:1.65;margin-bottom:16px;}
@@ -362,7 +407,7 @@
         .cal-overlay.open{display:flex;background:rgba(15,10,8,0.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
         .cal-modal{
             background:var(--card);
-            border-radius:28px 28px 0 0;
+            border-radius:24px 24px 0 0;
             width:100%;max-width:480px;
             padding:0 0 calc(20px + var(--safe-bottom));
             box-shadow:0 -20px 60px rgba(0,0,0,0.18);
@@ -502,7 +547,7 @@
         /* Section divider */
         .detail-divider{border:none;border-top:1px solid var(--border);margin:18px 0;}
         .detail-section-lbl{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
-        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:66px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.22s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
+        .dock{position:fixed;bottom:calc(14px + var(--safe-bottom));left:16px;right:16px;max-width:400px;margin-left:auto;margin-right:auto;height:72px;background:rgba(255,255,255,0.97);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-radius:22px;border:1px solid rgba(0,0,0,0.05);display:flex;align-items:stretch;z-index:1000;box-shadow:0 8px 32px rgba(0,0,0,0.08);animation:slideUp 0.22s cubic-bezier(0.22,1,0.36,1) both;will-change:transform;overflow:hidden;}
         .dock-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;color:var(--dim2);transition:color 0.2s;padding:8px 4px;position:relative;min-width:0;min-height:72px;}
         .dock-item i{font-size:20px;line-height:1;transition:transform 0.25s cubic-bezier(0.34,1.56,0.64,1),color 0.2s;display:block;}
         .dock-item span{font-size:10px;font-weight:400;letter-spacing:0.5px;line-height:1;white-space:nowrap;}
@@ -538,13 +583,17 @@
         .share-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;}
         .share-label{font-size:11px;color:var(--dim);font-weight:400;}
         /* ── RECENTLY VIEWED ────────────────────────────────────── */
-        .rv-scroll{display:flex;gap:12px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
-        .rv-card{flex-shrink:0;width:150px;background:var(--card);border-radius:16px;overflow:hidden;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,0.06);transition:all 0.2s;}
-        .rv-card:active{transform:scale(0.96);}
-        .rv-card img{width:100%;height:90px;object-fit:cover;display:block;}
-        .rv-card-info{padding:8px 10px 10px;}
-        .rv-card-name{font-size:12px;font-weight:500;font-family:var(--display);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-        .rv-card-price{font-size:11px;color:var(--dim);}
+        .rv-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 20px 4px;scrollbar-width:none;}
+        .rv-card{flex-shrink:0;width:280px;height:240px;background:var(--card);border-radius:20px;overflow:hidden;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,0.08);transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);display:flex;flex-direction:column;}
+        .rv-card:active{transform:scale(0.96);box-shadow:0 4px 16px rgba(195,141,148,0.15);}
+        .rv-card:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(175,58,129,0.13);}
+        .rv-card img{width:100%;height:140px;object-fit:cover;display:block;flex-shrink:0;}
+        .rv-card-info{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+        .rv-card-name{font-size:14px;font-weight:500;font-family:var(--display);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
+        .rv-card-loc{font-size:11px;color:var(--dim);display:flex;align-items:center;gap:4px;margin-bottom:6px;}
+        .rv-card-bottom{display:flex;justify-content:space-between;align-items:center;}
+        .rv-card-price{font-size:14px;font-weight:500;color:var(--text);}
+        .rv-card-rating{display:flex;align-items:center;gap:3px;}
         /* ── SITE VISIT SHEET ───────────────────────────────────── */
         .visit-time-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
         .visit-time-chip{padding:12px;background:var(--card2);border:1.5px solid var(--border);border-radius:14px;text-align:center;font-size:13px;cursor:pointer;transition:all 0.2s;font-family:var(--font);color:var(--dim);}
@@ -923,7 +972,6 @@
     <div class="status-bar"></div>
     <div class="topbar">
         <div class="topbar-left">
-            <span class="topbar-greeting" id="home-greeting">Good day</span>
             <span class="topbar-brand">Vivaha Venue</span>
         </div>
         <div class="topbar-actions">
@@ -1131,10 +1179,10 @@
         <!-- ⑤ FEATURED VENUES -->
         <div class="section"><div class="section-header"><span class="section-title">Featured Venues</span><span class="see-all" onclick="goPage('explore')">See All →</span></div></div>
         <div class="venues-scroll">
-            <div class="venue-card-h" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹85K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><span class="avail-badge orange" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-fire"></i> Next: Jun 15</span><div class="venue-bottom"><div><div class="venue-price">₹55K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹1.2L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
-            <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹42K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500" alt="" loading="lazy" decoding="async"><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹85K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=500" alt="" loading="lazy" decoding="async"><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><span class="avail-badge orange" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-fire"></i> Next: Jun 15</span><div class="venue-bottom"><div><div class="venue-price">₹55K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=500" alt="" loading="lazy" decoding="async"><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹1.2L</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
+            <div class="venue-card-h" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=500" alt="" loading="lazy" decoding="async"><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><span class="avail-badge green" style="margin-bottom:6px;display:inline-flex;"><i class="fa-solid fa-circle-check"></i> Avail. This Weekend</span><div class="venue-bottom"><div><div class="venue-price">₹42K</div><div class="venue-price-sub">/day</div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
         </div>
 
         <!-- RECENTLY VIEWED -->
@@ -1197,7 +1245,7 @@
 
         <!-- ⑨ VENUE OWNER CTA — LIST YOUR VENUE -->
         <div class="section">
-            <div style="background:linear-gradient(135deg,#2B1A25 0%,#3D1F32 100%);border-radius:24px;padding:28px 24px;position:relative;overflow:hidden;">
+            <div style="background:linear-gradient(135deg,#2B1A25 0%,#3D1F32 100%);border-radius:24px;padding:24px 24px;position:relative;overflow:hidden;">
                 <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;border-radius:50%;background:rgba(175,58,129,0.18);"></div>
                 <div style="position:absolute;bottom:-30px;left:-10px;width:90px;height:90px;border-radius:50%;background:rgba(212,175,55,0.10);"></div>
                 <div style="position:relative;z-index:1;">
@@ -1206,7 +1254,7 @@
                         <span style="font-size:10px;font-weight:400;color:#D4AF37;letter-spacing:1.5px;">FOR VENUE OWNERS</span>
                     </div>
                     <div style="font-family:var(--display);font-size:26px;font-weight:500;color:#FFFFFF;line-height:1.2;margin-bottom:10px;letter-spacing:0.01em;">List Your Venue.<br><em style="color:rgba(212,175,55,0.9);">Reach More Families.</em></div>
-                    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:22px;">Join trusted hall owners on Vivaha Venue. Get verified bookings, transparent payments and dedicated account support — at zero upfront cost.</div>
+                    <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:24px;">Join trusted hall owners on Vivaha Venue. Get verified bookings, transparent payments and dedicated account support — at zero upfront cost.</div>
                     <div style="display:flex;gap:14px;margin-bottom:20px;">
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Zero listing fee</span></div>
                         <div style="display:flex;align-items:center;gap:7px;"><div style="width:7px;height:7px;border-radius:50%;background:#10B981;flex-shrink:0;"></div><span style="font-size:11px;color:rgba(255,255,255,0.7);">Advance guaranteed</span></div>
@@ -1267,11 +1315,11 @@
         <div class="search-wrap"><div class="search-bar"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="exploreSearch" placeholder="Search venues or cities..." oninput="filterVenues(this.value);toggleClear('explore',this.value)"><i class="fa-solid fa-xmark search-clear" id="exploreSearchClear" onclick="clearSearch('explore')"></i></div></div>
         <div class="section" style="padding-bottom:16px;"><div class="chip-row" style="padding:0;"><div class="chip active">All</div><div class="chip">Under ₹2L</div><div class="chip">₹2L–₹5L</div><div class="chip">5★ Only</div><div class="chip">Outdoor</div><div class="chip">AC Hall</div></div></div>
         <div class="vgrid" id="vgrid">
-            <div class="venue-card-v fade-up" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt=""><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Benz Circle, Vijayawada</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹85,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
-            <div class="venue-card-v fade-up delay-1" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt=""><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Godavari Bank, Rajahmundry</div><span class="avail-badge orange"><i class="fa-solid fa-fire"></i> Next Available: Jun 15</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹55,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
-            <div class="venue-card-v fade-up delay-2" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800" alt=""><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Jubilee Hills, Hyderabad</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,20,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
-            <div class="venue-card-v fade-up delay-3" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=800" alt=""><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Main Road, Kakinada</div><span class="avail-badge green"><i class="fa-solid fa-circle-check"></i> Available This Weekend</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹42,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
-            <div class="venue-card-v fade-up delay-4" onclick="openVenue('v5')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800" alt=""><div class="venue-tag">BEACHFRONT</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Novotel Vizag Bay</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Beach Road, Visakhapatnam</div><span class="avail-badge orange"><i class="fa-solid fa-fire"></i> Next Available: Jun 20</span><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-v fade-up" onclick="openVenue('v1')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800" alt="" loading="lazy" decoding="async"><div class="venue-tag">ULTRA LUXE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">V Convention Center</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Vijayawada</div><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹85,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-1" onclick="openVenue('v2')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="" loading="lazy" decoding="async"><div class="venue-tag">SCENIC</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">River Bay Resort</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Rajahmundry</div><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹55,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.7</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-2" onclick="openVenue('v3')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800" alt="" loading="lazy" decoding="async"><div class="venue-tag">POPULAR</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Grand Elite Gardens</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Hyderabad</div><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,20,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.8</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-3" onclick="openVenue('v4')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1544161513-0179fe746fd5?w=800" alt="" loading="lazy" decoding="async"><div class="venue-tag">DIVINE</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">S Convention</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Kakinada</div><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹42,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.6</span></div></div></div></div>
+            <div class="venue-card-v fade-up delay-4" onclick="openVenue('v5')"><div class="venue-img-wrap"><img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800" alt="" loading="lazy" decoding="async"><div class="venue-tag">BEACHFRONT</div><div class="venue-fav" onclick="toggleFav(event,this)"><i class="fa-regular fa-heart"></i></div></div><div class="venue-info"><div class="venue-name">Novotel Vizag Bay</div><div class="venue-loc"><i class="fa-solid fa-location-dot"></i> Visakhapatnam</div><div class="venue-bottom" style="margin-top:10px;"><div><div class="venue-price">₹1,50,000 <span class="venue-price-sub">/day</span></div></div><div class="venue-rating"><i class="fa-solid fa-star"></i><span>4.9</span></div></div></div></div>
         </div>
     </div>
 </div>
@@ -1305,9 +1353,36 @@
     <div class="auth-modal">
         <div class="auth-logo">Vivaha Venue</div>
         <div class="auth-sub">Find & book your perfect wedding venue</div>
-        <div class="auth-tabs"><div class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Sign In</div><div class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Sign Up</div></div>
-        <div class="auth-form active" id="form-login"><div class="auth-field"><label>Name or Email</label><input type="text" id="login-email" placeholder="Your name or email"></div><div class="auth-field"><label>Password</label><input type="password" id="login-pass" placeholder="Your password"></div><button class="auth-btn" onclick="doLogin()">Sign In</button><div class="auth-error" id="login-error"></div></div>
-        <div class="auth-form" id="form-signup"><div class="auth-field"><label>Full Name</label><input type="text" id="signup-name" placeholder="Ravi Kumar"></div><div class="auth-field"><label>Email</label><input type="email" id="signup-email" placeholder="you@email.com"></div><div class="auth-field"><label>Phone</label><input type="tel" id="signup-phone" placeholder="+91 9XXXXXXXXX"></div><div class="auth-field"><label>Password</label><input type="password" id="signup-pass" placeholder="Create a password"></div><button class="auth-btn" onclick="doSignup()">Create Account</button><div class="auth-error" id="signup-error"></div></div>
+        <!-- Step 1: Mobile Number -->
+        <div class="auth-form active" id="form-mobile">
+            <div class="auth-field">
+                <label>Mobile Number</label>
+                <div style="display:flex;gap:8px;align-items:center;">
+                    <div style="background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:13px 14px;font-size:14px;color:var(--dim);white-space:nowrap;flex-shrink:0;">🇮🇳 +91</div>
+                    <input type="tel" id="auth-mobile" placeholder="9XXXXXXXXX" maxlength="10" style="flex:1;" oninput="this.value=this.value.replace(/\D/g,'')">
+                </div>
+            </div>
+            <div class="auth-field" id="auth-name-field" style="display:none;">
+                <label>Full Name</label>
+                <input type="text" id="auth-name" placeholder="Ravi Kumar">
+            </div>
+            <button class="auth-btn" onclick="sendOtp()"><i class="fa-solid fa-paper-plane" style="margin-right:8px;"></i>Send OTP</button>
+            <div class="auth-error" id="mobile-error"></div>
+        </div>
+        <!-- Step 2: OTP -->
+        <div class="auth-form" id="form-otp">
+            <div style="text-align:center;margin-bottom:20px;">
+                <div style="font-size:13px;color:var(--dim);margin-bottom:4px;">OTP sent to</div>
+                <div style="font-size:15px;font-weight:600;color:var(--text);" id="otp-mobile-display">+91 XXXXXXXXXX</div>
+            </div>
+            <div class="auth-field">
+                <label>Enter 4-Digit OTP</label>
+                <input type="tel" id="auth-otp" placeholder="• • • •" maxlength="4" style="text-align:center;font-size:24px;letter-spacing:12px;font-weight:700;" oninput="this.value=this.value.replace(/\D/g,'')">
+            </div>
+            <button class="auth-btn" onclick="verifyOtp()">Verify & Continue</button>
+            <div class="auth-error" id="otp-error"></div>
+            <div style="text-align:center;margin-top:12px;font-size:12px;color:var(--dim);">Didn't get it? <span style="color:#AF3A81;font-weight:600;cursor:pointer;" onclick="resendOtp()">Resend OTP</span></div>
+        </div>
         <div class="auth-skip" onclick="closeAuthModal()">Continue as guest &nbsp;<span>Skip →</span></div>
     </div>
 </div>
@@ -1368,7 +1443,7 @@
 <!-- VENUE DETAIL SHEET -->
 <div class="sheet-overlay detail-sheet" id="venue-sheet" onclick="closeSheet('venue-sheet',event)">
     <div class="sheet" style="max-height:92vh;padding-bottom:calc(30px + var(--safe-bottom));overflow-y:auto;">
-        <div style="display:flex;align-items:center;padding:14px 20px 10px;position:sticky;top:0;background:var(--card);z-index:10;border-radius:28px 28px 0 0;"><div class="sheet-handle" style="margin:0 auto 0 0;"></div><div class="icon-btn" onclick="closeSheet('venue-sheet')"><i class="fa-solid fa-xmark"></i></div></div>
+        <div style="display:flex;align-items:center;padding:14px 20px 10px;position:sticky;top:0;background:var(--card);z-index:10;border-radius:24px 24px 0 0;"><div class="sheet-handle" style="margin:0 auto 0 0;"></div><div class="icon-btn" onclick="closeSheet('venue-sheet')"><i class="fa-solid fa-xmark"></i></div></div>
         <div id="venue-content"></div>
     </div>
 </div>
@@ -1376,7 +1451,7 @@
 <!-- BOOKING FLOW SHEET -->
 <div class="sheet-overlay" id="booking-sheet">
     <div class="sheet" id="booking-sheet-inner" style="max-height:95vh;overflow-y:auto;padding-bottom:calc(40px + var(--safe-bottom));">
-        <div style="position:sticky;top:0;background:var(--card);z-index:10;border-radius:28px 28px 0 0;padding:0;">
+        <div style="position:sticky;top:0;background:var(--card);z-index:10;border-radius:24px 24px 0 0;padding:0;">
             <div style="display:flex;justify-content:center;padding:10px 0 4px;"><div style="width:40px;height:4px;background:var(--dim2);border-radius:2px;"></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 16px 12px;">
                 <div style="font-size:16px;font-weight:700;color:var(--text);">Book Venue</div>
@@ -1530,7 +1605,7 @@
         </div>
 
         <!-- 5-step progress indicator -->
-        <div style="padding:28px 24px 8px;">
+        <div style="padding:24px 24px 8px;">
             <div style="font-size:10px;font-weight:600;color:var(--dim2);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:18px;">Your Listing Journey</div>
             <div style="display:flex;flex-direction:column;gap:0;" id="lv-steps-display">
 
@@ -1664,7 +1739,7 @@
 <!-- LIST VENUE FLOW SHEET (5-step) -->
 <div class="sheet-overlay" id="list-venue-sheet">
     <div class="sheet" id="list-venue-sheet-inner" style="max-height:92vh;overflow-y:auto;padding-bottom:calc(40px + var(--safe-bottom));">
-        <div style="position:sticky;top:0;background:var(--bg);z-index:10;border-radius:28px 28px 0 0;">
+        <div style="position:sticky;top:0;background:var(--bg);z-index:10;border-radius:24px 24px 0 0;">
             <div style="display:flex;justify-content:center;padding:12px 0 4px;"><div style="width:40px;height:4px;background:var(--dim2);border-radius:2px;"></div></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 20px 12px;">
                 <div id="lv-sheet-title" style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:500;color:var(--text);">Venue Details</div>
@@ -1688,7 +1763,7 @@
             <div class="lv-flow-step active" id="lvstep1">
                 <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 1 of 5</div>
                 <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Venue Details</div>
-                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Tell us about your venue</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:24px;">Tell us about your venue</div>
                 <div class="flow-field"><div class="flow-label">Venue Name</div><input type="text" class="flow-input" id="lv-name" placeholder="e.g. Royal Palace Conventions"></div>
                 <div class="flow-field"><div class="flow-label">City</div>
                     <select class="flow-input" id="lv-city" style="appearance:none;">
@@ -1716,7 +1791,7 @@
             <div class="lv-flow-step" id="lvstep2" style="display:none;">
                 <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 2 of 5</div>
                 <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Photos</div>
-                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Upload photos of your venue</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:24px;">Upload photos of your venue</div>
                 <div style="background:var(--card2);border:2px dashed var(--border);border-radius:20px;padding:36px 20px;text-align:center;margin-bottom:20px;cursor:pointer;" onclick="showToast('Photo upload via WhatsApp — see next step')">
                     <div style="width:56px;height:56px;background:rgba(175,58,129,0.08);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;"><i class="fa-solid fa-images" style="color:#AF3A81;font-size:22px;"></i></div>
                     <div style="font-size:15px;font-weight:500;color:var(--text);font-family:'Cormorant Garamond',serif;margin-bottom:6px;">Add venue photos</div>
@@ -1733,7 +1808,7 @@
             <div class="lv-flow-step" id="lvstep3" style="display:none;">
                 <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 3 of 5</div>
                 <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Pricing</div>
-                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Set your rates</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:24px;">Set your rates</div>
                 <div class="flow-field"><div class="flow-label">Full Day Rate (₹)</div><input type="number" class="flow-input" id="lv-price-day" placeholder="e.g. 75000"></div>
                 <div class="flow-field"><div class="flow-label">Half Day Rate (₹) <span style="font-size:10px;color:var(--dim2);text-transform:none;letter-spacing:0;">(optional)</span></div><input type="number" class="flow-input" id="lv-price-half" placeholder="e.g. 45000"></div>
                 <div class="flow-field"><div class="flow-label">Included in Price</div>
@@ -1756,7 +1831,7 @@
             <div class="lv-flow-step" id="lvstep4" style="display:none;">
                 <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 4 of 5</div>
                 <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Availability</div>
-                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">When is your venue open for bookings?</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:24px;">When is your venue open for bookings?</div>
                 <div style="background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:20px;margin-bottom:16px;">
                     <div style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:14px;">Typically available on</div>
                     <div style="display:flex;gap:8px;flex-wrap:wrap;" id="lv-days">
@@ -1785,7 +1860,7 @@
             <div class="lv-flow-step" id="lvstep5" style="display:none;">
                 <div style="font-size:9px;font-weight:600;color:#AF3A81;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;">Step 5 of 5</div>
                 <div style="font-size:24px;font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--text);margin-bottom:4px;">Submit for Approval</div>
-                <div style="font-size:13px;color:var(--dim);margin-bottom:22px;">Almost there — enter your contact details</div>
+                <div style="font-size:13px;color:var(--dim);margin-bottom:24px;">Almost there — enter your contact details</div>
                 <div class="flow-field"><div class="flow-label">Your Name</div><input type="text" class="flow-input" id="lv-owner-name" placeholder="Hall owner / manager name"></div>
                 <div class="flow-field"><div class="flow-label">WhatsApp Number</div><input type="tel" class="flow-input" id="lv-owner-phone" placeholder="+91 9XXXXXXXXX"></div>
                 <div class="flow-field"><div class="flow-label">Email <span style="font-size:10px;color:var(--dim2);text-transform:none;letter-spacing:0;">(optional)</span></div><input type="email" class="flow-input" id="lv-owner-email" placeholder="you@email.com"></div>
@@ -2024,15 +2099,29 @@
 
 <!-- DOCK -->
 <nav class="dock">
-    <div class="dock-item active" id="dock-home" onclick="goPage('home')"><i class="fa-solid fa-house-chimney"></i><span>Home</span></div>
-    <div class="dock-item" id="dock-explore" onclick="goPage('explore')"><i class="fa-solid fa-compass"></i><span>Explore</span></div>
-    <div class="dock-item" id="dock-bookings" onclick="goPage('bookings')"><i class="fa-solid fa-calendar-check"></i><span>Bookings</span><div class="dock-badge" style="display:none;">0</div></div>
-    <div class="dock-item" id="dock-profile" onclick="goPage('profile')"><i class="fa-solid fa-circle-user"></i><span>Profile</span></div>
+    <div class="dock-item active" id="dock-home" onclick="dockTap('home')"><i class="fa-solid fa-house-chimney"></i><span>Home</span></div>
+    <div class="dock-item" id="dock-explore" onclick="dockTap('explore')"><i class="fa-solid fa-compass"></i><span>Explore</span></div>
+    <div class="dock-item" id="dock-bookings" onclick="dockTap('bookings')"><i class="fa-solid fa-calendar-check"></i><span>Bookings</span><div class="dock-badge" style="display:none;">0</div></div>
+    <div class="dock-item" id="dock-profile" onclick="dockTap('profile')"><i class="fa-solid fa-circle-user"></i><span>Profile</span></div>
 </nav>
 
 <script>
 function saveToStorage(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
 function loadFromStorage(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}}
+
+// ── HAPTIC ────────────────────────────────────────────────────────────────
+function haptic(type){
+    if(!navigator.vibrate) return;
+    if(type==='light') navigator.vibrate(6);
+    else if(type==='medium') navigator.vibrate(12);
+    else if(type==='success') navigator.vibrate([8,40,8]);
+    else if(type==='error') navigator.vibrate([20,60,20]);
+}
+// Attach haptic to all interactive elements once DOM is ready
+document.addEventListener('touchstart', function(e){
+    const t = e.target.closest('button,[onclick].dock-item,[onclick].chip,[onclick].occ-box,[onclick].menu-item,[onclick].icon-btn');
+    if(t) haptic('light');
+}, {passive: true});
 
 const venues={
     v1:{name:'V Convention Center',loc:'Benz Circle, Vijayawada',city:'Vijayawada',tag:'ULTRA LUXE',priceRaw:85000,price:'₹85,000',rating:'4.9',reviews:'284',cap:'1200',img:'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=900',desc:'A premier landmark in Vijayawada featuring grand AC halls, world-class décor and full catering. Perfect for royal Telugu weddings.',
@@ -2071,26 +2160,49 @@ const VALID_COUPONS={'FREEDECOR100':true};
 
 function fmt(n){return'₹'+Math.round(n).toLocaleString('en-IN');}
 
-function switchAuthTab(t){['login','signup'].forEach(x=>{document.getElementById('tab-'+x).classList.toggle('active',x===t);document.getElementById('form-'+x).classList.toggle('active',x===t);});document.getElementById('login-error').textContent='';document.getElementById('signup-error').textContent='';}
-function openAuthModal(t){switchAuthTab(t||'login');document.getElementById('auth-modal').classList.add('open');}
+let _otpCode='',_otpMobile='',_isNewUser=false;
+function sendOtp(){
+    const m=document.getElementById('auth-mobile').value.trim();
+    if(!m||m.length!==10){document.getElementById('mobile-error').textContent='Enter a valid 10-digit mobile number.';return;}
+    document.getElementById('mobile-error').textContent='';
+    _otpMobile=m;
+    const accs=loadFromStorage('vv_accounts',[]);
+    _isNewUser=!accs.find(a=>a.phone===m);
+    if(_isNewUser){document.getElementById('auth-name-field').style.display='block';}
+    // Simulate OTP (in production, call real SMS API)
+    _otpCode=String(Math.floor(1000+Math.random()*9000));
+    console.log('OTP for demo:',_otpCode); // dev only
+    document.getElementById('otp-mobile-display').textContent='+91 '+m.slice(0,5)+'XXXXX';
+    document.getElementById('form-mobile').classList.remove('active');
+    document.getElementById('form-otp').classList.add('active');
+    showToast('OTP sent to +91 '+m.slice(0,5)+'XXXXX');
+}
+function resendOtp(){_otpCode=String(Math.floor(1000+Math.random()*9000));console.log('Resent OTP:',_otpCode);showToast('OTP resent!');}
+function verifyOtp(){
+    const entered=document.getElementById('auth-otp').value.trim();
+    if(!entered||entered.length!==4){document.getElementById('otp-error').textContent='Enter the 4-digit OTP.';return;}
+    if(entered!==_otpCode){document.getElementById('otp-error').textContent='Incorrect OTP. Try again.';return;}
+    document.getElementById('otp-error').textContent='';
+    const accs=loadFromStorage('vv_accounts',[]);
+    let user=accs.find(a=>a.phone===_otpMobile);
+    if(!user){
+        const nm=document.getElementById('auth-name').value.trim()||'Guest';
+        user={name:nm,phone:_otpMobile,email:''};
+        accs.push(user);saveToStorage('vv_accounts',accs);
+    }
+    currentUser={name:user.name,phone:user.phone,email:user.email||''};
+    saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();
+    showToast('Welcome, '+currentUser.name.split(' ')[0]+'! 🎉');
+    // Reset forms for next open
+    document.getElementById('form-otp').classList.remove('active');
+    document.getElementById('form-mobile').classList.add('active');
+    document.getElementById('auth-mobile').value='';
+    document.getElementById('auth-otp').value='';
+    document.getElementById('auth-name-field').style.display='none';
+}
+function openAuthModal(t){document.getElementById('auth-modal').classList.add('open');}
 function closeAuthModal(){document.getElementById('auth-modal').classList.remove('open');}
-function doLogin(){
-    const e=document.getElementById('login-email').value.trim(),p=document.getElementById('login-pass').value.trim();
-    if(!e||!p){document.getElementById('login-error').textContent='Please fill all fields.';return;}
-    const accs=loadFromStorage('vv_accounts',[]);
-    const found=accs.find(a=>(a.email===e||a.name===e)&&a.pass===p);
-    if(!found){document.getElementById('login-error').textContent='Invalid credentials.';return;}
-    currentUser={name:found.name,email:found.email,phone:found.phone||''};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome back, '+currentUser.name.split(' ')[0]+'.');
-}
-function doSignup(){
-    const n=document.getElementById('signup-name').value.trim(),e=document.getElementById('signup-email').value.trim(),ph=document.getElementById('signup-phone').value.trim(),p=document.getElementById('signup-pass').value.trim();
-    if(!n||!e||!p){document.getElementById('signup-error').textContent='Please fill all fields.';return;}
-    const accs=loadFromStorage('vv_accounts',[]);
-    if(accs.find(a=>a.email===e)){document.getElementById('signup-error').textContent='Email already registered.';return;}
-    accs.push({name:n,email:e,phone:ph,pass:p});saveToStorage('vv_accounts',accs);
-    currentUser={name:n,email:e,phone:ph};saveToStorage('vv_user',currentUser);closeAuthModal();updateProfileUI();showToast('Welcome, '+n.split(' ')[0]+'.');
-}
-function handleAuthMenuClick(){if(currentUser){if(!confirm('Sign out?'))return;currentUser=null;saveToStorage('vv_user',null);updateProfileUI();showToast('Signed out.');}else openAuthModal('login');}
+function handleAuthMenuClick(){if(currentUser){if(!confirm('Sign out?'))return;currentUser=null;saveToStorage('vv_user',null);updateProfileUI();showToast('Signed out.');}else openAuthModal();}
 function updateProfileUI(){
     const n=currentUser?currentUser.name:'Guest User',e=currentUser?currentUser.email:'Sign in to continue';
     document.getElementById('profile-avatar').textContent=n.charAt(0).toUpperCase();
@@ -2108,18 +2220,123 @@ function updateProfileUI(){
 function openEditProfile(){if(!currentUser){openAuthModal('login');return;}document.getElementById('edit-name').value=currentUser.name||'';document.getElementById('edit-email').value=currentUser.email||'';document.getElementById('edit-phone').value=currentUser.phone||'';document.getElementById('edit-profile-modal').classList.add('open');}
 function saveProfile(){const n=document.getElementById('edit-name').value.trim(),e=document.getElementById('edit-email').value.trim(),p=document.getElementById('edit-phone').value.trim();if(!n||!e){alert('Name and email required.');return;}currentUser={...currentUser,name:n,email:e,phone:p};saveToStorage('vv_user',currentUser);document.getElementById('edit-profile-modal').classList.remove('open');updateProfileUI();showToast('Profile updated!');}
 
-function showToast(msg){let t=document.getElementById('app-toast');if(!t){t=document.createElement('div');t.id='app-toast';t.style.cssText='position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:#2D2D2D;color:#FAF7F2;font-weight:400;font-size:13px;letter-spacing:0.3px;padding:12px 22px;border-radius:50px;z-index:2000;opacity:0;transition:opacity 0.3s;white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,0.2);max-width:calc(100% - 40px);text-align:center;';document.body.appendChild(t);}t.textContent=msg;t.style.opacity='1';clearTimeout(t._timer);t._timer=setTimeout(()=>{t.style.opacity='0';},2800);}
+function showToast(msg){
+    let t=document.getElementById('app-toast');
+    if(!t){
+        t=document.createElement('div');
+        t.id='app-toast';
+        t.style.cssText='position:fixed;bottom:calc(80px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%) translateY(8px);background:#1A1A1A;color:#FAF7F2;font-weight:400;font-size:13px;letter-spacing:0.2px;padding:11px 20px;border-radius:50px;z-index:9000;opacity:0;transition:opacity 0.22s ease,transform 0.22s ease;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.28);max-width:calc(100% - 40px);text-align:center;';
+        document.body.appendChild(t);
+    }
+    t.textContent=msg;
+    t.style.opacity='1';
+    t.style.transform='translateX(-50%) translateY(0)';
+    clearTimeout(t._timer);
+    t._timer=setTimeout(()=>{
+        t.style.opacity='0';
+        t.style.transform='translateX(-50%) translateY(8px)';
+    },2600);
+}
+
+// ── SWIPE DOWN TO DISMISS SHEETS ─────────────────────────────────────────
+(function(){
+    const sheetIds=['booking-sheet','venue-sheet','filter-sheet','share-sheet','visit-sheet'];
+    sheetIds.forEach(id=>{
+        const overlay=document.getElementById(id);
+        if(!overlay) return;
+        const sheet=overlay.querySelector('.sheet');
+        if(!sheet) return;
+        let startY=0, isDragging=false;
+        sheet.addEventListener('touchstart',e=>{
+            startY=e.touches[0].clientY;
+            isDragging=true;
+            sheet.style.transition='none';
+        },{passive:true});
+        sheet.addEventListener('touchmove',e=>{
+            if(!isDragging) return;
+            const dy=e.touches[0].clientY-startY;
+            if(dy>0) sheet.style.transform='translateY('+dy+'px)';
+        },{passive:true});
+        sheet.addEventListener('touchend',e=>{
+            if(!isDragging) return;
+            isDragging=false;
+            sheet.style.transition='';
+            const dy=e.changedTouches[0].clientY-startY;
+            if(dy>80){
+                sheet.style.transform='';
+                overlay.classList.remove('open');
+                document.body.style.overflow='';
+                haptic('light');
+            } else {
+                sheet.style.transform='';
+            }
+        },{passive:true});
+    });
+})();
 
 let currentPage='home';
+
+// Smooth scroll to top like real apps (iOS/Android style)
+function smoothScrollToTop(callback){
+    const start = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop;
+    if(start <= 0){ if(callback) callback(); return; }
+    const duration = Math.min(400, Math.max(200, start * 0.35)); // faster for short distances
+    const startTime = performance.now();
+    function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
+    function step(now){
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = easeOutCubic(progress);
+        const pos = start * (1 - eased);
+        window.scrollTo(0, pos);
+        document.documentElement.scrollTop = pos;
+        document.body.scrollTop = pos;
+        if(progress < 1){
+            requestAnimationFrame(step);
+        } else {
+            window.scrollTo(0, 0);
+            document.documentElement.scrollTop = 0;
+            document.body.scrollTop = 0;
+            if(callback) callback();
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+// Called ONLY from dock buttons — always scrolls to top smoothly
+function dockTap(name){
+    haptic('light');
+    if(currentPage===name){
+        // Already on this page — smooth scroll to top
+        smoothScrollToTop();
+        return;
+    }
+    // Different page — smooth scroll up THEN switch
+    smoothScrollToTop(function(){
+        _switchPage(name);
+    });
+}
+
 function goPage(name){
-    // Convert kebab-case name to element id (e.g. 'list-venue' -> 'page-list-venue')
+    if(currentPage===name && name!=='home') return;
+    haptic('light');
+    smoothScrollToTop(function(){
+        _switchPage(name);
+    });
+}
+
+function _switchPage(name){
     const oldEl=document.getElementById('page-'+currentPage);
     if(oldEl)oldEl.classList.remove('active');
     const oldDock=document.getElementById('dock-'+currentPage);
     if(oldDock)oldDock.classList.remove('active');
     currentPage=name;
     const newEl=document.getElementById('page-'+name);
-    if(newEl)newEl.classList.add('active');
+    if(newEl){
+        newEl.classList.add('active');
+        const sa=newEl.querySelector('.scroll-area');
+        if(sa) sa.scrollTop=0;
+    }
     const newDock=document.getElementById('dock-'+name);
     if(newDock)newDock.classList.add('active');
     if(name==='bookings')renderBookings();
@@ -2227,6 +2444,7 @@ let savedVenueIds = loadFromStorage('vv_saved_ids', []);
 
 function toggleFav(e, el) {
     e.stopPropagation();
+    haptic('medium');
     const card = el.closest('[onclick]');
     const vk = card?.getAttribute('onclick')?.match(/openVenue\('(\w+)'\)/)?.[1];
     if (!vk) return;
@@ -2378,7 +2596,7 @@ let recentlyViewed = loadFromStorage('vv_recent', []);
 function trackRecentlyViewed(vk) {
     recentlyViewed = recentlyViewed.filter(x => x !== vk);
     recentlyViewed.unshift(vk);
-    if (recentlyViewed.length > 5) recentlyViewed = recentlyViewed.slice(0, 5);
+    if (recentlyViewed.length > 10) recentlyViewed = recentlyViewed.slice(0, 10);
     saveToStorage('vv_recent', recentlyViewed);
     renderRecentlyViewed();
 }
@@ -2399,7 +2617,11 @@ function renderRecentlyViewed() {
             <img src="${v.img}" alt="${v.name}" loading="lazy">
             <div class="rv-card-info">
                 <div class="rv-card-name">${v.name}</div>
-                <div class="rv-card-price">${v.price}</div>
+                <div class="rv-card-loc"><i class="fa-solid fa-location-dot" style="font-size:9px;color:#AF3A81;"></i>${v.city}</div>
+                <div class="rv-card-bottom">
+                    <div class="rv-card-price">${v.price} <span style="font-size:10px;color:var(--dim);font-weight:400;">/day</span></div>
+                    <div class="rv-card-rating"><i class="fa-solid fa-star" style="font-size:10px;color:var(--gold);"></i><span style="font-size:11px;font-weight:700;color:var(--gold);margin-left:2px;">${v.rating}</span></div>
+                </div>
             </div>
         </div>`;
     }).join('');
@@ -2450,15 +2672,41 @@ function confirmSiteVisit() {
         showToast('Visit request sent on WhatsApp!');
     }, 300);
 }
-function openSheet(id){document.getElementById(id).classList.add('open');}
-function closeSheet(id,e){if(!e){document.getElementById(id).classList.remove('open');return;}if(e.target.id===id)document.getElementById(id).classList.remove('open');}
-['booking-sheet','venue-sheet','filter-sheet','share-sheet','visit-sheet'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('click',function(e){if(e.target===this)this.classList.remove('open');});});
+function openSheet(id){
+    haptic('light');
+    const el=document.getElementById(id);
+    if(el){
+        el.classList.add('open');
+        // Prevent body scroll when sheet is open
+        document.body.style.overflow='hidden';
+    }
+}
+function closeSheet(id,e){
+    if(e && e.target.id!==id) return;
+    const el=document.getElementById(id);
+    if(el){
+        el.classList.remove('open');
+        document.body.style.overflow='';
+    }
+}
+// Sheet overlay tap-to-close — use touchend for faster response
+['booking-sheet','venue-sheet','filter-sheet','share-sheet','visit-sheet'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    el.addEventListener('touchend',function(e){
+        if(e.target===this){ haptic('light'); this.classList.remove('open'); document.body.style.overflow=''; }
+    },{passive:true});
+    el.addEventListener('click',function(e){
+        if(e.target===this){ this.classList.remove('open'); document.body.style.overflow=''; }
+    });
+});
 
 function toggleFaq(el){const a=el.nextElementSibling;const isOpen=a.classList.contains('open');document.querySelectorAll('.faq-q').forEach(q=>{q.classList.remove('open');q.nextElementSibling.classList.remove('open');});if(!isOpen){el.classList.add('open');a.classList.add('open');}}
 // Open first FAQ by default
 (function(){const first=document.querySelector('.faq-q');if(first){first.classList.add('open');first.nextElementSibling.classList.add('open');}})();
 
 function openVenue(id){
+    haptic('light');
     currentVenueId=id;const v=venues[id];if(!v)return;
     // Track recently viewed
     trackRecentlyViewed(id);
@@ -2666,7 +2914,7 @@ function confirmBooking(){
     myBookings.unshift({id:refId,venue:v.name,loc:v.loc,date:d,guests:parseInt(document.getElementById('b-guests').value)||0,occasion:document.getElementById('b-occasion').value,status:'confirmed',priceRaw:v.priceRaw,name:document.getElementById('b-name').value,phone:document.getElementById('b-phone').value,payPlan:selectedPayOption,advancePaid:advPaid,remaining});
     saveToStorage('vv_bookings',myBookings);updateDockBadge();
     const overlay=document.createElement('div');overlay.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(12px);';
-    overlay.innerHTML='<div style="background:#12122A;border:1px solid rgba(13,110,253,0.3);border-radius:24px;padding:28px;max-width:380px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.8);">'
+    overlay.innerHTML='<div style="background:#12122A;border:1px solid rgba(13,110,253,0.3);border-radius:24px;padding:24px;max-width:380px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.8);">'
         +'<div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;"><div style="width:38px;height:38px;background:#0D6EFD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;"><i class="fa-solid fa-credit-card" style="color:#fff;font-size:16px;"></i></div><div><div style="font-size:12px;color:#aaa;">Razorpay Secure Checkout</div><div style="font-size:17px;font-weight:700;color:#fff;">'+v.name+'</div></div></div>'
         +'<div style="background:rgba(13,110,253,0.08);border:1px solid rgba(13,110,253,0.2);border-radius:14px;padding:18px;margin-bottom:20px;"><div style="font-size:10px;color:#aaa;letter-spacing:1px;margin-bottom:4px;">TOTAL AMOUNT</div><div style="font-size:28px;font-weight:700;color:#fff;">'+fmt(advPaid+plat)+'</div><div style="font-size:11px;color:#aaa;margin-top:4px;">'+(isAdv?'40% advance':'Full payment')+' + platform fee</div></div>'
         +'<div style="margin-bottom:14px;"><div style="font-size:10px;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Card Number</div><input readonly value="4242 4242 4242 4242" style="width:100%;background:#0d1117;border:1px solid #222;border-radius:12px;padding:13px;color:#fff;font-size:15px;outline:none;font-family:DM Sans,sans-serif;"></div>'
