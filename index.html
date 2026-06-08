@@ -1286,15 +1286,13 @@
                 <span class="footer-link" onclick="goPage('explore')">Browse Venues</span>
                 <span class="footer-link" onclick="goPage('bookings')">My Bookings</span>
                 <span class="footer-link" onclick="goPage('about')">About Us</span>
-                <span class="footer-link" onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%20Team%2C%20I%20need%20help.','_blank')">Contact Us</span>
+                <span class="footer-link" onclick="goPage('fp-contact')">Contact Us</span>
                 <span class="footer-link" onclick="goPage('partner')">Partner With Us</span>
-                <span class="footer-link" onclick="goPage('list-venue')">List Your Venue</span>
-                <span class="footer-link" onclick="goPage('careers')">Careers</span>
-                <span class="footer-link" onclick="goPage('support')">Support Center</span>
-                <span class="footer-link" onclick="goPage('contact-sales')">Contact Sales</span>
-                <span class="footer-link">Privacy Policy</span>
-                <span class="footer-link">Terms of Service</span>
-                <span class="footer-link">Cancellation &amp; Refund</span>
+                <span class="footer-link" onclick="goPage('fp-list-venue')">List Your Venue</span>
+                <span class="footer-link" onclick="goPage('fp-faqs')">FAQs</span>
+                <span class="footer-link" onclick="goPage('fp-privacy')">Privacy Policy</span>
+                <span class="footer-link" onclick="goPage('fp-terms')">Terms &amp; Conditions</span>
+                <span class="footer-link" onclick="goPage('fp-refund')">Refund &amp; Cancellation</span>
             </div>
             <div class="footer-social">
                 <div class="social-btn"><i class="fa-brands fa-instagram"></i></div>
@@ -2097,6 +2095,238 @@
     </div>
 </div>
 
+<!-- ═══════════════════════════════════════════════════════════
+     FOOTER PAGES
+════════════════════════════════════════════════════════════ -->
+
+<!-- LIST YOUR VENUE PAGE -->
+<div class="page" id="page-fp-list-venue">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="history.go(-1)||goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Partner with us</span><span class="topbar-brand">List Your Venue</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="background:linear-gradient(135deg,rgba(175,58,129,0.08),rgba(175,58,129,0.03));border:1.5px solid rgba(175,58,129,0.2);border-radius:20px;padding:24px;margin-bottom:20px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:var(--text);margin-bottom:8px;line-height:1.1;">Grow your venue<br><em>with Vivaha</em></div>
+            <div style="font-size:13px;color:var(--dim);line-height:1.7;">Join 12+ verified venues across AP & Telangana. Get real bookings, guaranteed advance payments, and a dedicated relationship manager.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:24px;">
+            <div style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="width:42px;height:42px;border-radius:14px;background:rgba(175,58,129,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-indian-rupee-sign" style="color:#AF3A81;font-size:16px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:4px;">40% Advance Guaranteed</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Every booking comes with a 40% advance paid online — before your event date. Your revenue is secured.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="width:42px;height:42px;border-radius:14px;background:rgba(16,185,129,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-shield-halved" style="color:#10B981;font-size:16px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:4px;">Zero Upfront Cost</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">No registration fee. No subscription. We earn only a small commission per confirmed booking — nothing unless you earn.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="width:42px;height:42px;border-radius:14px;background:rgba(36,113,163,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-chart-line" style="color:#2471A3;font-size:16px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:4px;">Owner Dashboard</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">Manage your bookings, availability calendar, and payments — all in one place.</div></div>
+            </div>
+            <div style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:flex-start;box-shadow:0 4px 16px rgba(0,0,0,0.05);">
+                <div style="width:42px;height:42px;border-radius:14px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-user-tie" style="color:#D4AF37;font-size:16px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:4px;">Dedicated Support</div><div style="font-size:13px;color:var(--dim);line-height:1.6;">A dedicated relationship manager is assigned to your venue from day one — available via WhatsApp, call, and email.</div></div>
+            </div>
+        </div>
+        <div style="background:var(--card2);border-radius:18px;padding:20px;margin-bottom:24px;">
+            <div style="font-size:12px;font-weight:600;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">How It Works</div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+                <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:26px;height:26px;border-radius:50%;background:#AF3A81;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">1</div><div style="font-size:13px;color:var(--dim);padding-top:4px;"><strong style="color:var(--text);">Submit your listing</strong> — fill in venue details, photos, and pricing in 5 easy steps.</div></div>
+                <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:26px;height:26px;border-radius:50%;background:#AF3A81;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">2</div><div style="font-size:13px;color:var(--dim);padding-top:4px;"><strong style="color:var(--text);">Verification visit</strong> — our team visits within 48 hours to verify and photograph your venue.</div></div>
+                <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:26px;height:26px;border-radius:50%;background:#AF3A81;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">3</div><div style="font-size:13px;color:var(--dim);padding-top:4px;"><strong style="color:var(--text);">Go live</strong> — your venue is listed and starts receiving booking requests.</div></div>
+                <div style="display:flex;gap:12px;align-items:flex-start;"><div style="width:26px;height:26px;border-radius:50%;background:#AF3A81;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;">4</div><div style="font-size:13px;color:var(--dim);padding-top:4px;"><strong style="color:var(--text);">Get paid</strong> — advance settled to your account within 2 business days of booking confirmation.</div></div>
+            </div>
+        </div>
+        <button onclick="openListVenueFlow()" style="width:100%;padding:16px;background:#AF3A81;color:#fff;font-size:15px;font-weight:500;border-radius:16px;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;"><i class="fa-solid fa-rocket"></i> Begin Listing Your Venue</button>
+        <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20want%20to%20list%20my%20venue.','_blank')" style="width:100%;padding:14px;background:transparent;border:1.5px solid rgba(16,185,129,0.4);color:#059669;font-size:14px;font-weight:500;border-radius:16px;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;"><i class="fa-brands fa-whatsapp" style="font-size:16px;"></i> WhatsApp Us First</button>
+    </div>
+</div>
+
+<!-- CONTACT US PAGE -->
+<div class="page" id="page-fp-contact">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">We're here to help</span><span class="topbar-brand">Contact Us</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="background:linear-gradient(135deg,rgba(36,113,163,0.08),rgba(36,113,163,0.02));border:1.5px solid rgba(36,113,163,0.2);border-radius:20px;padding:22px;margin-bottom:20px;">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:6px;">Get in Touch</div>
+            <div style="font-size:13px;color:var(--dim);line-height:1.7;">Our team is available 9 AM – 8 PM, 7 days a week. Reach out via WhatsApp for the fastest response.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:24px;">
+            <div onclick="window.open('https://wa.me/919390653955','_blank')" style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(0,0,0,0.05);cursor:pointer;">
+                <div style="width:48px;height:48px;border-radius:16px;background:rgba(16,185,129,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-brands fa-whatsapp" style="color:#10B981;font-size:22px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:2px;">WhatsApp</div><div style="font-size:13px;color:var(--dim);">+91 93906 53955</div><div style="font-size:11px;color:#10B981;margin-top:3px;">Typically replies in under 5 mins</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);margin-left:auto;"></i>
+            </div>
+            <div onclick="window.location.href='tel:+919390653955'" style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(0,0,0,0.05);cursor:pointer;">
+                <div style="width:48px;height:48px;border-radius:16px;background:rgba(175,58,129,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-phone" style="color:#AF3A81;font-size:20px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:2px;">Phone Call</div><div style="font-size:13px;color:var(--dim);">+91 93906 53955</div><div style="font-size:11px;color:var(--dim2);margin-top:3px;">Mon – Sun, 9 AM to 8 PM</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);margin-left:auto;"></i>
+            </div>
+            <div onclick="window.location.href='mailto:hello@vivahavenue.com'" style="background:var(--card);border-radius:18px;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 16px rgba(0,0,0,0.05);cursor:pointer;">
+                <div style="width:48px;height:48px;border-radius:16px;background:rgba(212,175,55,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;"><i class="fa-solid fa-envelope" style="color:#D4AF37;font-size:20px;"></i></div>
+                <div><div style="font-size:14px;font-weight:600;margin-bottom:2px;">Email</div><div style="font-size:13px;color:var(--dim);">hello@vivahavenue.com</div><div style="font-size:11px;color:var(--dim2);margin-top:3px;">Response within 4–8 hours</div></div>
+                <i class="fa-solid fa-chevron-right" style="color:var(--dim2);margin-left:auto;"></i>
+            </div>
+        </div>
+        <div style="background:var(--card2);border-radius:18px;padding:20px;margin-bottom:20px;">
+            <div style="font-size:12px;font-weight:600;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">Our Office</div>
+            <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;"><i class="fa-solid fa-location-dot" style="color:#AF3A81;margin-top:2px;width:14px;"></i><div style="font-size:13px;color:var(--dim);line-height:1.7;">Vivaha Venue <br>Plot No. 42, Siddhartha Nagar<br>Vijayawada, Andhra Pradesh – 520010</div></div>
+            <div style="display:flex;gap:10px;align-items:center;"><i class="fa-solid fa-clock" style="color:#AF3A81;width:14px;"></i><div style="font-size:13px;color:var(--dim);">Mon – Sun: 9:00 AM – 8:00 PM</div></div>
+        </div>
+        <div style="background:var(--card2);border-radius:18px;padding:20px;">
+            <div style="font-size:12px;font-weight:600;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;">Follow Us</div>
+            <div style="display:flex;gap:12px;">
+                <div onclick="window.open('https://instagram.com','_blank')" style="width:44px;height:44px;background:var(--card);border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><i class="fa-brands fa-instagram" style="color:#AF3A81;font-size:18px;"></i></div>
+                <div onclick="window.open('https://facebook.com','_blank')" style="width:44px;height:44px;background:var(--card);border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><i class="fa-brands fa-facebook" style="color:#2471A3;font-size:18px;"></i></div>
+                <div onclick="window.open('https://youtube.com','_blank')" style="width:44px;height:44px;background:var(--card);border-radius:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.06);"><i class="fa-brands fa-youtube" style="color:#EF4444;font-size:18px;"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FAQs PAGE -->
+<div class="page" id="page-fp-faqs">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Common questions</span><span class="topbar-brand">FAQs</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:4px;">Frequently Asked<br><em>Questions</em></div>
+        <div style="font-size:13px;color:var(--dim);margin-bottom:24px;line-height:1.7;">Everything you need to know about booking venues on Vivaha Venue.</div>
+
+        <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;">Booking</div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I book a venue on Vivaha Venue? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Browse venues on the Explore page, open a venue you like, tap "Check Availability" to pick your date on the calendar, then tap "Book Now". You'll go through a 3-step flow: event details → payment plan → confirmation. The entire process takes under 5 minutes.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the 40% advance payment? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">To confirm your booking, you pay 40% of the venue's total price online. The remaining 60% is paid directly to the venue owner 2 days before your event. This secures your date and gives the venue owner guaranteed revenue. Alternatively, you can pay 100% online if you prefer to settle everything upfront.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I choose the exact event date? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Yes! Use the availability calendar in each venue's detail page to see which dates are open, limited, or already booked. Only future dates are available — past dates and today after 5 PM are automatically blocked. Select your preferred date and the system confirms availability instantly.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Will I get a booking confirmation? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Yes. After payment, you receive a booking reference number immediately on screen and in your "My Bookings" tab. Our team also sends a WhatsApp confirmation to your registered number within 2 hours.</div></div>
+
+        <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin:20px 0 10px;">Payments & Pricing</div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What payment methods are accepted? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">We accept all major payment methods via Razorpay: Credit Cards, Debit Cards, UPI (GPay, PhonePe, Paytm), Net Banking, and popular Wallets. All transactions are secured with 256-bit SSL encryption.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the platform fee? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Vivaha Venue charges a 2% platform fee on the advance amount paid. This covers payment processing, platform maintenance, and our dedicated support team. There are no hidden charges.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are there additional costs beyond the venue price? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">The prices listed are the base venue rental rates. Additional costs may apply for catering, decoration, DJ/sound systems, or extra rooms — these are negotiated directly with the venue. Always confirm inclusions with the venue before booking.</div></div>
+
+        <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin:20px 0 10px;">Cancellations & Refunds</div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I cancel my booking? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Yes. You can cancel from My Bookings → tap "Cancel Booking". A 5% cancellation penalty on the advance amount applies, plus the 2% platform fee (non-refundable). The remaining balance is refunded to your original payment method within 5–7 business days.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if the venue cancels? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">In the rare event that a venue cancels, you receive a 100% refund of the advance paid plus the platform fee within 2 business days. Our team will also proactively help you find an alternative venue at no extra cost.</div></div>
+
+        <div style="font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:1.5px;margin:20px 0 10px;">Venues & Site Visits</div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How are venues verified? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Every venue on Vivaha is physically inspected by our team before listing. We verify capacity, amenities, photos, pricing, and legal documentation. Only venues that meet our quality standards receive the "Verified Partner" badge.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I visit the venue before booking? <i class="fa-solid fa-chevron-down"></i></div><div class="faq-a">Absolutely. Use the "Schedule Visit" button on any venue page to book a free site visit. Select your preferred date and time slot — our team will confirm within 2 hours and arrange the visit with the venue owner.</div></div>
+
+        <div style="margin-top:24px;background:rgba(175,58,129,0.06);border:1px solid rgba(175,58,129,0.2);border-radius:18px;padding:20px;text-align:center;">
+            <div style="font-size:14px;font-weight:500;margin-bottom:6px;">Still have questions?</div>
+            <div style="font-size:13px;color:var(--dim);margin-bottom:14px;">Our team is here 7 days a week.</div>
+            <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20have%20a%20question.','_blank')" style="padding:12px 24px;background:#10B981;color:#fff;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</button>
+        </div>
+    </div>
+</div>
+
+<!-- PRIVACY POLICY PAGE -->
+<div class="page" id="page-fp-privacy">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Legal</span><span class="topbar-brand">Privacy Policy</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:4px;"><em>Privacy Policy</em></div>
+        <div style="font-size:12px;color:var(--dim2);margin-bottom:24px;">Last updated: 1 June 2026</div>
+
+        <div style="font-size:13px;color:var(--dim);line-height:1.8;display:flex;flex-direction:column;gap:20px;">
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">1. Introduction</div>Vivaha Venue ("we", "our", or "us") operates the Vivaha Venue mobile application and website. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our platform. By using Vivaha Venue, you agree to the terms of this policy.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">2. Information We Collect</div>
+                <div style="margin-bottom:8px;"><strong style="color:var(--text);">Personal Information:</strong> Name, phone number, email address, and profile details you provide when creating an account or making a booking.</div>
+                <div style="margin-bottom:8px;"><strong style="color:var(--text);">Booking Data:</strong> Event details, guest counts, selected dates, and payment information (we do not store full card numbers — Razorpay handles payment data under PCI-DSS standards).</div>
+                <div><strong style="color:var(--text);">Usage Data:</strong> Pages viewed, venues searched, time on app, and device/browser information for improving our service.</div>
+            </div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">3. How We Use Your Information</div>
+                We use your data to: process and confirm bookings; send booking confirmations and reminders via WhatsApp/SMS; personalise venue recommendations; resolve disputes and provide customer support; improve our platform through analytics; and comply with legal obligations.
+            </div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">4. Sharing of Information</div>We do not sell your personal information to third parties. We may share data with: (a) venue partners — limited booking details needed to fulfil your reservation; (b) payment processors (Razorpay) to complete transactions; (c) analytics providers (anonymised data only); and (d) law enforcement or courts when required by law.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">5. Data Security</div>We implement industry-standard security measures including SSL encryption, access controls, and regular security audits. However, no online transmission is 100% secure. We encourage you to use a strong password and keep your login credentials confidential.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">6. Data Retention</div>We retain your account data for as long as your account is active, plus 3 years after account closure for legal and accounting purposes. Booking records are retained for 7 years in compliance with Indian tax law.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">7. Your Rights</div>You have the right to: access a copy of your personal data; correct inaccurate information; request deletion of your account and data (subject to legal retention obligations); and opt out of marketing communications. Contact us at vivahavenue@gmail.com to exercise these rights.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">8. Cookies & Local Storage</div>Our app uses local storage (not third-party cookies) to save your preferences, saved venues, and booking history locally on your device. This data never leaves your device unless you explicitly submit a booking.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">9. Children's Privacy</div>Our platform is not directed to persons under 18. We do not knowingly collect personal information from minors. If we learn we have inadvertently collected such information, we will delete it promptly.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">10. Contact Us</div>For privacy-related queries: <strong>vivahavenue@gmail.com</strong> or WhatsApp +91 93906 53955. Vivaha Venue, Rajahmundry, AP – 533105.</div>
+        </div>
+    </div>
+</div>
+
+<!-- TERMS & CONDITIONS PAGE -->
+<div class="page" id="page-fp-terms">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Legal</span><span class="topbar-brand">Terms & Conditions</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:4px;"><em>Terms & Conditions</em></div>
+        <div style="font-size:12px;color:var(--dim2);margin-bottom:24px;">Last updated: 1 June 2026</div>
+
+        <div style="font-size:13px;color:var(--dim);line-height:1.8;display:flex;flex-direction:column;gap:20px;">
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">1. Acceptance of Terms</div>By accessing or using the Vivaha Venue platform ("Platform"), you agree to be bound by these Terms & Conditions. If you do not agree, please do not use the Platform.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">2. Eligibility</div>You must be at least 18 years old and legally capable of entering into binding contracts under Indian law to use our Platform. By creating an account, you represent that you meet these requirements.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">3. Venue Bookings</div>
+                <div style="margin-bottom:8px;">3.1 Vivaha Venue acts as an intermediary between customers and venue owners. We facilitate bookings but are not a party to the contract between you and the venue owner.</div>
+                <div style="margin-bottom:8px;">3.2 A booking is confirmed only after successful payment of the advance (40% or 100% as selected) and receipt of a booking reference number.</div>
+                <div>3.3 All listed prices are inclusive of GST unless stated otherwise. Venue pricing may vary by date type (weekday, weekend, festival, peak season).</div>
+            </div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">4. Payment Terms</div>4.1 Advance payments are processed securely via Razorpay. A 2% platform fee applies on the advance amount. 4.2 The remaining balance (60% if advance plan selected) must be paid directly to the venue at least 2 days before the event. 4.3 Payment disputes must be raised within 7 days of booking.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">5. User Responsibilities</div>You agree not to: provide false information; attempt to book venues without intent to use; engage in fraudulent chargebacks; post false reviews; or use the Platform for any unlawful purpose.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">6. Venue Owner Responsibilities</div>Venue partners agree to: maintain accurate availability and pricing; honour confirmed bookings; maintain the standard of facilities as listed; and comply with all applicable local laws, fire safety, and occupancy regulations.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">7. Limitation of Liability</div>Vivaha Venue is not liable for: actions or omissions of venue owners; damage to property during events; force majeure events; or indirect/consequential losses. Our maximum liability to any user shall not exceed the platform fee paid on that transaction.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">8. Intellectual Property</div>All content on the Platform — including text, images, logos, and code — is the property of Vivaha Venue Pvt. Ltd. and protected under Indian copyright law. Unauthorized reproduction is prohibited.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">9. Governing Law & Disputes</div>These Terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of courts in Vijayawada, Andhra Pradesh. Disputes under ₹50,000 may be referred to our in-house grievance officer at legal@vivahavenue.com.</div>
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">10. Changes to Terms</div>We may update these Terms from time to time. Changes take effect 14 days after posting. Continued use of the Platform after that date constitutes acceptance.</div>
+        </div>
+    </div>
+</div>
+
+<!-- REFUND & CANCELLATION POLICY PAGE -->
+<div class="page" id="page-fp-refund">
+    <div class="status-bar"></div>
+    <div class="topbar"><div class="topbar-actions" style="margin-right:10px;"><div class="icon-btn" onclick="goPage('home')"><i class="fa-solid fa-arrow-left"></i></div></div><div class="topbar-left" style="flex:1;"><span class="topbar-greeting">Legal</span><span class="topbar-brand">Refund Policy</span></div></div>
+    <div class="scroll-area" style="padding:20px 20px 40px;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:500;color:var(--text);margin-bottom:4px;"><em>Refund & Cancellation Policy</em></div>
+        <div style="font-size:12px;color:var(--dim2);margin-bottom:24px;">Last updated: 1 June 2026</div>
+
+        <div style="background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.25);border-radius:16px;padding:16px;margin-bottom:24px;"><i class="fa-solid fa-circle-check" style="color:#10B981;margin-right:8px;"></i><strong style="font-size:13px;">Vivaha Venue is committed to fair, transparent refund practices. We aim to process all refunds within 5–7 business days.</strong></div>
+
+        <div style="font-size:13px;color:var(--dim);line-height:1.8;display:flex;flex-direction:column;gap:20px;">
+            <div>
+                <div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:12px;">1. Customer-Initiated Cancellation</div>
+                <div style="background:var(--card2);border-radius:14px;overflow:hidden;margin-bottom:2px;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:rgba(175,58,129,0.08);padding:10px 14px;font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:0.8px;">
+                        <span>When You Cancel</span><span>Penalty</span><span>Refund</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--border);font-size:12px;">
+                        <span style="color:var(--text);">60+ days before event</span><span style="color:var(--green);">10% of advance</span><span style="color:var(--green);">90% refund</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--border);font-size:12px;">
+                        <span style="color:var(--text);">30–59 days before</span><span style="color:#F59E0B;">25% of advance</span><span style="color:#F59E0B;">75% refund</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--border);font-size:12px;">
+                        <span style="color:var(--text);">15–29 days before</span><span style="color:#F59E0B;">50% of advance</span><span style="color:#F59E0B;">50% refund</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--border);font-size:12px;">
+                        <span style="color:var(--text);">Less than 7 days</span><span style="color:var(--red);">100% of advance</span><span style="color:var(--red);">No refund</span>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:12px 14px;border-top:1px solid var(--border);font-size:12px;">
+                        <span style="color:var(--text);">Same day / no-show</span><span style="color:var(--red);">100% of advance</span><span style="color:var(--red);">No refund</span>
+                    </div>
+                </div>
+                <div style="font-size:12px;color:var(--dim2);margin-top:8px;">Note: The 2% platform fee is non-refundable in all cancellation scenarios.</div>
+            </div>
+
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">2. Venue-Initiated Cancellation</div>If a venue cancels a confirmed booking for any reason: you receive a 100% refund of the advance paid (including the platform fee); a ₹500 inconvenience credit is added to your account; and our team will proactively help you find an alternative venue.</div>
+
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">3. How to Cancel</div>Go to <strong style="color:var(--text);">My Bookings</strong> → select the booking → tap <strong style="color:var(--text);">Cancel Booking</strong>. You'll see the exact refund amount before confirming. Cancellations must be done through the Platform — cancellations requested via WhatsApp or phone alone do not count.</div>
+
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">4. Refund Process</div>Refunds are credited to the original payment method (card, UPI, bank account). Processing time: UPI/Wallets — 1–3 business days; Debit/Credit cards — 5–7 business days; Net Banking — 3–5 business days. You will receive a WhatsApp notification when the refund is initiated.</div>
+
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">5. Force Majeure</div>In cases of natural disasters, government restrictions, or other force majeure events that prevent the event from taking place, we offer a full credit (valid 12 months) or a 90% refund — irrespective of the standard cancellation window.</div>
+
+            <div><div style="font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px;">6. Disputes</div>If you have a dispute regarding a refund, contact us at refunds@vivahavenue.com with your booking reference. We aim to resolve all disputes within 72 hours.</div>
+        </div>
+
+        <div style="margin-top:24px;background:rgba(175,58,129,0.06);border:1px solid rgba(175,58,129,0.2);border-radius:18px;padding:20px;text-align:center;">
+            <div style="font-size:14px;font-weight:500;margin-bottom:6px;">Need help with a refund?</div>
+            <button onclick="window.open('https://wa.me/919390653955?text=Hi%20Vivaha%20Venue%2C%20I%20need%20help%20with%20a%20refund.','_blank')" style="padding:12px 24px;background:#10B981;color:#fff;border:none;border-radius:50px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:8px;margin-top:8px;"><i class="fa-brands fa-whatsapp"></i> Contact Support</button>
+        </div>
+    </div>
+</div>
+
 <!-- DOCK -->
 <nav class="dock">
     <div class="dock-item active" id="dock-home" onclick="dockTap('home')"><i class="fa-solid fa-house-chimney"></i><span>Home</span></div>
@@ -2641,8 +2871,11 @@ function openSiteVisit(id) {
         document.getElementById('visit-name').value = currentUser.name || '';
         document.getElementById('visit-phone').value = currentUser.phone || '';
     }
-    const todayISO = new Date().toISOString().split('T')[0];
-    document.getElementById('visit-date').min = todayISO;
+    const now4 = new Date();
+    const minV = new Date(now4);
+    if(now4.getHours() >= 17) minV.setDate(minV.getDate() + 1);
+    const minVISO = minV.toISOString().split('T')[0];
+    document.getElementById('visit-date').min = minVISO;
     document.getElementById('visit-date').value = '';
     selectedVisitTime = '';
     document.querySelectorAll('.visit-time-chip').forEach(c => c.classList.remove('selected'));
@@ -2859,10 +3092,13 @@ let bookingVenueId=null,currentStep=0;
 function startBooking(id){
     if(!currentUser){closeSheet('venue-sheet');setTimeout(()=>openAuthModal('signup'),300);showToast('Please sign in to book');return;}
     bookingVenueId=id;currentVenueId=id;closeSheet('venue-sheet');resetBookingFlow();
-    // Enforce min date = today
-    const todayISO = new Date().toISOString().split('T')[0];
+    // Enforce min date = today (or tomorrow if after 5pm)
+    const now2 = new Date();
+    const minDate = new Date(now2);
+    if(now2.getHours() >= 17) minDate.setDate(minDate.getDate() + 1);
+    const minISO = minDate.toISOString().split('T')[0];
     const bdate = document.getElementById('b-date');
-    if(bdate){ bdate.min = todayISO; bdate.value=''; }
+    if(bdate){ bdate.min = minISO; bdate.value=''; }
     selectedPayOption='40';document.getElementById('payOpt40').classList.add('selected');document.getElementById('payOptFull').classList.remove('selected');
     updatePayBreakdown();
     document.getElementById('b-name').value=currentUser.name||'';document.getElementById('b-phone').value=currentUser.phone||'';
@@ -2874,10 +3110,13 @@ function resetBookingFlow(){
     document.querySelectorAll('.flow-step').forEach(s=>s.classList.remove('active'));
     document.getElementById('fstep0').classList.add('active');
     updateStepDots(0);
-    // Set min date to today and clear value
-    const todayISO = new Date().toISOString().split('T')[0];
+    // Set min date to today (or tomorrow after 5pm)
+    const now3 = new Date();
+    const minD = new Date(now3);
+    if(now3.getHours() >= 17) minD.setDate(minD.getDate() + 1);
+    const minISO = minD.toISOString().split('T')[0];
     const bdate = document.getElementById('b-date');
-    if(bdate){ bdate.min = todayISO; bdate.value=''; }
+    if(bdate){ bdate.min = minISO; bdate.value=''; }
     document.getElementById('b-occasion').value='';
     document.getElementById('b-guests').value='';
 }
@@ -2997,9 +3236,10 @@ function renderCalendar(){
     const booked=bookedDays[calMonth]||[];
     const limited=limitedDays[calMonth]||[];
     const daysInM=new Date(calYear,calMonth,0).getDate();
+    const isTodayBlocked=(calYear===todayY&&calMonth===todayM&&now.getHours()>=17);
     let availCount=0, limitedCount=0, bookedCount=0;
     for(let d=1;d<=daysInM;d++){
-        const isPast=(calYear<todayY)||(calYear===todayY&&calMonth<todayM)||(calYear===todayY&&calMonth===todayM&&d<todayD);
+        const isPast=(calYear<todayY)||(calYear===todayY&&calMonth<todayM)||(calYear===todayY&&calMonth===todayM&&d<todayD)||(isTodayBlocked&&calYear===todayY&&calMonth===todayM&&d===todayD);
         if(isPast) continue;
         if(booked.includes(d)) bookedCount++;
         else if(limited.includes(d)) limitedCount++;
@@ -3020,10 +3260,12 @@ function renderCalendar(){
     // Leading empty cells
     for(let i=0;i<firstDay;i++) html+='<div class="cal-day empty"></div>';
     // Day cells
+    const isTodayAfter5PM = now.getHours() >= 17;
     for(let d=1;d<=daysInM;d++){
         const isPast=(calYear<todayY)||
                      (calYear===todayY&&calMonth<todayM)||
-                     (calYear===todayY&&calMonth===todayM&&d<todayD);
+                     (calYear===todayY&&calMonth===todayM&&d<todayD)||
+                     (isTodayAfter5PM&&calYear===todayY&&calMonth===todayM&&d===todayD);
         const isToday=(d===todayD&&calMonth===todayM&&calYear===todayY);
         const isBooked=booked.includes(d);
         const isLimited=limited.includes(d);
